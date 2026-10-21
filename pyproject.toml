@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "sawtna-data-engineering"
+version = "1.0.0"
+description = "Sawtna AI — Data Engineering et architecture commune"
+requires-python = ">=3.11"
+dependencies = ["httpx>=0.28,<1","pydantic>=2.10,<3","beautifulsoup4>=4.12,<5","pypdf>=6,<7","PyMuPDF>=1.26,<2"]
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+[project.scripts]
+sawtna-data = "data_engineering.pipeline:main"
+[tool.setuptools.packages.find]
+where = ["packages","services/data-engineering-aws"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

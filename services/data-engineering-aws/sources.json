@@ -1,0 +1,41 @@
+[
+  {
+    "id": "constitution-2011-sgg-fr",
+    "title": "Constitution 2011 — édition SGG",
+    "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited"
+  },
+  {
+    "id": "constitution-2011-fr",
+    "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+    "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Bulletin officiel, copie publiée sur Maroc.ma",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited"
+  },
+  {
+    "id": "constitution-portail-fr",
+    "title": "Constitution — portail national Maroc.ma",
+    "url": "https://maroc.ma/fr/le-maroc/constitution",
+    "language": "fr",
+    "format": "html",
+    "authority": "Portail national Maroc.ma",
+    "legal_currency": "institutional_explainer"
+  },
+  {
+    "id": "loi-06-21-bo-7000",
+    "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+    "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2021-07-01",
+    "legal_currency": "historical_amendment_not_consolidated"
+  }
+]
