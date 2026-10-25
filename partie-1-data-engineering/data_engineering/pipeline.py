@@ -46,7 +46,7 @@ def extract_pdf(path: Path, ocr=False, language="fr"):
         tessdata = str(Path(os.getenv("SAWTNA_OCR_TESSDATA", str(data_root() / "models/tessdata"))).resolve())
         lang = "ara" if language == "ar" else "fra"
         if not (Path(tessdata) / f"{lang}.traineddata").exists():
-            raise ValueError(f"Modèle OCR absent : lancez python scripts/download_ocr.py --language {lang}")
+            raise ValueError(f"Modèle OCR absent : lancez python commun/scripts/download_ocr.py --language {lang}")
         with fitz.open(path) as doc:
             for i, (_, text) in enumerate(pages):
                 if len(text) < 60:
@@ -171,7 +171,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     collector = sub.add_parser("collect")
-    collector.add_argument("--catalog", type=Path, default=ROOT / "services/data-engineering-aws/sources.json")
+    collector.add_argument("--catalog", type=Path, default=ROOT / "partie-1-data-engineering/sources.json")
     collector.add_argument("--ocr", action="store_true", help="OCR local des pages numérisées, modèle tessdata requis.")
     review = sub.add_parser("approve", help="Après relecture humaine uniquement.")
     review.add_argument("--input", type=Path, default=data_root() / "processed/pending.jsonl")

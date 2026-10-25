@@ -21,8 +21,8 @@ Le backend est le seul point d’accès métier pour le frontend. Il ne doit pas
 
 ## Interfaces communes
 
-- Contrat des passages : `packages/contracts/passage.schema.json`.
-- Contrats d’API : `packages/contracts/backend.openapi.json` et contrats NLP/Analytics associés.
+- Contrat des passages : `commun/packages/contracts/passage.schema.json`.
+- Contrats d’API : `commun/packages/contracts/backend.openapi.json` et contrats NLP/Analytics associés.
 - Ingestion et appels interservices : clé de service côté serveur; clés absentes du frontend.
 - Réponse du chatbot : texte, langue, passages cités et métadonnées de référence; pas de score présenté comme probabilité de vérité.
 

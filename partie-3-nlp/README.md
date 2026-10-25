@@ -13,7 +13,7 @@ Le service reste indépendant du backend et expose une interface stable. L’ex�
 1. Préciser les langues couvertes (français, arabe, darija), leurs limites et les cas connus de faible qualité.
 2. Implémenter le prétraitement sans supprimer les informations nécessaires aux citations ou au sens juridique.
 3. Choisir et versionner le modèle d’embeddings; enregistrer nom, version, dimension, normalisation et empreinte.
-4. Exposer des endpoints protégés et validés selon `packages/contracts/nlp.openapi.json`.
+4. Exposer des endpoints protégés et validés selon `commun/packages/contracts/nlp.openapi.json`.
 5. Garantir que requêtes et documents utilisent le même modèle et la même dimension; refuser les incompatibilités.
 6. Conteneuriser pour Cloud Run, régler mémoire, CPU, concurrence, démarrage à froid et taille maximale des lots.
 7. Mesurer latence et qualité de recherche sur un jeu de questions annotées, séparé par langue.

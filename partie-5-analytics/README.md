@@ -6,7 +6,7 @@
 
 ## Périmètre
 
-Le dashboard est destiné au suivi interne et reste séparé de l’interface citoyen. Il n’ingère que les données minimales définies dans `packages/contracts/analytics.openapi.json`. Il ne doit pas recevoir ni conserver les questions des citoyens, leurs identités ou leurs adresses IP.
+Le dashboard est destiné au suivi interne et reste séparé de l’interface citoyen. Il n’ingère que les données minimales définies dans `commun/packages/contracts/analytics.openapi.json`. Il ne doit pas recevoir ni conserver les questions des citoyens, leurs identités ou leurs adresses IP.
 
 ### Tâches
 

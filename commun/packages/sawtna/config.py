@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-ROOT = Path(os.getenv("SAWTNA_PROJECT_ROOT", str(Path(__file__).resolve().parents[2])))
+ROOT = Path(os.getenv("SAWTNA_PROJECT_ROOT", str(Path(__file__).resolve().parents[3])))
 
 
 def data_root() -> Path:
-    path = Path(os.getenv("SAWTNA_DATA_DIR", str(ROOT / "data")))
+    path = Path(os.getenv("SAWTNA_DATA_DIR", str(ROOT / "commun/data")))
     path.mkdir(parents=True, exist_ok=True)
     return path
 

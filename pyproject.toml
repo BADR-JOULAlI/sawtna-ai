@@ -12,7 +12,8 @@ test = ["pytest>=8,<10"]
 [project.scripts]
 sawtna-data = "data_engineering.pipeline:main"
 [tool.setuptools.packages.find]
-where = ["packages","services/data-engineering-aws"]
+where = ["commun/packages","partie-1-data-engineering"]
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["commun/tests"]
 addopts = "-q"
+cache_dir = "commun/.cache/pytest"

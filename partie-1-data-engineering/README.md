@@ -6,7 +6,7 @@
 
 ## Périmètre
 
-Ce dossier décrit le travail de Data Engineering. Le code de référence est actuellement dans `services/data-engineering-aws/`, `packages/sawtna/data_engineering.py` et `scripts/`. Éviter de maintenir une seconde implémentation ici : ce dossier est le guide du propriétaire du service.
+Ce dossier contient le code Data Engineering dans `data_engineering/`, le catalogue `sources.json` et son Dockerfile. La bibliothèque partagée est dans `commun/packages/`; les scripts OCR et ingestion sont dans `commun/scripts/`.
 
 ### Tâches
 
@@ -21,7 +21,7 @@ Ce dossier décrit le travail de Data Engineering. Le code de référence est ac
 
 ## Contrat de sortie
 
-Chaque passage suit `packages/contracts/passage.schema.json`. Champs centraux : identifiant stable, identifiant du document, titre, URL source, langue (`fr`, `ar`, `darija`), texte, article/section, page, statut de revue et SHA-256. Ne jamais envoyer au RAG un passage encore `pending_review`.
+Chaque passage suit `commun/packages/contracts/passage.schema.json`. Champs centraux : identifiant stable, identifiant du document, titre, URL source, langue (`fr`, `ar`, `darija`), texte, article/section, page, statut de revue et SHA-256. Ne jamais envoyer au RAG un passage encore `pending_review`.
 
 ## Livrables
 
@@ -41,8 +41,37 @@ Chaque passage suit `packages/contracts/passage.schema.json`. Champs centraux : 
 
 ## Dépendances d’intégration
 
-Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` et les limites de lots. Les changements de schéma se coordonnent dans `packages/contracts/` avant modification du producteur ou du consommateur.
+Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` et les limites de lots. Les changements de schéma se coordonnent dans `commun/packages/contracts/` avant modification du producteur ou du consommateur.
 
 ## Démarrage
 
-Voir le guide principal et `services/data-engineering-aws/README.md`. Développement et vérification se font en local; aucun déploiement AWS n’est implicite.
+Voir le guide principal et `GUIDE-LOCAL.md`. Développement et vérification se font en local; aucun déploiement AWS n’est implicite.
+
+
+## Exécution du service existant
+
+# Étudiant 1 — Data Engineering · AWS EC2
+
+Code : data_engineering/pipeline.py. Depuis la racine :
+
+~~~powershell
+python -m pip install -e ".[test]"
+python commun/scripts/download_ocr.py --language fra
+python -m sawtna.data_engineering collect --ocr
+python -m pytest commun/tests/test_data_engineering.py
+~~~
+
+Catalogue : sources.json. Une source indique identifiant, URL institutionnelle, langue, format, autorité, date et état d’actualité juridique.
+Les redirections hors allowlist et les documents de plus de 25 Mo sont rejetés.
+Les bruts sont dans commun/data/raw/document/sha256.format, les manifests datés dans commun/data/manifests/, les passages dans commun/data/processed/.
+Les pages avec moins de 60 caractères sont signalées OCR requis. --ocr utilise PyMuPDF/Tesseract localement ; les résultats restent à relire.
+
+Après relecture humaine :
+
+~~~powershell
+python -m sawtna.data_engineering approve --document constitution-2011-sgg-fr
+python commun/scripts/ingest.py --input commun/data/processed/reviewed.jsonl
+~~~
+
+Pour un Bulletin officiel multi-thèmes, isoler les pages pertinentes et les relire avant approbation.
+Les sources brutes et modèles sont hors Git. L’ETL est une tâche manuelle ou planifiée sur EC2.

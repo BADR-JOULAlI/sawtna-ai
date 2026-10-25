@@ -3,7 +3,7 @@
 Sur une VM Linux déjà autorisée et disposant de Docker, cloner le dépôt de l’étudiant 1, puis :
 
 ~~~bash
-docker build -f services/data-engineering-aws/Dockerfile -t sawtna-etl .
+docker build -f partie-1-data-engineering/Dockerfile -t sawtna-etl .
 docker run --rm -v "$PWD/data:/app/data" sawtna-etl
 ~~~
 
