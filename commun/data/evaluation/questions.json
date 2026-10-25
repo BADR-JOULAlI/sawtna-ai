@@ -1,0 +1,14 @@
+[
+  {"question":"Comment sont élus les membres de la Chambre des représentants ?","language":"fr","expected":"constitution:62"},
+  {"question":"Combien de Chambres le Parlement comprend-il ?","language":"fr","expected":"constitution:60"},
+  {"question":"Comment sont élus les conseils des communes ?","language":"fr","expected":"constitution:135"},
+  {"question":"Le vote est-il un droit personnel ?","language":"fr","expected":"constitution:30"},
+  {"question":"كيف يتم انتخاب أعضاء مجلس النواب؟","language":"ar","expected":"constitution:62"},
+  {"question":"ما هو البرلمان؟","language":"ar","expected":"constitution:60"},
+  {"question":"مجالس الجماعات","language":"ar","expected":"constitution:135"},
+  {"question":"التصويت حق شخصي","language":"ar","expected":"constitution:30"},
+  {"question":"Kifach kaytntakhbo nowab?","language":"darija","expected":"constitution:62"},
+  {"question":"Chno howa lbarlaman?","language":"darija","expected":"constitution:60"},
+  {"question":"Kifach kaytntakhbo majalis ljama3iya?","language":"darija","expected":"constitution:135"},
+  {"question":"Chno l7e9 dyal vote?","language":"darija","expected":"constitution:30"}
+]

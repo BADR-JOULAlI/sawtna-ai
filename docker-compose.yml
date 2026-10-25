@@ -1,0 +1,95 @@
+name: sawtna
+x-app: &app
+  build:
+    context: .
+    dockerfile: commun/infra/Dockerfile
+  image: sawtna-local:1.0
+  restart: unless-stopped
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+    interval: 5s
+    timeout: 4s
+    retries: 15
+    start_period: 10s
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: sawtna
+      POSTGRES_USER: sawtna
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-sawtna-postgres}
+    ports:
+      - "127.0.0.1:5445:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./commun/infra/init-db.sql:/docker-entrypoint-initdb.d/01-analytics.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sawtna -d sawtna"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  nlp:
+    <<: *app
+    environment:
+      SAWTNA_SERVICE: nlp
+      SAWTNA_SERVICE_KEY: ${SAWTNA_SERVICE_KEY:-local-sawtna-development-only}
+      SAWTNA_EMBEDDER: concept-hash-v1
+    ports:
+      - "127.0.0.1:8011:8000"
+  analytics:
+    <<: *app
+    environment:
+      SAWTNA_SERVICE: analytics
+      SAWTNA_SERVICE_KEY: ${SAWTNA_SERVICE_KEY:-local-sawtna-development-only}
+      SAWTNA_ADMIN_KEY: ${SAWTNA_ADMIN_KEY:-local-sawtna-admin-only}
+      SAWTNA_ANALYTICS_DATABASE_URL: postgresql://sawtna:${POSTGRES_PASSWORD:-local-sawtna-postgres}@db:5432/sawtna_analytics
+      SAWTNA_BACKEND_URL: http://backend:8000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8012:8000"
+  backend:
+    <<: *app
+    environment:
+      SAWTNA_SERVICE: backend
+      SAWTNA_SERVICE_KEY: ${SAWTNA_SERVICE_KEY:-local-sawtna-development-only}
+      SAWTNA_ADMIN_KEY: ${SAWTNA_ADMIN_KEY:-local-sawtna-admin-only}
+      SAWTNA_BACKEND_DATABASE_URL: postgresql://sawtna:${POSTGRES_PASSWORD:-local-sawtna-postgres}@db:5432/sawtna
+      SAWTNA_NLP_URL: http://nlp:8000
+      SAWTNA_ANALYTICS_URL: http://analytics:8000
+      SAWTNA_ALLOWED_ORIGINS: http://localhost:5175,http://127.0.0.1:5175
+    depends_on:
+      db:
+        condition: service_healthy
+      nlp:
+        condition: service_healthy
+      analytics:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8010:8000"
+  frontend:
+    build:
+      context: .
+      dockerfile: commun/infra/Dockerfile.web
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:5175:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://127.0.0.1/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+  etl:
+    <<: *app
+    profiles: ["etl"]
+    restart: "no"
+    command: ["python", "-m", "sawtna.data_engineering", "collect"]
+    healthcheck:
+      disable: true
+    volumes:
+      - ./commun/data:/app/commun/data
+volumes:
+  postgres_data:

@@ -21,3 +21,8 @@ work/
 *.sqlite*
 
 commun/.cache/
+build/
+*.pem
+*.key
+*.p12
+*.pfx

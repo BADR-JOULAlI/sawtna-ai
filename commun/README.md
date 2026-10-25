@@ -13,6 +13,6 @@ Ce dossier regroupe le corpus et les ressources utilisées par plusieurs parties
 
 Les dossiers de code sont `partie-1-data-engineering/`, `partie-2-backend/`, `partie-3-nlp/`, `partie-4-frontend/` et `partie-5-analytics/`, directement à la racine du monorepo local.
 
-Le dépôt GitHub à périmètre limité contient seulement l’implémentation Data Engineering, les contrats communs et les fiches des autres parties; les dossiers communs absents de cet export sont disponibles dans le monorepo local complet.
+Le dépôt GitHub contient les cinq implémentations et ces ressources communes. Chaque étudiant peut travailler sur sa partie dans une branche puis proposer son intégration.
 
 Les caches, dépendances, originaux collectés et bases locales sont générés pendant l’exécution et exclus de Git. Toutes les commandes des guides s’exécutent depuis la racine, sauf indication explicite.

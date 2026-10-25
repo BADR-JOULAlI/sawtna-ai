@@ -6,7 +6,7 @@
 
 ## Périmètre
 
-Le backend est le seul point d’accès métier pour le frontend. Il ne doit pas exposer PostgreSQL directement au navigateur. Sa réalisation complète appartient à l’étudiant responsable; ce dépôt contient les contrats communs et un prototype local d’intégration, pas une autorisation de déploiement Azure.
+Le backend est le seul point d’accès métier pour le frontend. Il ne doit pas exposer PostgreSQL directement au navigateur. Le code local est présent dans `backend_service/`; le déploiement Azure reste à réaliser.
 
 ### Tâches
 
@@ -45,3 +45,22 @@ Le backend est le seul point d’accès métier pour le frontend. Il ne doit pas
 ## Dépendances
 
 L’étudiant 1 fournit les passages approuvés; l’étudiant 3 publie le contrat d’embeddings; l’étudiant 4 consomme l’API; l’étudiant 5 consomme les agrégats. Les contrats se valident collectivement avant intégration.
+
+
+## Exécution du service existant
+
+# Étudiant 2 — Backend · Azure VM
+
+Code : backend_service/main.py et quiz.py. Persistance : commun/packages/sawtna/store.py.
+
+~~~powershell
+python -m uvicorn sawtna.backend:app --host 127.0.0.1 --port 8010 --no-access-log
+python -m pytest commun/tests/test_backend.py
+~~~
+
+Démarrer NLP et Analytics avant le backend.
+Variables : SAWTNA_NLP_URL, SAWTNA_ANALYTICS_URL, SAWTNA_SERVICE_KEY, SAWTNA_ADMIN_KEY, SAWTNA_BACKEND_DATABASE_URL et SAWTNA_ALLOWED_ORIGINS.
+Sans URL PostgreSQL, SQLite est utilisé. Avec PostgreSQL, l’extension vector et les vecteurs 384D sont réels.
+Changer de modèle exige une réindexation.
+Endpoints : /api/ask, /api/documents, /api/quiz, /api/quiz/submit, /api/admin/summary, /v1/ingest et /health.
+Les événements Analytics sont conservés dans une file de réessai. Hors développement, exposer derrière HTTPS et changer les clés.

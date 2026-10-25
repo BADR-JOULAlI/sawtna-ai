@@ -1,0 +1,166 @@
+{
+  "evaluated_at": "2026-10-21T16:39:11.075246+00:00",
+  "scope": "Small authored regression set, not a general accuracy benchmark",
+  "metrics": {
+    "fr": {
+      "n": 4,
+      "recall_at_4": 1.0,
+      "mrr": 1.0
+    },
+    "ar": {
+      "n": 4,
+      "recall_at_4": 1.0,
+      "mrr": 1.0
+    },
+    "darija": {
+      "n": 4,
+      "recall_at_4": 1.0,
+      "mrr": 1.0
+    }
+  },
+  "cases": [
+    {
+      "question": "Comment sont élus les membres de la Chambre des représentants ?",
+      "language": "fr",
+      "expected": "constitution:62",
+      "retrieved": [
+        "constitution:62",
+        "constitution:60",
+        "constitution:63",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Combien de Chambres le Parlement comprend-il ?",
+      "language": "fr",
+      "expected": "constitution:60",
+      "retrieved": [
+        "constitution:60",
+        "constitution:63"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Comment sont élus les conseils des communes ?",
+      "language": "fr",
+      "expected": "constitution:135",
+      "retrieved": [
+        "constitution:135",
+        "constitution:138",
+        "constitution:63",
+        "constitution:62"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Le vote est-il un droit personnel ?",
+      "language": "fr",
+      "expected": "constitution:30",
+      "retrieved": [
+        "constitution:30",
+        "constitution:60",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "كيف يتم انتخاب أعضاء مجلس النواب؟",
+      "language": "ar",
+      "expected": "constitution:62",
+      "retrieved": [
+        "constitution:62",
+        "constitution:60",
+        "constitution:63",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "ما هو البرلمان؟",
+      "language": "ar",
+      "expected": "constitution:60",
+      "retrieved": [
+        "constitution:60"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "مجالس الجماعات",
+      "language": "ar",
+      "expected": "constitution:135",
+      "retrieved": [
+        "constitution:135",
+        "constitution:138"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "التصويت حق شخصي",
+      "language": "ar",
+      "expected": "constitution:30",
+      "retrieved": [
+        "constitution:30",
+        "constitution:60",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Kifach kaytntakhbo nowab?",
+      "language": "darija",
+      "expected": "constitution:62",
+      "retrieved": [
+        "constitution:62",
+        "constitution:60",
+        "constitution:63",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Chno howa lbarlaman?",
+      "language": "darija",
+      "expected": "constitution:60",
+      "retrieved": [
+        "constitution:60"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Kifach kaytntakhbo majalis ljama3iya?",
+      "language": "darija",
+      "expected": "constitution:135",
+      "retrieved": [
+        "constitution:135",
+        "constitution:138",
+        "constitution:63",
+        "constitution:62"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    },
+    {
+      "question": "Chno l7e9 dyal vote?",
+      "language": "darija",
+      "expected": "constitution:30",
+      "retrieved": [
+        "constitution:30",
+        "constitution:60",
+        "constitution:135"
+      ],
+      "rank": 1,
+      "model": "concept-hash-v1"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY pyproject.toml ./
+COPY commun/packages/ ./commun/packages/
+COPY partie-1-data-engineering/ ./partie-1-data-engineering/
+COPY partie-2-backend/ ./partie-2-backend/
+COPY partie-3-nlp/ ./partie-3-nlp/
+COPY partie-4-frontend/ ./partie-4-frontend/
+COPY partie-5-analytics/ ./partie-5-analytics/
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir ".[ml]"
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-small')"
+ENV SAWTNA_PROJECT_ROOT=/app SAWTNA_SERVICE=nlp SAWTNA_EMBEDDER=multilingual-e5-small SAWTNA_MODEL_DEVICE=cpu PORT=8000
+EXPOSE 8000
+CMD ["python", "-m", "sawtna.serve"]

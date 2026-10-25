@@ -1,10 +1,10 @@
 # EC2 — ETL
 
-Sur une VM Linux déjà autorisée et disposant de Docker, cloner le dépôt de l’étudiant 1, puis :
+Sur une VM Linux déjà autorisée et disposant de Docker, cloner le monorepo et lancer depuis sa racine :
 
 ~~~bash
 docker build -f partie-1-data-engineering/Dockerfile -t sawtna-etl .
-docker run --rm -v "$PWD/data:/app/data" sawtna-etl
+docker run --rm -v "$PWD/commun/data:/app/commun/data" sawtna-etl
 ~~~
 
 La tâche collecte et extrait ; elle n’approuve pas les textes. Utiliser un volume persistant pour les versions.

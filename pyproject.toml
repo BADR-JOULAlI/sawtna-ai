@@ -1,18 +1,35 @@
 [build-system]
 requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
+
 [project]
-name = "sawtna-data-engineering"
+name = "sawtna-ai"
 version = "1.0.0"
-description = "Sawtna AI — Data Engineering et architecture commune"
+description = "Assistant documentaire électoral marocain — monorepo étudiant"
 requires-python = ">=3.11"
-dependencies = ["httpx>=0.28,<1","pydantic>=2.10,<3","beautifulsoup4>=4.12,<5","pypdf>=6,<7","PyMuPDF>=1.26,<2"]
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "httpx>=0.28,<1",
+  "pydantic>=2.10,<3",
+  "numpy>=2,<3",
+  "beautifulsoup4>=4.12,<5",
+  "pypdf>=6,<7",
+  "PyMuPDF>=1.26,<2",
+  "psycopg[binary]>=3.2,<4",
+]
+
 [project.optional-dependencies]
 test = ["pytest>=8,<10"]
+ml = ["sentence-transformers>=3,<6"]
+
 [project.scripts]
-sawtna-data = "data_engineering.pipeline:main"
+sawtna-data = "sawtna.data_engineering:main"
+sawtna = "sawtna.launcher:main"
+
 [tool.setuptools.packages.find]
-where = ["commun/packages","partie-1-data-engineering"]
+where = ["commun/packages", "partie-2-backend", "partie-3-nlp", "partie-5-analytics", "partie-1-data-engineering"]
+
 [tool.pytest.ini_options]
 testpaths = ["commun/tests"]
 addopts = "-q"

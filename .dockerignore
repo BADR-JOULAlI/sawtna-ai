@@ -1,0 +1,17 @@
+**/node_modules
+**/dist
+**/__pycache__
+.git
+.venv
+commun/data/runtime
+commun/data/raw
+commun/data/processed
+commun/data/manifests
+work
+commun/.cache
+commun/data/models
+**/*.egg-info
+.env
+.env.*
+**/test-results
+**/playwright-report

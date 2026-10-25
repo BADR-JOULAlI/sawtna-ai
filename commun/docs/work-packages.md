@@ -10,5 +10,5 @@
 
 Les 125 questions d’évaluation restent un travail éditorial collectif (25 par étudiant). Le jeu de régression fourni ne remplace pas cette évaluation.
 Les cibles cloud sont à déployer et vérifier par chaque étudiant après autorisation.
-La publication individuelle actuelle contient Data Engineering et l’architecture. Les autres implémentations restent locales.
-Les fiches détaillées par responsable se trouvent dans les dossiers `partie-1-data-engineering/` à `partie-5-analytics/`. Les branches/PR servent à intégrer progressivement les modules et à faire relire les changements par l’équipe.
+Le monorepo publié contient les cinq parties et les ressources communes. Chaque responsable maintient son dossier et coordonne les changements de contrats avec les autres étudiants.
+Les cinq dossiers `partie-*` contiennent le code dans le monorepo local et les fiches de responsabilités. Les éléments partagés sont regroupés dans `commun/`.

@@ -1,0 +1,16 @@
+{
+  "tested_at": "2026-10-25T15:14:27.414187+00:00",
+  "database": "postgresql+pgvector",
+  "passed": [
+    "backend and dependencies healthy",
+    "retrieval with citations: fr",
+    "retrieval with citations: ar",
+    "retrieval with citations: darija",
+    "out-of-corpus abstention",
+    "input validation and admin authentication",
+    "server-side quiz grading",
+    "live analytics",
+    "both frontend entry points"
+  ],
+  "total": 9
+}
