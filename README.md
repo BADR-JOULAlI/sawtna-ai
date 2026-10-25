@@ -8,6 +8,10 @@ Documents officiels → AWS EC2 ETL → Azure VM API/PostgreSQL/pgvector → Azu
 L’API utilise Google Cloud Run pour les embeddings et envoie des compteurs anonymes vers Analytics sur Google Compute Engine.
 Voir docs/architecture.md et docs/work-packages.md. Les contrats de collaboration sont dans packages/contracts/.
 
+## Dossiers de travail des cinq étudiants
+
+Chaque dossier `workstreams/` contient le README détaillé d’un responsable : périmètre, tâches, livrables, critères de validation et dépendances. Les fiches décrivent la répartition du projet; le code des services est développé par leurs responsables et intégré selon les contrats communs.
+
 ## Installation et collecte locale
 
 ~~~powershell
