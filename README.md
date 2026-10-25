@@ -8,9 +8,15 @@ Documents officiels → AWS EC2 ETL → Azure VM API/PostgreSQL/pgvector → Azu
 L’API utilise Google Cloud Run pour les embeddings et envoie des compteurs anonymes vers Analytics sur Google Compute Engine.
 Voir docs/architecture.md et docs/work-packages.md. Les contrats de collaboration sont dans packages/contracts/.
 
-## Dossiers de travail des cinq étudiants
+## Parties du projet
 
-Chaque dossier `workstreams/` contient le README détaillé d’un responsable : périmètre, tâches, livrables, critères de validation et dépendances. Les fiches décrivent la répartition du projet; le code des services est développé par leurs responsables et intégré selon les contrats communs.
+- `partie-1-data-engineering/` — Ayoub Chenguir, AWS EC2
+- `partie-2-backend/` — Soulayman Jdidi, Azure VM
+- `partie-3-nlp/` — Badr Joulali, Google Cloud Run
+- `partie-4-frontend/` — Aya Sdour, Azure Static Web Apps
+- `partie-5-analytics/` — Ijlal Sellak, Google Compute Engine
+
+Chaque dossier contient le README détaillé du responsable : périmètre, tâches, livrables, critères de validation et dépendances. Le code des services est développé par leurs responsables et intégré selon les contrats communs.
 
 ## Installation et collecte locale
 
