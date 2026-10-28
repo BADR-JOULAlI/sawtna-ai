@@ -6,11 +6,14 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 import os
+import time
+import unicodedata
 from urllib.parse import urlparse
 import httpx
 from bs4 import BeautifulSoup
 from sawtna.config import ROOT, data_root
 from sawtna.contracts import Passage
+from .quality import needs_ocr, quality_flags
 
 ALLOWED_HOSTS = {"maroc.ma", "www.maroc.ma", "sgg.gov.ma", "www.sgg.gov.ma", "www.chambredesrepresentants.ma", "www.cour-constitutionnelle.ma"}
 MAX_BYTES = 25 * 1024 * 1024
@@ -23,7 +26,7 @@ def allowed_url(url: str):
 
 
 def clean(text):
-    return re.sub(r"[ \t]+", " ", text.replace("\x00", "")).strip()
+    return re.sub(r"[ \t]+", " ", unicodedata.normalize("NFC", text).replace("\u00a0", " ")).strip()
 
 
 def extract_html(content: bytes) -> list[tuple[int | None, str]]:
@@ -37,11 +40,12 @@ def extract_html(content: bytes) -> list[tuple[int | None, str]]:
     return [(None, "\n\n".join(dict.fromkeys(block for block in blocks if len(block) >= 25)))]
 
 
-def extract_pdf(path: Path, ocr=False, language="fr"):
+def extract_pdf(path: Path, ocr=False, language="fr", details=None):
     from pypdf import PdfReader
     reader = PdfReader(path)
     pages = [(i + 1, clean(page.extract_text(extraction_mode="layout") or "")) for i, page in enumerate(reader.pages)]
-    if ocr and any(len(text) < 60 for _, text in pages):
+    methods = ["text"] * len(pages)
+    if ocr and any(needs_ocr(text) for _, text in pages):
         import pymupdf as fitz
         tessdata = str(Path(os.getenv("SAWTNA_OCR_TESSDATA", str(data_root() / "models/tessdata"))).resolve())
         lang = "ara" if language == "ar" else "fra"
@@ -49,10 +53,14 @@ def extract_pdf(path: Path, ocr=False, language="fr"):
             raise ValueError(f"Modèle OCR absent : lancez python commun/scripts/download_ocr.py --language {lang}")
         with fitz.open(path) as doc:
             for i, (_, text) in enumerate(pages):
-                if len(text) < 60:
+                if needs_ocr(text):
                     page = doc[i]
                     textpage = page.get_textpage_ocr(language=lang, dpi=180, full=True, tessdata=tessdata)
                     pages[i] = (i + 1, clean(page.get_text(textpage=textpage)))
+                    methods[i] = "ocr"
+    if details is not None:
+        details.extend({"page": page, "method": methods[i], "flags": quality_flags(text)}
+                       for i, (page, text) in enumerate(pages))
     return pages
 
 
@@ -75,7 +83,7 @@ def split_passages(text: str, max_chars=1600, overlap=180):
         start = max(start + 1, end - overlap)
 
 
-def fetch(source, client):
+def _fetch_once(source, client):
     url = source["url"]
     allowed_url(url)
     # Validate each redirect; never silently follow a redirect to an untrusted host.
@@ -102,23 +110,78 @@ def fetch(source, client):
     raise ValueError("Trop de redirections.")
 
 
-def collect(catalog: Path, root: Path | None = None, ocr=False):
+def fetch(source, client, attempts=3):
+    """Retry transient network errors and 429/5xx; never retry invalid content/URLs."""
+    if not 1 <= attempts <= 5:
+        raise ValueError("Nombre de tentatives invalide.")
+    for attempt in range(attempts):
+        try:
+            return _fetch_once(source, client)
+        except (httpx.TransportError, httpx.HTTPStatusError) as exc:
+            if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code not in {429, 500, 502, 503, 504}:
+                raise
+            if attempt + 1 == attempts:
+                raise
+            time.sleep(2 ** attempt)
+
+
+def verified_raw(root: Path, record: dict) -> Path:
+    """Only load the exact immutable file within the selected corpus raw directory."""
+    if not isinstance(record.get("path"), str) or not re.fullmatch(r"[a-f0-9]{64}", str(record.get("sha256", ""))):
+        raise ValueError("Chemin ou empreinte manquant dans le manifeste.")
+    raw_root = (root / "raw").resolve()
+    target = (root / record["path"]).resolve()
+    if not target.is_relative_to(raw_root):
+        raise ValueError("Chemin du document hors du répertoire raw.")
+    if hashlib.sha256(target.read_bytes()).hexdigest() != record["sha256"]:
+        raise ValueError("Empreinte SHA-256 du document incohérente.")
+    return target
+
+
+def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: Path | None = None):
+    from pypdf.errors import PdfReadError
     root = root or data_root()
+    sources = json.loads(catalog.read_text(encoding="utf-8"))
+    ids = [s["id"] for s in sources]
+    if len(set(ids)) != len(ids):
+        raise ValueError("Identifiants de sources dupliqués dans le catalogue.")
+    cached = {}
+    if reuse_manifest:
+        previous = json.loads(reuse_manifest.read_text(encoding="utf-8"))
+        cached = {r["id"]: r for r in previous}
+        if len(cached) != len(previous):
+            raise ValueError("Identifiants dupliqués dans le manifeste.")
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     records, passages = [], []
     with httpx.Client(timeout=40, follow_redirects=False, headers={"User-Agent": "SawtnaAI/1.0 educational document collection"}) as client:
-        for source in json.loads(catalog.read_text(encoding="utf-8")):
-            record = {**source, "collected_at": datetime.now(timezone.utc).isoformat(), "status": "pending_review"}
+        for source in sources:
+            now = datetime.now(timezone.utc).isoformat()
+            record = {**source, "collected_at": now, "processed_at": now, "status": "pending_review"}
             try:
                 if not re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", source["id"]) or source["id"] in {".", ".."}:
                     raise ValueError("Identifiant documentaire invalide.")
-                content, kind, final_url = fetch(source, client)
+                if reuse_manifest:
+                    prior = cached.get(source["id"])
+                    if not prior or prior.get("url") != source["url"]:
+                        raise ValueError("Source absente du manifeste ou URL modifiée.")
+                    target = verified_raw(root, prior)
+                    record["collected_at"] = prior.get("collected_at")
+                    content = target.read_bytes()
+                    kind = "pdf" if content.startswith(b"%PDF") else "html"
+                    if source.get("format") == "pdf" and kind != "pdf":
+                        raise ValueError("L’original conservé n’est pas un PDF.")
+                    final_url = prior.get("final_url", source["url"])
+                    allowed_url(final_url)
+                else:
+                    content, kind, final_url = fetch(source, client)
                 digest = hashlib.sha256(content).hexdigest()
                 target = root / "raw" / source["id"] / f"{digest}.{kind}"
                 target.parent.mkdir(parents=True, exist_ok=True)
                 if not target.exists():
                     target.write_bytes(content)
-                pages = extract_pdf(target, ocr=ocr, language=source["language"]) if kind == "pdf" else extract_html(content)
+                page_quality = []
+                pages = extract_pdf(target, ocr=ocr, language=source["language"], details=page_quality) if kind == "pdf" else extract_html(content)
+                source_passages = []
                 count = 0
                 for page, text in pages:
                     for index, chunk in enumerate(split_passages(text)):
@@ -128,14 +191,15 @@ def collect(catalog: Path, root: Path | None = None, ocr=False):
                         passage = Passage(id=part_hash[:40], document_id=source["id"], title=source["title"],
                             source_url=final_url, language=source["language"], text=chunk,
                             page=page, section=f"Article {match[1]}" if match else "", sha256=digest)
-                        passages.append(passage.model_dump(mode="json"))
+                        source_passages.append(passage.model_dump(mode="json"))
                         count += 1
-                record.update(download_status="downloaded", sha256=digest, bytes=len(content),
+                record.update(download_status="reused" if reuse_manifest else "downloaded", sha256=digest, bytes=len(content),
                     path=target.relative_to(root).as_posix(), final_url=final_url, pages=len(pages), passages=count,
                     low_text_pages=sum(len(t) < 60 for _, t in pages),
-                    extraction_status="ocr_required" if any(len(t) < 60 for _, t in pages) else "extracted",
-                    ocr_requested=ocr)
-            except (httpx.HTTPError, ValueError, OSError) as exc:
+                    extraction_status="needs_review" if any(needs_ocr(t) for _, t in pages) else "extracted",
+                    ocr_requested=ocr, page_quality=page_quality)
+                passages.extend(source_passages)
+            except (httpx.HTTPError, ValueError, OSError, PdfReadError, RuntimeError) as exc:
                 record.update(download_status="failed", error=str(exc))
             records.append(record)
     manifest_dir = root / "manifests"
@@ -173,15 +237,39 @@ def main():
     collector = sub.add_parser("collect")
     collector.add_argument("--catalog", type=Path, default=ROOT / "partie-1-data-engineering/sources.json")
     collector.add_argument("--ocr", action="store_true", help="OCR local des pages numérisées, modèle tessdata requis.")
+    collector.add_argument("--reuse-manifest", type=Path, help="Réextraire les originaux SHA-256 vérifiés sans téléchargement.")
+    audit_parser = sub.add_parser("audit", help="Audit technique et préparation de la revue humaine.")
+    audit_parser.add_argument("--input", type=Path, default=data_root() / "processed/pending.jsonl")
+    audit_parser.add_argument("--manifest", type=Path, default=data_root() / "manifests/latest.json")
+    audit_parser.add_argument("--output-dir", type=Path)
     review = sub.add_parser("approve", help="Après relecture humaine uniquement.")
     review.add_argument("--input", type=Path, default=data_root() / "processed/pending.jsonl")
     review.add_argument("--output", type=Path, default=data_root() / "processed/reviewed.jsonl")
-    review.add_argument("--document", action="append", required=True)
+    selection = review.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--document", action="append", help="Ancien mode : document entier effectivement relu.")
+    selection.add_argument("--decisions", type=Path, help="Décisions explicites passage par passage après audit.")
+    review.add_argument("--reviewer", help="Nom du relecteur, obligatoire avec --decisions.")
+    review.add_argument("--manifest", type=Path, default=data_root() / "manifests/latest.json")
     args = parser.parse_args()
+    if args.command == "audit":
+        from .review import audit_corpus
+        out = args.output_dir or data_root() / "reviews" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        report = audit_corpus(args.input, args.manifest, data_root(), out)
+        print(json.dumps({"output": str(out), **report["summary"]}, ensure_ascii=True, indent=2))
+        if report["errors"]:
+            raise SystemExit(1)
+        return
     if args.command == "approve":
+        if args.decisions:
+            from .review import approve_decisions
+            if not args.reviewer:
+                parser.error("--reviewer est obligatoire avec --decisions.")
+            count = approve_decisions(args.input, args.decisions, args.output, args.reviewer, args.manifest, data_root())
+            print(f"{count} passages approuvés; journal : {args.output}.review.json")
+            return
         print(f"{export_reviewed(args.input, args.output, set(args.document))} passages approuvés.")
         return
-    records = collect(args.catalog, ocr=args.ocr)
+    records = collect(args.catalog, ocr=args.ocr, reuse_manifest=args.reuse_manifest)
     for record in records:
         print(f"{record['id']}: {record['download_status']} ({record.get('passages', 0)} passages)")
     if any(record["download_status"] == "failed" for record in records):

@@ -43,35 +43,27 @@ Chaque passage suit `commun/packages/contracts/passage.schema.json`. Champs cent
 
 Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` et les limites de lots. Les changements de schéma se coordonnent dans `commun/packages/contracts/` avant modification du producteur ou du consommateur.
 
-## Démarrage
+## Démarrage du travail
 
-Voir le guide principal et `GUIDE-LOCAL.md`. Développement et vérification se font en local; aucun déploiement AWS n’est implicite.
-
-
-## Exécution du service existant
-
-# Étudiant 1 — Data Engineering · AWS EC2
-
-Code : data_engineering/pipeline.py. Depuis la racine :
+Le [guide local](GUIDE-LOCAL.md) décrit les commandes de collecte, réextraction, audit, revue et livraison au backend.
 
 ~~~powershell
-python -m pip install -e ".[test]"
-python commun/scripts/download_ocr.py --language fra
 python -m sawtna.data_engineering collect --ocr
-python -m pytest commun/tests/test_data_engineering.py
+python -m sawtna.data_engineering audit
 ~~~
 
-Catalogue : sources.json. Une source indique identifiant, URL institutionnelle, langue, format, autorité, date et état d’actualité juridique.
-Les redirections hors allowlist et les documents de plus de 25 Mo sont rejetés.
-Les bruts sont dans commun/data/raw/document/sha256.format, les manifests datés dans commun/data/manifests/, les passages dans commun/data/processed/.
-Les pages avec moins de 60 caractères sont signalées OCR requis. --ocr utilise PyMuPDF/Tesseract localement ; les résultats restent à relire.
+## Modules
 
-Après relecture humaine :
+| Fichier | Rôle |
+|---|---|
+| `data_engineering/pipeline.py` | Collecte bornée, retries, extraction PDF/HTML et reprise depuis les originaux vérifiés |
+| `data_engineering/quality.py` | Signaux de qualité du texte et déclenchement OCR |
+| `data_engineering/review.py` | Audit de provenance, préparation de décisions individuelles et export avec journal |
+| `sources.json` | Catalogue des sources officielles |
+| `RAPPORT-INITIAL.md` | Résultat du premier lot et étapes restantes |
 
-~~~powershell
-python -m sawtna.data_engineering approve --document constitution-2011-sgg-fr
-python commun/scripts/ingest.py --input commun/data/processed/reviewed.jsonl
-~~~
+## État de la partie 1
 
-Pour un Bulletin officiel multi-thèmes, isoler les pages pertinentes et les relire avant approbation.
-Les sources brutes et modèles sont hors Git. L’ETL est une tâche manuelle ou planifiée sur EC2.
+Le premier lot est préparé pour relecture : quatre sources, toutes francophones. Les originaux sont conservés et les extractions ont été auditées. Les passages restent en attente de revue humaine; l’audit technique ne certifie pas leur actualité juridique.
+
+La suite du travail consiste à sélectionner les passages électoraux pertinents, vérifier les erreurs d’OCR, étendre le corpus aux sources arabes puis tester l’ingestion d’un lot explicitement approuvé. Le déploiement EC2 et la planification restent à réaliser.

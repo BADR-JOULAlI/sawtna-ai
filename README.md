@@ -112,14 +112,13 @@ python commun/scripts/download_ocr.py --language fra
 python -m sawtna.data_engineering collect --ocr
 ~~~
 
-Consulter commun/data/manifests/latest.json et relire les passages, puis approuver seulement les documents effectivement relus :
+Préparer un audit et un dossier de revue avec snapshots et décisions par passage :
 
 ~~~powershell
-python -m sawtna.data_engineering approve --document constitution-2011-sgg-fr
-python commun/scripts/ingest.py --input commun/data/processed/reviewed.jsonl
+python -m sawtna.data_engineering audit
 ~~~
 
-Le téléchargement ne certifie pas l’actualité juridique. Les fichiers bruts, bases et modèles sont exclus de Git.
+Relire les passages et compléter les décisions avant export et ingestion. Le [guide de la partie 1](partie-1-data-engineering/GUIDE-LOCAL.md) détaille la procédure. Le téléchargement et l’audit technique ne certifient pas l’actualité juridique. Les fichiers bruts, revues, bases et modèles sont exclus de Git.
 
 ## Vérifier
 
