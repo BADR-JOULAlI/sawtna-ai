@@ -108,7 +108,9 @@ Le dashboard réutilise React et est aussi servi indépendamment par Analytics.
 ## Collecter et ingérer
 
 ~~~powershell
+python -m pip install -e ".[ocr]"
 python commun/scripts/download_ocr.py --language fra
+python commun/scripts/download_ocr.py --language ara --variant best
 python -m sawtna.data_engineering collect --ocr
 ~~~
 

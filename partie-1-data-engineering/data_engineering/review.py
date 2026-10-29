@@ -54,6 +54,13 @@ def inspect_corpus(input_path: Path, manifest_path: Path, root: Path):
         if p.status == "synthetic":
             errors.append(f"Passage {p.id}: contenu synthétique interdit dans ce corpus officiel.")
         warnings[p.id] = quality_flags(p.text)
+        if record:
+            for page in record.get("page_quality", []):
+                if page.get("page") == p.page:
+                    warnings[p.id].extend(page.get("flags", []))
+                    if page.get("method") == "ocr":
+                        warnings[p.id].append("ocr_review_required")
+            warnings[p.id] = list(dict.fromkeys(warnings[p.id]))
         texts[text_digest(" ".join(p.text.casefold().split()))].append(p.id)
     for pid, count in ids.items():
         if count > 1:
@@ -98,6 +105,12 @@ def audit_corpus(input_path: Path, manifest_path: Path, root: Path, output_dir: 
     if output_dir.exists() and any(output_dir.iterdir()):
         raise ValueError("Le dossier de revue doit être nouveau ou vide pour préserver les décisions.")
     output_dir.mkdir(parents=True, exist_ok=True)
+    from .triage import build_triage, write_triage
+    records = json.loads(manifest_path.read_text(encoding="utf-8"))
+    triage = build_triage(passages, records, report["warnings"])
+    report["triage_summary"] = triage["summary"]
+    report["legal_families"] = triage["legal_families"]
+    write_triage(triage, output_dir)
     (output_dir / "audit.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     # Snapshots bind the review to this run, even if the latest collection changes.
     (output_dir / "pending.snapshot.jsonl").write_bytes(input_path.read_bytes())

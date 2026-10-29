@@ -48,6 +48,9 @@ Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` e
 Le [guide local](GUIDE-LOCAL.md) décrit les commandes de collecte, réextraction, audit, revue et livraison au backend.
 
 ~~~powershell
+python -m pip install -e ".[test,ocr]"
+python commun/scripts/download_ocr.py --language fra
+python commun/scripts/download_ocr.py --language ara --variant best
 python -m sawtna.data_engineering collect --ocr
 python -m sawtna.data_engineering audit
 ~~~
@@ -58,12 +61,15 @@ python -m sawtna.data_engineering audit
 |---|---|
 | `data_engineering/pipeline.py` | Collecte bornée, retries, extraction PDF/HTML et reprise depuis les originaux vérifiés |
 | `data_engineering/quality.py` | Signaux de qualité du texte et déclenchement OCR |
+| `data_engineering/ocr.py` | OCR arabe à 300 DPI, texte en ordre logique et confiance par page |
 | `data_engineering/review.py` | Audit de provenance, préparation de décisions individuelles et export avec journal |
+| `data_engineering/triage.py` | Ordre de relecture FR/AR explicable, sans approbation automatique |
 | `sources.json` | Catalogue des sources officielles |
 | `RAPPORT-INITIAL.md` | Résultat du premier lot et étapes restantes |
+| `RAPPORT-EXTENSION.md` | Extension bilingue et contrôles du 29 octobre 2026 |
 
 ## État de la partie 1
 
-Le premier lot est préparé pour relecture : quatre sources, toutes francophones. Les originaux sont conservés et les extractions ont été auditées. Les passages restent en attente de revue humaine; l’audit technique ne certifie pas leur actualité juridique.
+Le catalogue contient dix sources officielles en français et en arabe. Les originaux sont conservés et les extractions auditées; la file de relecture regroupe les indices électoraux, les alertes OCR et les familles de textes. Les passages restent en attente de revue humaine; l’audit technique ne certifie pas leur actualité juridique.
 
-La suite du travail consiste à sélectionner les passages électoraux pertinents, vérifier les erreurs d’OCR, étendre le corpus aux sources arabes puis tester l’ingestion d’un lot explicitement approuvé. Le déploiement EC2 et la planification restent à réaliser.
+La suite consiste à sélectionner les passages pertinents, corriger les erreurs d’OCR, vérifier les versions et tester l’ingestion d’un lot explicitement approuvé. L’image Docker ETL est disponible avec OCR; le déploiement EC2 et la planification restent à réaliser.

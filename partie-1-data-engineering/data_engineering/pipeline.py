@@ -41,6 +41,9 @@ def extract_html(content: bytes) -> list[tuple[int | None, str]]:
 
 
 def extract_pdf(path: Path, ocr=False, language="fr", details=None):
+    if ocr and language == "ar":
+        from .ocr import extract_arabic_pdf
+        return [(page, clean(text)) for page, text in extract_arabic_pdf(path, details=details)]
     from pypdf import PdfReader
     reader = PdfReader(path)
     pages = [(i + 1, clean(page.extract_text(extraction_mode="layout") or "")) for i, page in enumerate(reader.pages)]
@@ -59,7 +62,8 @@ def extract_pdf(path: Path, ocr=False, language="fr", details=None):
                     pages[i] = (i + 1, clean(page.get_text(textpage=textpage)))
                     methods[i] = "ocr"
     if details is not None:
-        details.extend({"page": page, "method": methods[i], "flags": quality_flags(text)}
+        details.extend({"page": page, "method": methods[i], "flags": quality_flags(text) +
+                        (["ocr_review_required"] if methods[i] == "ocr" else [])}
                        for i, (page, text) in enumerate(pages))
     return pages
 
@@ -138,9 +142,12 @@ def verified_raw(root: Path, record: dict) -> Path:
     return target
 
 
-def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: Path | None = None):
+def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: Path | None = None,
+            download_missing=False):
     from pypdf.errors import PdfReadError
     root = root or data_root()
+    if download_missing and not reuse_manifest:
+        raise ValueError("--download-missing nécessite --reuse-manifest.")
     sources = json.loads(catalog.read_text(encoding="utf-8"))
     ids = [s["id"] for s in sources]
     if len(set(ids)) != len(ids):
@@ -160,9 +167,12 @@ def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: 
             try:
                 if not re.fullmatch(r"[a-zA-Z0-9_.-]{1,100}", source["id"]) or source["id"] in {".", ".."}:
                     raise ValueError("Identifiant documentaire invalide.")
-                if reuse_manifest:
-                    prior = cached.get(source["id"])
-                    if not prior or prior.get("url") != source["url"]:
+                prior = cached.get(source["id"])
+                reused = reuse_manifest is not None and prior is not None
+                if reuse_manifest and not prior and not download_missing:
+                    raise ValueError("Source absente du manifeste; téléchargement non autorisé en mode hors ligne.")
+                if reused:
+                    if prior.get("url") != source["url"]:
                         raise ValueError("Source absente du manifeste ou URL modifiée.")
                     target = verified_raw(root, prior)
                     record["collected_at"] = prior.get("collected_at")
@@ -193,10 +203,10 @@ def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: 
                             page=page, section=f"Article {match[1]}" if match else "", sha256=digest)
                         source_passages.append(passage.model_dump(mode="json"))
                         count += 1
-                record.update(download_status="reused" if reuse_manifest else "downloaded", sha256=digest, bytes=len(content),
+                record.update(download_status="reused" if reused else "downloaded", sha256=digest, bytes=len(content),
                     path=target.relative_to(root).as_posix(), final_url=final_url, pages=len(pages), passages=count,
                     low_text_pages=sum(len(t) < 60 for _, t in pages),
-                    extraction_status="needs_review" if any(needs_ocr(t) for _, t in pages) else "extracted",
+                    extraction_status="needs_review" if any(p["flags"] for p in page_quality) or any(needs_ocr(t) for _, t in pages) else "extracted",
                     ocr_requested=ocr, page_quality=page_quality)
                 passages.extend(source_passages)
             except (httpx.HTTPError, ValueError, OSError, PdfReadError, RuntimeError) as exc:
@@ -238,6 +248,8 @@ def main():
     collector.add_argument("--catalog", type=Path, default=ROOT / "partie-1-data-engineering/sources.json")
     collector.add_argument("--ocr", action="store_true", help="OCR local des pages numérisées, modèle tessdata requis.")
     collector.add_argument("--reuse-manifest", type=Path, help="Réextraire les originaux SHA-256 vérifiés sans téléchargement.")
+    collector.add_argument("--download-missing", action="store_true",
+                           help="Avec --reuse-manifest : télécharger uniquement les nouvelles sources du catalogue.")
     audit_parser = sub.add_parser("audit", help="Audit technique et préparation de la revue humaine.")
     audit_parser.add_argument("--input", type=Path, default=data_root() / "processed/pending.jsonl")
     audit_parser.add_argument("--manifest", type=Path, default=data_root() / "manifests/latest.json")
@@ -269,7 +281,10 @@ def main():
             return
         print(f"{export_reviewed(args.input, args.output, set(args.document))} passages approuvés.")
         return
-    records = collect(args.catalog, ocr=args.ocr, reuse_manifest=args.reuse_manifest)
+    if args.download_missing and not args.reuse_manifest:
+        parser.error("--download-missing nécessite --reuse-manifest.")
+    records = collect(args.catalog, ocr=args.ocr, reuse_manifest=args.reuse_manifest,
+                      download_missing=args.download_missing)
     for record in records:
         print(f"{record['id']}: {record['download_status']} ({record.get('passages', 0)} passages)")
     if any(record["download_status"] == "failed" for record in records):

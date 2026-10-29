@@ -37,5 +37,83 @@
     "authority": "Secrétariat général du gouvernement",
     "published_at": "2021-07-01",
     "legal_currency": "historical_amendment_not_consolidated"
+  },
+  {
+    "id": "constitution-2011-sgg-ar",
+    "title": "دستور المملكة المغربية لسنة 2011 — الأمانة العامة للحكومة",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/constitution_2011_Ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "amendments_not_audited",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "constitution-2011",
+    "document_role": "original_text"
+  },
+  {
+    "id": "loi-27-11-sgg-fr",
+    "title": "Loi organique n° 27-11 relative à la Chambre des représentants — texte de 2011",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_27-11_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_original_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "original_text"
+  },
+  {
+    "id": "loi-27-11-sgg-ar",
+    "title": "القانون التنظيمي رقم 27.11 المتعلق بمجلس النواب — نص 2011",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=a9nd8qqbg7A%3D&mid=1587&portalid=1&tabid=484",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_original_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "original_text"
+  },
+  {
+    "id": "loi-20-16-sgg-ar",
+    "title": "القانون التنظيمي رقم 20.16 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=aBnrKMEGn4Q%3D&mid=1587&portalid=1&tabid=484",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment"
+  },
+  {
+    "id": "loi-04-21-sgg-ar",
+    "title": "القانون التنظيمي رقم 04.21 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_04.21_ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment"
+  },
+  {
+    "id": "loi-53-25-sgg-ar",
+    "title": "القانون التنظيمي رقم 53.25 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_organique_53.25_ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment"
   }
 ]

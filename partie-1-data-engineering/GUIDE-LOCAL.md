@@ -5,8 +5,9 @@ Exécuter les commandes depuis la racine `s/`. Catalogue : `partie-1-data-engine
 ## 1. Collecter
 
 ~~~powershell
-python -m pip install -e ".[test]"
+python -m pip install -e ".[test,ocr]"
 python commun/scripts/download_ocr.py --language fra
+python commun/scripts/download_ocr.py --language ara --variant best
 python -m sawtna.data_engineering collect --ocr
 ~~~
 
@@ -20,7 +21,19 @@ Chaque original est conservé sous son SHA-256. Chaque collecte produit un manif
 python -m sawtna.data_engineering collect --ocr --reuse-manifest commun/data/manifests/latest.json
 ~~~
 
-Le chemin et l’empreinte de chaque original sont vérifiés avant lecture. Aucun téléchargement n’est effectué. L’OCR traite les pages courtes ou suspectes : caractères de contrôle, caractères de remplacement ou proportion très faible de lettres. `page_quality` indique la méthode utilisée et les signaux restants. Ces heuristiques ne détectent pas toutes les erreurs : colonnes mélangées, mots fusionnés et chiffres nécessitent une relecture.
+Le chemin et l’empreinte de chaque original sont vérifiés avant lecture. Aucun téléchargement n’est effectué. L’OCR français traite les pages courtes ou suspectes : caractères de contrôle, caractères de remplacement ou proportion très faible de lettres. `page_quality` indique la méthode utilisée et les signaux restants. Ces heuristiques ne détectent pas toutes les erreurs : colonnes mélangées, mots fusionnés et chiffres nécessitent une relecture.
+
+Pour étendre le catalogue en conservant les originaux déjà collectés :
+
+~~~powershell
+python -m sawtna.data_engineering collect --ocr --reuse-manifest commun/data/manifests/latest.json --download-missing
+~~~
+
+Seules les sources dont l’identifiant est absent du manifeste sont téléchargées. Un original corrompu ou une URL modifiée reste une erreur, sans remplacement silencieux. Les anciens documents conservent leur `collected_at`; tous reçoivent un nouveau `processed_at`. Pour rafraîchir les documents sur le site officiel, lancer une collecte sans `--reuse-manifest`.
+
+Avec `--ocr`, les PDF arabes sont entièrement reconnus à 300 DPI par Tesseract via `tesserocr`, avec le modèle `tessdata_best` version 4.1.0. Le texte Unicode est récupéré directement, sans repasser par une couche texte PDF susceptible de mélanger les colonnes ou d’inverser l’arabe. Le modèle français existant reste utilisé par PyMuPDF pour les pages suspectes en français.
+
+Chaque page OCR porte `ocr_review_required`. L’arabe enregistre aussi l’empreinte du modèle, la résolution, la version du moteur et `mean_confidence`; une valeur inférieure à 80 ajoute `low_ocr_confidence`. Ce score est une estimation du moteur, pas une mesure d’exactitude. L’OCR peut encore omettre des lignes ou altérer des chiffres. `SAWTNA_OCR_AR_TESSDATA` permet de choisir un autre dossier contenant `ara.traineddata`; son empreinte reste enregistrée.
 
 ## 3. Préparer la revue
 
@@ -38,10 +51,14 @@ La commande affiche un nouveau dossier `commun/data/reviews/<date>/` :
 | `pending.snapshot.jsonl` | Copie figée des passages audités |
 | `manifest.snapshot.json` | Copie figée du manifeste associé |
 | `decisions.jsonl` | Décisions individuelles à compléter |
+| `priorites.md` | File de relecture FR/AR et textes d’une même famille à comparer |
+| `triage.jsonl` | Catégorie lexicale, mots-clés détectés, signaux et empreinte par passage |
 
 L’audit vérifie le contrat des passages, les identifiants, le lien au manifeste, les pages PDF et les empreintes des originaux. Il signale les textes identiques après normalisation des espaces et de la casse. Les erreurs techniques rendent la commande non réussie. Aucun indicateur ne certifie l’actualité juridique d’un document.
 
 Un dossier de revue non vide n’est jamais écrasé. Conserver les snapshots associés, même après une nouvelle collecte.
+
+Le triage place d’abord les passages avec alertes techniques, puis le vocabulaire électoral, le contexte institutionnel et les textes sans indice lexical. Il ne supprime aucun passage et ne renseigne aucune décision. Les accents, signes vocaliques arabes et allongements sont normalisés uniquement pour cette recherche; le texte documentaire demeure inchangé. Les familles et rôles renseignés dans `sources.json` rapprochent textes originaux et modifications sans prétendre produire une version consolidée.
 
 ## 4. Relire et sélectionner
 
@@ -76,7 +93,22 @@ Le backend doit être lancé. L’URL et la clé interservice sont configurées 
 ## Vérification et travail suivant
 
 ~~~powershell
-python -m pytest commun/tests/test_data_engineering.py commun/tests/test_data_review.py
+python -m pytest commun/tests/test_data_engineering.py commun/tests/test_data_review.py commun/tests/test_data_expansion.py commun/tests/test_data_ocr.py
 ~~~
 
-Le corpus actuel est francophone. Les sources arabes, la sélection précise des textes électoraux et leur actualité restent à compléter. Le déploiement AWS EC2 sera traité après validation locale du pipeline et du corpus.
+Le catalogue contient maintenant des sources françaises et arabes. La sélection des passages, la correction des erreurs OCR et la vérification de l’actualité des textes restent nécessaires. Voir [le rapport d’extension](RAPPORT-EXTENSION.md).
+
+## Exécuter la partie 1 dans Docker
+
+Le profil `etl` utilise son propre Dockerfile avec l’extension OCR. Le volume `commun/data/` conserve modèles, originaux et revues.
+
+~~~powershell
+docker compose --profile etl build etl
+docker compose --profile etl run --rm --no-deps etl --help
+docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language fra
+docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language ara --variant best
+docker compose --profile etl run --rm --no-deps etl collect --ocr
+docker compose --profile etl run --rm --no-deps etl audit
+~~~
+
+Ces commandes fonctionnent localement sans identifiants AWS. Le déploiement EC2 et sa planification restent à réaliser.

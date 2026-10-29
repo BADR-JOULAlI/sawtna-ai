@@ -16,6 +16,9 @@ jobs:
       - run: python -m pip install -e ".[test]"
       - run: npm --prefix partie-4-frontend ci
       - run: python -m pytest
+      - run: docker compose --profile etl build etl
+      - run: docker compose --profile etl run --rm --no-deps etl --help
+      - run: docker compose --profile etl run --rm --no-deps --entrypoint python etl -c "import tesserocr; print(tesserocr.tesseract_version())"
       - run: docker compose up --build --detach --wait
       - run: python commun/scripts/smoke.py
       - run: python commun/scripts/evaluate.py

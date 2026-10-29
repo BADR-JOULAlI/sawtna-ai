@@ -83,10 +83,13 @@ services:
       timeout: 3s
       retries: 5
   etl:
-    <<: *app
+    build:
+      context: .
+      dockerfile: partie-1-data-engineering/Dockerfile
+    image: sawtna-etl:1.0
     profiles: ["etl"]
     restart: "no"
-    command: ["python", "-m", "sawtna.data_engineering", "collect"]
+    command: ["collect"]
     healthcheck:
       disable: true
     volumes:

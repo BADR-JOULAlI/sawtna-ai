@@ -1,5 +1,7 @@
 # Partie 1 — Premier lot préparé le 28 octobre 2026
 
+Rapport historique du premier lot. L’état suivant est documenté dans [le rapport d’extension du 29 octobre](RAPPORT-EXTENSION.md).
+
 Le lot documentaire existant a été réextrait et audité en local. Il contient **474 passages francophones provenant de quatre sources officielles**, tous au statut `pending_review`. Aucun passage de ce lot n’a été approuvé ni envoyé au backend.
 
 Les originaux avaient été téléchargés le 21 octobre 2026. Cette exécution les réutilise après vérification de leur SHA-256; elle ne constitue pas une nouvelle collecte web. La date de collecte est conservée séparément de la date de traitement.
