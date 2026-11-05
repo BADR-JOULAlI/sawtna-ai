@@ -1,16 +1,16 @@
 # Partie 1 — Collecter, contrôler et préparer le corpus RAG
 
-Exécuter les commandes depuis la racine `s/`. Catalogue : `partie-1-data-engineering/sources.json`. Les originaux, extractions et revues locales sont conservés dans `commun/data/` et exclus de Git.
+Exécuter les commandes depuis la racine `s/`. Catalogue : `partie-1-data-engineering/sources.json`. Les originaux et extractions sont conservés dans `commun/data/` et exclus de Git.
 
 ## 1. Collecter
 
-Pour l’exécution cloud standard, une seule commande collecte les sources, réutilise les originaux connus, prépare les passages et crée automatiquement un dossier d’audit. Elle s’arrête avant toute approbation et ingestion :
+Pour le MVP, une seule commande collecte les sources, réutilise les originaux connus, nettoie les passages et produit directement le fichier prêt pour l’ingestion :
 
 ~~~powershell
 python -m data_engineering.runner
 ~~~
 
-Le premier lancement télécharge le catalogue. Les lancements suivants réutilisent `manifests/latest.json` et téléchargent uniquement les nouvelles sources ajoutées au catalogue. Le dossier à remettre pour relecture est indiqué dans la sortie JSON (`review_dir`). Pour un environnement sans téléchargement :
+Le premier lancement télécharge le catalogue. Les lancements suivants réutilisent `manifests/latest.json` et téléchargent uniquement les nouvelles sources ajoutées au catalogue. Pour un environnement sans téléchargement :
 
 ~~~powershell
 python -m data_engineering.runner --offline
@@ -22,7 +22,7 @@ Dans Docker/EC2, la même commande est l’entrée du conteneur :
 docker compose --profile etl run --rm --no-deps etl
 ~~~
 
-Le volume `commun/data/` doit être persistant. L’OCR est activé par défaut; `--no-ocr` est réservé aux tests rapides. Le script retourne une erreur si la collecte ou l’audit échoue; il ne crée jamais de fichier `reviewed`.
+Le volume `commun/data/` doit être persistant. L’OCR est activé par défaut; `--no-ocr` est réservé aux tests rapides. Le script retourne une erreur si la collecte ou les contrôles techniques échouent, puis écrit `commun/data/processed/reviewed.jsonl` et `etl-summary.json`. Pour le MVP, les passages sont automatiquement marqués `reviewed`; une revue humaine pourra être ajoutée plus tard.
 
 Pour le développement, les commandes détaillées ci-dessous restent disponibles.
 
@@ -35,7 +35,17 @@ python -m sawtna.data_engineering collect --ocr
 
 Le téléchargement contrôle HTTPS, domaines, redirections, taille maximale de 25 Mo et signature PDF. Les erreurs de transport et les réponses 429/500/502/503/504 sont réessayées au maximum trois fois avec des pauses de 1 puis 2 secondes. Les autres erreurs HTTP ou de contenu ne sont pas réessayées.
 
-Chaque original est conservé sous son SHA-256. Chaque collecte produit un manifeste daté et un fichier JSONL daté, plus `manifests/latest.json` et `processed/pending.jsonl`. Les passages restent `pending_review`. Si un document échoue, ses passages partiels sont écartés et le programme retourne un code d’échec; les autres documents sont traités.
+Chaque original est conservé sous son SHA-256. Chaque collecte produit un manifeste daté et un fichier JSONL daté, plus `manifests/latest.json`, `processed/pending.jsonl` et, via le runner MVP, `processed/reviewed.jsonl`. Si un document échoue, ses passages partiels sont écartés et le programme retourne un code d’échec; les autres documents sont traités.
+
+## 3. Livrer le corpus MVP
+
+Le fichier à transmettre au backend est directement :
+
+~~~powershell
+python commun/scripts/ingest.py --input commun/data/processed/reviewed.jsonl
+~~~
+
+Le runner vérifie la provenance, les empreintes, les pages PDF, les doublons et le contrat avant de produire ce fichier. Cette validation automatique est suffisante pour le MVP; elle ne remplace pas une validation juridique humaine en production.
 
 ## 2. Réextraire les originaux conservés
 

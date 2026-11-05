@@ -6,7 +6,7 @@ import pytest
 from data_engineering.runner import run
 
 
-def test_runner_prepares_a_review_lot_without_approval(tmp_path, monkeypatch):
+def test_runner_prepares_mvp_ingestion_file_without_review_folder(tmp_path, monkeypatch):
     catalog = tmp_path / "sources.json"
     catalog.write_text(json.dumps([{"id": "one", "title": "Source test", "url": "https://maroc.ma/one",
                                     "language": "fr", "format": "html"}]), encoding="utf-8")
@@ -14,14 +14,14 @@ def test_runner_prepares_a_review_lot_without_approval(tmp_path, monkeypatch):
         return "<html><main><p>Les électeurs peuvent consulter les informations officielles avant le scrutin.</p></main></html>".encode(), "html", source["url"]
     monkeypatch.setattr("data_engineering.pipeline.fetch", fake_fetch)
     result = run(catalog, tmp_path / "data", ocr=False)
-    assert result["status"] == "prepared"
+    assert result["status"] == "ready_for_mvp_ingestion"
     assert result["mode"] == "initial"
-    assert result["next_action"] == "human_review_then_approve_then_ingest"
-    review = Path(result["review_dir"])
-    assert (review / "decisions.jsonl").is_file()
-    decision = json.loads((review / "decisions.jsonl").read_text(encoding="utf-8"))
-    assert decision["decision"] == "pending"
-    assert not (tmp_path / "data/processed/reviewed.jsonl").exists()
+    assert result["next_action"] == "ingest_reviewed_jsonl"
+    output = Path(result["output"])
+    assert output.is_file()
+    passage = json.loads(output.read_text(encoding="utf-8"))
+    assert passage["status"] == "reviewed"
+    assert not (tmp_path / "data/reviews").exists()
 
 
 def test_runner_incremental_mode_downloads_only_missing_sources(tmp_path, monkeypatch):

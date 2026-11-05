@@ -45,7 +45,7 @@ Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` e
 
 ## Démarrage du travail
 
-Le [guide local](GUIDE-LOCAL.md) décrit les commandes de collecte, réextraction, audit, revue et livraison au backend.
+Le [guide local](GUIDE-LOCAL.md) décrit la collecte, le nettoyage, la préparation MVP et la livraison au backend. La revue humaine reste disponible comme workflow avancé, mais n’est pas nécessaire pour le MVP.
 
 Pour l’exécution cloud complète, la personne responsable lance une seule commande depuis la racine du dépôt :
 
@@ -53,7 +53,7 @@ Pour l’exécution cloud complète, la personne responsable lance une seule com
 python -m data_engineering.runner
 ~~~
 
-Le lanceur collecte ou réutilise les originaux, exécute le nettoyage/OCR, crée le manifeste et prépare la revue. L’OCR est activé par défaut. Il s’arrête avant l’approbation humaine et l’ingestion.
+Le lanceur collecte ou réutilise les originaux, exécute le nettoyage/OCR, contrôle la cohérence du corpus et produit `commun/data/processed/reviewed.jsonl`, prêt pour l’ingestion MVP. L’OCR est activé par défaut.
 
 ~~~powershell
 python -m pip install -e ".[test,ocr]"
@@ -78,6 +78,6 @@ python -m sawtna.data_engineering audit
 
 ## État de la partie 1
 
-Le catalogue contient dix sources officielles en français et en arabe. Les originaux sont conservés et les extractions auditées; la file de relecture regroupe les indices électoraux, les alertes OCR et les familles de textes. Les passages restent en attente de revue humaine; l’audit technique ne certifie pas leur actualité juridique.
+Le catalogue contient dix sources officielles en français et en arabe. Les originaux sont conservés, les extractions sont contrôlées et les passages sont préparés automatiquement pour le MVP. L’audit technique ne certifie pas leur actualité juridique.
 
 La suite consiste à sélectionner les passages pertinents, corriger les erreurs d’OCR, vérifier les versions et tester l’ingestion d’un lot explicitement approuvé. L’image Docker ETL est disponible avec OCR; le déploiement EC2 et la planification restent à réaliser.
