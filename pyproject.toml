@@ -26,6 +26,7 @@ ml = ["sentence-transformers>=3,<6"]
 
 [project.scripts]
 sawtna-data = "sawtna.data_engineering:main"
+sawtna-etl = "data_engineering.runner:main"
 sawtna = "sawtna.launcher:main"
 
 [tool.setuptools.packages.find]

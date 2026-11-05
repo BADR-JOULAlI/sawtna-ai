@@ -6,8 +6,7 @@ Sur une VM Linux déjà autorisée et disposant de Docker, cloner le monorepo et
 docker compose --profile etl build etl
 docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language fra
 docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language ara --variant best
-docker compose --profile etl run --rm --no-deps etl collect --ocr
-docker compose --profile etl run --rm --no-deps etl audit
+docker compose --profile etl run --rm --no-deps etl
 ~~~
 
 La tâche collecte et extrait ; elle n’approuve pas les textes. Utiliser un volume persistant pour les versions.

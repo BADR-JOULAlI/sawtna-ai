@@ -47,6 +47,14 @@ Le backend fournit l’URL d’ingestion, l’authentification `X-Service-Key` e
 
 Le [guide local](GUIDE-LOCAL.md) décrit les commandes de collecte, réextraction, audit, revue et livraison au backend.
 
+Pour l’exécution cloud complète, la personne responsable lance une seule commande depuis la racine du dépôt :
+
+~~~powershell
+python -m data_engineering.runner
+~~~
+
+Le lanceur collecte ou réutilise les originaux, exécute le nettoyage/OCR, crée le manifeste et prépare la revue. L’OCR est activé par défaut. Il s’arrête avant l’approbation humaine et l’ingestion.
+
 ~~~powershell
 python -m pip install -e ".[test,ocr]"
 python commun/scripts/download_ocr.py --language fra

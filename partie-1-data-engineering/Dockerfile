@@ -12,5 +12,5 @@ COPY partie-5-analytics/ ./partie-5-analytics/
 COPY commun/scripts/download_ocr.py ./commun/scripts/download_ocr.py
 RUN pip install --no-cache-dir ".[ocr]"
 ENV SAWTNA_PROJECT_ROOT=/app PYTHONUNBUFFERED=1
-ENTRYPOINT ["python", "-m", "sawtna.data_engineering"]
-CMD ["collect"]
+ENTRYPOINT ["python", "-m", "data_engineering.runner"]
+CMD ["--ocr"]

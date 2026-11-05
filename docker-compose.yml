@@ -89,7 +89,7 @@ services:
     image: sawtna-etl:1.0
     profiles: ["etl"]
     restart: "no"
-    command: ["collect"]
+    command: ["--ocr"]
     healthcheck:
       disable: true
     volumes:

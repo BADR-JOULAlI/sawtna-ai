@@ -4,6 +4,28 @@ Exécuter les commandes depuis la racine `s/`. Catalogue : `partie-1-data-engine
 
 ## 1. Collecter
 
+Pour l’exécution cloud standard, une seule commande collecte les sources, réutilise les originaux connus, prépare les passages et crée automatiquement un dossier d’audit. Elle s’arrête avant toute approbation et ingestion :
+
+~~~powershell
+python -m data_engineering.runner
+~~~
+
+Le premier lancement télécharge le catalogue. Les lancements suivants réutilisent `manifests/latest.json` et téléchargent uniquement les nouvelles sources ajoutées au catalogue. Le dossier à remettre pour relecture est indiqué dans la sortie JSON (`review_dir`). Pour un environnement sans téléchargement :
+
+~~~powershell
+python -m data_engineering.runner --offline
+~~~
+
+Dans Docker/EC2, la même commande est l’entrée du conteneur :
+
+~~~powershell
+docker compose --profile etl run --rm --no-deps etl
+~~~
+
+Le volume `commun/data/` doit être persistant. L’OCR est activé par défaut; `--no-ocr` est réservé aux tests rapides. Le script retourne une erreur si la collecte ou l’audit échoue; il ne crée jamais de fichier `reviewed`.
+
+Pour le développement, les commandes détaillées ci-dessous restent disponibles.
+
 ~~~powershell
 python -m pip install -e ".[test,ocr]"
 python commun/scripts/download_ocr.py --language fra
@@ -31,7 +53,7 @@ python -m sawtna.data_engineering collect --ocr --reuse-manifest commun/data/man
 
 Seules les sources dont l’identifiant est absent du manifeste sont téléchargées. Un original corrompu ou une URL modifiée reste une erreur, sans remplacement silencieux. Les anciens documents conservent leur `collected_at`; tous reçoivent un nouveau `processed_at`. Pour rafraîchir les documents sur le site officiel, lancer une collecte sans `--reuse-manifest`.
 
-Avec `--ocr`, les PDF arabes sont entièrement reconnus à 300 DPI par Tesseract via `tesserocr`, avec le modèle `tessdata_best` version 4.1.0. Le texte Unicode est récupéré directement, sans repasser par une couche texte PDF susceptible de mélanger les colonnes ou d’inverser l’arabe. Le modèle français existant reste utilisé par PyMuPDF pour les pages suspectes en français.
+Avec `--ocr`, les PDF arabes sont reconnus par Tesseract avec le modèle `tessdata_best` version 4.1.0. Linux/Docker utilise `tesserocr` à 300 DPI et récupère directement le texte Unicode. Si une politique Windows bloque la DLL `tesserocr`, le script bascule automatiquement sur PyMuPDF/Tesseract à 180 DPI et ajoute `ocr_engine_fallback`; le passage reste obligatoirement à relire. Le modèle français existant reste utilisé par PyMuPDF pour les pages suspectes en français.
 
 Chaque page OCR porte `ocr_review_required`. L’arabe enregistre aussi l’empreinte du modèle, la résolution, la version du moteur et `mean_confidence`; une valeur inférieure à 80 ajoute `low_ocr_confidence`. Ce score est une estimation du moteur, pas une mesure d’exactitude. L’OCR peut encore omettre des lignes ou altérer des chiffres. `SAWTNA_OCR_AR_TESSDATA` permet de choisir un autre dossier contenant `ara.traineddata`; son empreinte reste enregistrée.
 
@@ -107,8 +129,7 @@ docker compose --profile etl build etl
 docker compose --profile etl run --rm --no-deps etl --help
 docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language fra
 docker compose --profile etl run --rm --no-deps --entrypoint python etl commun/scripts/download_ocr.py --language ara --variant best
-docker compose --profile etl run --rm --no-deps etl collect --ocr
-docker compose --profile etl run --rm --no-deps etl audit
+docker compose --profile etl run --rm --no-deps etl
 ~~~
 
 Ces commandes fonctionnent localement sans identifiants AWS. Le déploiement EC2 et sa planification restent à réaliser.
