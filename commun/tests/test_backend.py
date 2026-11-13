@@ -114,3 +114,66 @@ def test_nlp_failure_is_explicit_and_does_not_return_invented_sources(stack, mon
     monkeypatch.setattr(nlp, "embed", fail)
     response = stack[0].post("/api/ask", json={"question":"Quel est le rôle du Parlement ?"})
     assert response.status_code == 503
+
+
+ADMIN = {"X-Admin-Key": "test-admin-key"}
+
+
+def test_retire_passage_removes_it_from_search_and_audits(stack):
+    client, _, _ = stack
+    question = {"question": "Comment sont élus les conseils des communes ?", "language": "fr"}
+    assert "constitution:135" in [s["id"] for s in client.post("/api/ask", json=question).json()["sources"]]
+    before = client.get("/api/documents").json()["passages"]
+
+    response = client.post("/api/admin/passages/constitution:135/retire", headers=ADMIN,
+                           json={"reason": "Remplacé par un lot relu et corrigé"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["retired"] == "constitution:135" and body["remaining_passages"] == before - 1
+
+    assert "constitution:135" not in [s["id"] for s in client.post("/api/ask", json=question).json()["sources"]]
+    assert client.get("/api/documents").json()["passages"] == before - 1
+    audit = client.get("/api/admin/passages/retired", headers=ADMIN).json()
+    assert audit["total"] == 1 and audit["retired"][0]["reason"] == "Remplacé par un lot relu et corrigé"
+    # Retiring twice is reported, never silently accepted.
+    again = client.post("/api/admin/passages/constitution:135/retire", headers=ADMIN, json={"reason": "Deuxième essai"})
+    assert again.status_code == 404
+
+
+def test_retire_passage_requires_admin_key_and_reason(stack):
+    client, _, _ = stack
+    url = "/api/admin/passages/constitution:62/retire"
+    assert client.post(url, json={"reason": "Sans clé admin"}).status_code == 401
+    assert client.post(url, headers={"X-Admin-Key": "wrong"}, json={"reason": "Mauvaise clé"}).status_code == 401
+    assert client.post(url, headers={"X-Service-Key": "test-service-key"}, json={"reason": "Clé de service"}).status_code == 401
+    assert client.post(url, headers=ADMIN, json={}).status_code == 422
+    assert client.post(url, headers=ADMIN, json={"reason": "abc"}).status_code == 422
+    assert client.get("/api/admin/passages/retired").status_code == 401
+    assert client.get("/api/documents").json()["passages"] >= 6
+
+
+def test_retire_never_empties_the_corpus(stack):
+    client, _, _ = stack
+    ids = [p["id"] for p in json.loads((ROOT / "commun/data/seed/foundation.json").read_text(encoding="utf-8"))]
+    for pid in ids[:-1]:
+        assert client.post(f"/api/admin/passages/{pid}/retire", headers=ADMIN, json={"reason": "Test de retrait"}).status_code == 200
+    last = client.post(f"/api/admin/passages/{ids[-1]}/retire", headers=ADMIN, json={"reason": "Test de retrait"})
+    assert last.status_code == 409
+    assert client.get("/api/documents").json()["passages"] == 1
+
+
+def test_retired_passage_cannot_be_reingested(stack):
+    client, store, _ = stack
+    seed = {p["id"]: p for p in json.loads((ROOT / "commun/data/seed/foundation.json").read_text(encoding="utf-8"))}
+    original = {**seed["constitution:30"], "sha256": "0" * 64}
+    fresh = {**seed["constitution:62"], "id": "nouveau-passage-relu", "sha256": "1" * 64}
+    assert client.post("/api/admin/passages/constitution:30/retire", headers=ADMIN, json={"reason": "Remplacé par un lot corrigé"}).status_code == 200
+    before = client.get("/api/documents").json()["passages"]
+    # Replaying an old lot with the retired passage is refused as a whole, nothing is indexed.
+    response = client.post("/v1/ingest", headers={"X-Service-Key": "test-service-key"}, json={"passages": [fresh, original]})
+    assert response.status_code == 409
+    assert response.json()["detail"]["retired_ids"] == ["constitution:30"]
+    assert client.get("/api/documents").json()["passages"] == before
+    # Without the retired passage the same lot goes through.
+    assert client.post("/v1/ingest", headers={"X-Service-Key": "test-service-key"}, json={"passages": [fresh]}).status_code == 200
+    assert client.get("/api/documents").json()["passages"] == before + 1

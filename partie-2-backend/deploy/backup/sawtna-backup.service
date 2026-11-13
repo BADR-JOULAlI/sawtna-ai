@@ -1,0 +1,6 @@
+[Unit]
+Description=Sawtna staging - sauvegarde PostgreSQL vers Azure Blob
+After=docker.service
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sawtna-backup.sh

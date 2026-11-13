@@ -50,6 +50,45 @@ class Store:
                 conn.execute("ALTER TABLE passages ADD COLUMN IF NOT EXISTS feature vector(384)")
             conn.execute("CREATE TABLE IF NOT EXISTS outbox (id TEXT PRIMARY KEY, payload TEXT NOT NULL, delivered INTEGER NOT NULL DEFAULT 0)")
             conn.execute("CREATE TABLE IF NOT EXISTS events (id TEXT PRIMARY KEY, day TEXT NOT NULL, event TEXT NOT NULL, language TEXT NOT NULL, latency_ms INTEGER NOT NULL, score INTEGER NOT NULL)")
+            # Audit trail of passages withdrawn from the index (provenance is never silently lost).
+            conn.execute("CREATE TABLE IF NOT EXISTS passage_retirements (passage_id TEXT NOT NULL, document_id TEXT NOT NULL, reason TEXT NOT NULL, retired_at TEXT NOT NULL, payload TEXT NOT NULL)")
+
+    def retire(self, passage_id: str, reason: str):
+        """Remove one passage from the index and record why. Returns None if unknown.
+
+        Raises ValueError when it is the last indexed passage: an empty corpus would
+        silently re-seed the demo extracts on the next restart.
+        """
+        with self.connection() as conn:
+            row = self.execute(conn, "SELECT payload FROM passages WHERE id=?", (passage_id,)).fetchone()
+            if row is None:
+                return None
+            if self.execute(conn, "SELECT COUNT(*) AS n FROM passages").fetchone()["n"] <= 1:
+                raise ValueError("Impossible de retirer le dernier passage indexé.")
+            passage = json.loads(row["payload"])
+            retired_at = datetime.now(timezone.utc).isoformat()
+            self.execute(conn, "DELETE FROM passages WHERE id=?", (passage_id,))
+            self.execute(conn, "INSERT INTO passage_retirements VALUES (?,?,?,?,?)",
+                (passage_id, passage["document_id"], reason, retired_at, row["payload"]))
+            remaining = self.execute(conn, "SELECT COUNT(*) AS n FROM passages").fetchone()["n"]
+        return {"retired": passage_id, "document_id": passage["document_id"], "reason": reason,
+                "retired_at": retired_at, "remaining_passages": remaining}
+
+    def retired_among(self, passage_ids):
+        """Ids from the given list that were withdrawn by an administrator."""
+        ids = list(dict.fromkeys(passage_ids))
+        if not ids:
+            return []
+        marks = ",".join("?" * len(ids))
+        with self.connection() as conn:
+            rows = self.execute(conn, f"SELECT DISTINCT passage_id FROM passage_retirements WHERE passage_id IN ({marks})", ids).fetchall()
+        found = {r["passage_id"] for r in rows}
+        return [i for i in ids if i in found]
+
+    def retirements(self):
+        with self.connection() as conn:
+            rows = self.execute(conn, "SELECT passage_id, document_id, reason, retired_at FROM passage_retirements ORDER BY retired_at").fetchall()
+        return [dict(r) for r in rows]
 
     def upsert(self, passages: list[Passage], vectors: list[list[float]], model: str):
         if len(passages) != len(vectors) or any(len(v) != 384 or not all(math.isfinite(x) for x in v) for v in vectors):

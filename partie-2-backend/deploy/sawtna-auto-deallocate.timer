@@ -1,0 +1,7 @@
+[Unit]
+Description=Sawtna staging - arrêt chaque jour à 19:30 heure de Rabat
+[Timer]
+OnCalendar=*-*-* 19:30:00 Africa/Casablanca
+Persistent=false
+[Install]
+WantedBy=timers.target
