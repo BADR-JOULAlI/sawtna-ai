@@ -1,0 +1,28 @@
+{
+  "location": "polandcentral",
+  "identity": {"type": "SystemAssigned"},
+  "properties": {
+    "state": "Enabled",
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "triggers": {
+        "Chaque_jour_14h_Rabat": {
+          "type": "Recurrence",
+          "recurrence": {"frequency": "Day", "interval": 1, "timeZone": "Morocco Standard Time",
+                         "schedule": {"hours": ["14"], "minutes": [0]}}
+        }
+      },
+      "actions": {
+        "Demarrer_VM_backend": {
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "https://management.azure.com__VM_ID__/start?api-version=2024-07-01",
+            "authentication": {"type": "ManagedServiceIdentity", "audience": "https://management.azure.com/"}
+          }
+        }
+      }
+    }
+  }
+}

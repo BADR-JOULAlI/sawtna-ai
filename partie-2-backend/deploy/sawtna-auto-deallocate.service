@@ -1,0 +1,5 @@
+[Unit]
+Description=Sawtna staging - désallocation automatique de la VM
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sawtna-auto-deallocate.sh

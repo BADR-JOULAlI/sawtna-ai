@@ -1,0 +1,9 @@
+[Unit]
+Description=Sawtna staging - sauvegarde quotidienne à 19:00 heure de Rabat (avant l'arrêt de 19:30)
+[Timer]
+OnCalendar=*-*-* 19:00:00 Africa/Casablanca
+# Si la VM était éteinte à 19:30, la sauvegarde manquée s'exécute au prochain démarrage.
+Persistent=true
+RandomizedDelaySec=60
+[Install]
+WantedBy=timers.target
