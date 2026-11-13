@@ -8,7 +8,7 @@ from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from typing import Literal
 import httpx
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Path, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import Field
@@ -26,6 +26,10 @@ class QuizSubmission(StrictModel):
 
 class IngestRequest(StrictModel):
     passages: list[Passage] = Field(min_length=1, max_length=64)
+
+
+class RetireRequest(StrictModel):
+    reason: str = Field(min_length=5, max_length=500)
 
 
 def create_app(store=None, nlp_transport=None, analytics_transport=None):
@@ -171,9 +175,30 @@ def create_app(store=None, nlp_transport=None, analytics_transport=None):
     async def ingest(body: IngestRequest):
         if any(p.status != "reviewed" for p in body.passages):
             raise HTTPException(422, "L'indexation exige des passages relus (reviewed).")
+        # A retired passage must never come back silently (e.g. an old lot replayed).
+        retired = store.retired_among([p.id for p in body.passages])
+        if retired:
+            raise HTTPException(409, {"message": "Lot refusé : ces passages ont été retirés par l'administrateur du backend. "
+                                      "Les supprimer du lot ou demander leur réintégration.", "retired_ids": retired})
         embedded = await encode([p.text for p in body.passages], "passage")
         store.upsert(body.passages, embedded.vectors, embedded.model)
         return {"indexed": len(body.passages), "model": embedded.model}
+
+    @app.post("/api/admin/passages/{passage_id}/retire", dependencies=[Depends(require_admin)])
+    def retire_passage(body: RetireRequest, passage_id: str = Path(pattern=r"^[a-zA-Z0-9_.:-]{1,150}$")):
+        """Withdraw an indexed passage (e.g. replaced by a corrected, re-approved lot). Audited."""
+        try:
+            result = store.retire(passage_id, body.reason.strip())
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        if result is None:
+            raise HTTPException(404, "Passage inconnu ou déjà retiré.")
+        return result
+
+    @app.get("/api/admin/passages/retired", dependencies=[Depends(require_admin)])
+    def retired_passages():
+        items = store.retirements()
+        return {"retired": items, "total": len(items)}
 
     @app.get("/api/admin/summary", dependencies=[Depends(require_admin)])
     async def summary():
