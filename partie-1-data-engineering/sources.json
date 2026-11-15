@@ -115,5 +115,155 @@
     "catalog_checked_on": "2026-10-29",
     "legal_family": "chambre-representants-27-11",
     "document_role": "amendment"
+  },
+  {
+    "id": "loi-57-11-sgg-ar-consolidee",
+    "title": "القانون رقم 57.11 — اللوائح الانتخابية العامة وعمليات الاستفتاء",
+    "url": "https://www.sgg.gov.ma/Portals/1/textesconsolides/57_11.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "consolidated_official_text",
+    "document_role": "electoral_registers"
+  },
+  {
+    "id": "loi-59-11-sgg-ar",
+    "title": "القانون التنظيمي رقم 59.11 — انتخاب أعضاء مجالس الجماعات الترابية",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=xqXCtuzPtbA%3D&mid=1568&portalid=1&tabid=473",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "historical_original_not_consolidated",
+    "document_role": "territorial_elections"
+  },
+  {
+    "id": "loi-34-15-sgg-fr",
+    "title": "Loi organique n° 34-15 — élections des collectivités territoriales",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=upxu5Y-8XZM%3D&mid=1579&portalid=0&tabid=478",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "document_role": "territorial_elections"
+  },
+  {
+    "id": "loi-111-14-sgg-fr",
+    "title": "Loi organique n° 111-14 relative aux régions",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_org_111-14_fr.pdf?ver=2016-06-16-144306-930",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "regional_governance"
+  },
+  {
+    "id": "loi-111-14-sgg-ar",
+    "title": "القانون التنظيمي رقم 111.14 — الجهات",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_111.14_Ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "regional_governance"
+  },
+  {
+    "id": "loi-112-14-sgg-fr",
+    "title": "Loi organique n° 112-14 relative aux préfectures et provinces",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/loi_org_112-14_fr.pdf?ver=2016-06-16-144539-747",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "prefecture_province_governance"
+  },
+  {
+    "id": "loi-112-14-sgg-ar",
+    "title": "القانون التنظيمي رقم 112.14 — العمالات والأقاليم",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_112.14_Ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "prefecture_province_governance"
+  },
+  {
+    "id": "loi-113-14-sgg-fr",
+    "title": "Loi organique n° 113-14 relative aux communes",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/loi_org_113-14_fr.pdf?ver=2016-06-16-144720-997",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "communal_governance"
+  },
+  {
+    "id": "loi-113-14-sgg-ar",
+    "title": "القانون التنظيمي رقم 113.14 — الجماعات",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_113.14_Ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "communal_governance"
+  },
+  {
+    "id": "loi-44-14-sgg-fr",
+    "title": "Loi organique n° 44-14 — droit de présenter des pétitions",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/Loiorgnique_44-14_Fr.pdf?ver=2017-02-08-171743-837",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "citizen_participation"
+  },
+  {
+    "id": "loi-44-14-sgg-ar",
+    "title": "القانون التنظيمي رقم 44.14 — الحق في تقديم العرائض",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_44.14_Ar.pdf?ver=2016-09-16-130951-163",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "citizen_participation"
+  },
+  {
+    "id": "loi-64-14-sgg-fr",
+    "title": "Loi organique n° 64-14 — motions en matière législative",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/Loiorgnique_64-14_Fr.pdf?ver=2017-02-08-172310-160",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "citizen_participation"
+  },
+  {
+    "id": "loi-64-14-sgg-ar",
+    "title": "القانون التنظيمي رقم 64.14 — الملتمسات في مجال التشريع",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_64.14_Ar.pdf?ver=2016-09-16-131326-733",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "official_text_not_consolidated",
+    "document_role": "citizen_participation"
+  },
+  {
+    "id": "loi-29-11-sgg-fr",
+    "title": "Loi organique n° 29-11 relative aux partis politiques",
+    "url": "https://www.sgg.gov.ma/BO/bo_fr/2011/bo_5992_fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Bulletin officiel, Secrétariat général du gouvernement",
+    "legal_currency": "historical_original_not_consolidated",
+    "document_role": "political_parties"
+  },
+  {
+    "id": "loi-29-11-sgg-ar",
+    "title": "القانون التنظيمي رقم 29.11 — الأحزاب السياسية",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=a9nd8qqbg7A%3D&mid=1587&portalid=1&tabid=484",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "الأمانة العامة للحكومة",
+    "legal_currency": "historical_original_not_consolidated",
+    "document_role": "political_parties"
   }
 ]
