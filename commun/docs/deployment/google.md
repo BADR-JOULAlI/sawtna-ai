@@ -1,6 +1,9 @@
-# Google Cloud — NLP et Analytics
+# Google Cloud — ancien emplacement NLP / Analytics
 
-## Cloud Run NLP
+Le service NLP a été déplacé vers Azure Container Apps. Ce fichier est conservé
+comme historique ; la procédure active est dans `azure-container-apps.md`.
+
+## Ancienne procédure Cloud Run NLP
 
 L’image de base exécute la baseline autonome. Pour l’encodeur E5 entraîné, construire commun/infra/Dockerfile.nlp : PyTorch CPU et le modèle sont inclus dans l’image pour éviter un téléchargement à chaque démarrage.
 Configurer SAWTNA_SERVICE=nlp, SAWTNA_EMBEDDER, SAWTNA_SERVICE_KEY et le port fourni par Cloud Run via PORT.

@@ -1,6 +1,6 @@
 # Architecture technique — Sawtna AI
 
-Trois fournisseurs, trois IaaS (EC2, Azure VM, Compute Engine), deux PaaS (Cloud Run, Static Web Apps). Le remplacement de Looker Studio par Compute Engine supprime le SaaS initial.
+Trois fournisseurs, trois IaaS (EC2, Azure VM, Compute Engine), deux PaaS (Azure Container Apps, Static Web Apps). Le remplacement de Looker Studio par Compute Engine supprime le SaaS initial.
 
 ~~~mermaid
 flowchart LR
@@ -8,7 +8,7 @@ flowchart LR
   ETL -->|Ingestion authentifiée| API[Azure VM : API + PostgreSQL/pgvector]
   Citizen[Citoyen] --> Web[Azure Static Web Apps : React + Quiz]
   Web -->|HTTPS| API
-  API -->|Embeddings| NLP[Google Cloud Run : NLP CPU]
+  API -->|Embeddings| NLP[Azure Container Apps : NLP CPU]
   API -->|Événements agrégés| KPI[Google Compute Engine : Analytics + Dashboard]
   Local[RTX 5070 : préparation et évaluation] --> Git[GitHub : monorepo + CI]
   Git -.Déploiements séparés.-> ETL

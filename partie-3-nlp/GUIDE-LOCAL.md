@@ -1,4 +1,4 @@
-# Étudiant 3 — NLP · Cloud Run
+# Étudiant 3 — NLP · Azure Container Apps
 
 Code : nlp_service/main.py.
 
@@ -18,6 +18,6 @@ $env:SAWTNA_EMBEDDER = "multilingual-e5-small"
 $env:SAWTNA_MODEL_DEVICE = "cpu"
 ~~~
 
-Le premier lancement télécharge le modèle. CPU dans Cloud Run ; cuda peut être choisi en local si PyTorch et le pilote sont compatibles.
+Le premier lancement télécharge le modèle. CPU dans Azure Container Apps ; cuda peut être choisi en local si PyTorch et le pilote sont compatibles.
 Ne jamais mélanger des modèles dans le même index de recherche.
 Le benchmark Darija complet doit être constitué avec l’équipe ; le petit jeu de régression ne certifie pas la qualité générale.

@@ -6,7 +6,7 @@ Ces procédures sont des livrables à exécuter séparément après choix des co
 |---|---|---|
 | P1 EC2 | image ETL, tâche manuelle ou systemd timer | catalogue officiel, volume persistant, clé ingestion backend |
 | P2 Azure VM | API + PostgreSQL/pgvector | secrets, HTTPS, base privée, sauvegardes, URLs NLP/Analytics |
-| P3 Cloud Run | conteneur NLP CPU | port PORT, mémoire mesurée, clé service, min-instances=0 |
+| P3 Azure Container Apps | conteneur NLP CPU | port 8000, mémoire mesurée, clé service, instances bornées |
 | P4 Static Web Apps | build partie-4-frontend/dist | VITE_API_BASE_URL, origine CORS côté backend |
 | P5 Compute Engine | Analytics + dashboard | base persistante, SAWTNA_BACKEND_URL, clés, HTTPS |
 

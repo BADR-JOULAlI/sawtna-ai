@@ -1,6 +1,6 @@
 # Sawtna AI
 
-Assistant documentaire d’éducation électorale au Maroc. Monorepo pour cinq étudiants : ETL AWS, backend Azure, NLP Cloud Run, frontend Azure et Analytics Compute Engine.
+Assistant documentaire d’éducation électorale au Maroc. Monorepo pour cinq étudiants : ETL AWS, backend Azure, NLP Azure Container Apps, frontend Azure et Analytics Compute Engine.
 
 Le projet complet se trouve directement dans ce dossier `s/`, relié au dépôt GitHub `BADR-JOULAlI/sawtna-ai`. Exécuter les commandes ci-dessous depuis cette racine. Les cinq parties et les éléments communs sont versionnés ensemble.
 
@@ -15,7 +15,7 @@ s/
 ├── partie-2-backend/            # Soulayman — Azure VM
 │   ├── backend_service/        # API et quiz
 │   └── README.md
-├── partie-3-nlp/                # Badr — Google Cloud Run
+├── partie-3-nlp/                # Badr — Azure Container Apps
 │   ├── nlp_service/            # Embeddings
 │   └── README.md
 ├── partie-4-frontend/           # Aya — Azure Static Web Apps
@@ -97,7 +97,7 @@ Le petit corpus initial contient six extraits de la Constitution 2011. Il ne cou
 |---|---|---|
 | 1 | partie-1-data-engineering/ | AWS EC2 · IaaS |
 | 2 | partie-2-backend/ | Azure VM · IaaS |
-| 3 | partie-3-nlp/ | Google Cloud Run · PaaS |
+| 3 | partie-3-nlp/ | Azure Container Apps · PaaS |
 | 4 | partie-4-frontend/ | Azure Static Web Apps · PaaS |
 | 5 | partie-5-analytics/ | Google Compute Engine · IaaS |
 
@@ -148,7 +148,7 @@ Les guides de commun/docs/deployment/ n’exécutent aucune création de ressour
 
 - `partie-1-data-engineering/` — Ayoub Chenguir, AWS EC2
 - `partie-2-backend/` — Soulayman Jdidi, Azure VM
-- `partie-3-nlp/` — Badr Joulali, Google Cloud Run
+- `partie-3-nlp/` — Badr Joulali, Azure Container Apps
 - `partie-4-frontend/` — Aya Sdour, Azure Static Web Apps
 - `partie-5-analytics/` — Ijlal Sellak, Google Compute Engine
 

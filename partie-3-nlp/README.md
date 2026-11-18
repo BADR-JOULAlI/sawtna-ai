@@ -1,12 +1,12 @@
-# Étudiant 3 — Microservice NLP sur Google Cloud Run
+# Étudiant 3 — Microservice NLP sur Azure Container Apps
 
 **Responsable indiqué dans le cahier des charges : Badr Joulali**  
-**Modèle cloud :** Google Cloud Run (PaaS)  
+**Modèle cloud :** Azure Container Apps (PaaS)  
 **Objectif :** fournir au backend un service NLP conteneurisé et versionné pour préparer les textes et calculer des embeddings multilingues.
 
 ## Périmètre
 
-Le service reste indépendant du backend et expose une interface stable. L’exécution locale et l’évaluation précèdent tout déploiement Cloud Run. Le service n’accède pas directement à la base de données.
+Le service reste indépendant du backend et expose une interface stable. L’exécution locale et l’évaluation précèdent tout déploiement Azure Container Apps. Le service n’accède pas directement à la base de données.
 
 ### Tâches
 
@@ -15,7 +15,7 @@ Le service reste indépendant du backend et expose une interface stable. L’ex�
 3. Choisir et versionner le modèle d’embeddings; enregistrer nom, version, dimension, normalisation et empreinte.
 4. Exposer des endpoints protégés et validés selon `commun/packages/contracts/nlp.openapi.json`.
 5. Garantir que requêtes et documents utilisent le même modèle et la même dimension; refuser les incompatibilités.
-6. Conteneuriser pour Cloud Run, régler mémoire, CPU, concurrence, démarrage à froid et taille maximale des lots.
+6. Conteneuriser pour Azure Container Apps, régler mémoire, CPU, concurrence, démarrage à froid et taille maximale des lots.
 7. Mesurer latence et qualité de recherche sur un jeu de questions annotées, séparé par langue.
 8. Ajouter limites, journalisation sans contenu sensible, réponses d’erreur et comportement en cas de modèle indisponible.
 
@@ -25,7 +25,7 @@ Le service reste indépendant du backend et expose une interface stable. L’ex�
 - Documentation des routes, authentification, limites et version du modèle.
 - Évaluation documentée par langue (rappel/rang des passages pertinents, latence et limites).
 - Tests de schéma, dimension, normalisation, authentification et erreurs.
-- Configuration Cloud Run et consignes de coût/sécurité, sans clé commise.
+- Configuration Azure Container Apps et consignes de coût/sécurité, sans clé commise.
 
 ## Critères de validation
 
@@ -42,7 +42,7 @@ Le backend Azure appelle le service avec une identité ou clé de service fourni
 
 ## Exécution du service existant
 
-# Étudiant 3 — NLP · Cloud Run
+# Étudiant 3 — NLP · Azure Container Apps
 
 Code : nlp_service/main.py.
 
@@ -62,6 +62,6 @@ $env:SAWTNA_EMBEDDER = "multilingual-e5-small"
 $env:SAWTNA_MODEL_DEVICE = "cpu"
 ~~~
 
-Le premier lancement télécharge le modèle. CPU dans Cloud Run ; cuda peut être choisi en local si PyTorch et le pilote sont compatibles.
+Le premier lancement télécharge le modèle. CPU dans Azure Container Apps ; cuda peut être choisi en local si PyTorch et le pilote sont compatibles.
 Ne jamais mélanger des modèles dans le même index de recherche.
 Le benchmark Darija complet doit être constitué avec l’équipe ; le petit jeu de régression ne certifie pas la qualité générale.
