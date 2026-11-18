@@ -1,0 +1,2239 @@
+[
+  {
+    "id": "constitution-2011-sgg-fr",
+    "title": "Constitution 2011 — édition SGG",
+    "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited",
+    "collected_at": "2026-10-21T16:28:41.951865+00:00",
+    "processed_at": "2026-11-05T13:33:16.356061+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "57440b83b034ec2995f3db09e7cbcb8d73a513e01fc84a841d93f6791c6b2215",
+    "bytes": 2498898,
+    "path": "raw/constitution-2011-sgg-fr/57440b83b034ec2995f3db09e7cbcb8d73a513e01fc84a841d93f6791c6b2215.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+    "pages": 65,
+    "passages": 1,
+    "low_text_pages": 64,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "control_characters"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 18,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 19,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 20,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 21,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 22,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 23,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 24,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 25,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 26,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 27,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 28,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 29,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 30,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 31,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 32,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 33,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 34,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 35,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 36,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 37,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 38,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 39,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 40,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 41,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 42,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 43,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 44,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 45,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 46,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 47,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 48,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 49,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 50,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 51,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 52,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 53,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 54,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 55,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 56,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 57,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 58,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 59,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 60,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 61,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 62,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 63,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 64,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 65,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "constitution-2011-fr",
+    "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+    "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Bulletin officiel, copie publiée sur Maroc.ma",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited",
+    "collected_at": "2026-10-21T16:29:10.298268+00:00",
+    "processed_at": "2026-11-05T13:33:16.408913+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "4101d45b4733a6b36eee77bd9ef4175b23160103089b003b13907e8b6d59333d",
+    "bytes": 1413883,
+    "path": "raw/constitution-2011-fr/4101d45b4733a6b36eee77bd9ef4175b23160103089b003b13907e8b6d59333d.pdf",
+    "final_url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+    "pages": 28,
+    "passages": 0,
+    "low_text_pages": 28,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 18,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 19,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 20,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 21,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 22,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 23,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 24,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 25,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 26,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 27,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 28,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "constitution-portail-fr",
+    "title": "Constitution — portail national Maroc.ma",
+    "url": "https://maroc.ma/fr/le-maroc/constitution",
+    "language": "fr",
+    "format": "html",
+    "authority": "Portail national Maroc.ma",
+    "legal_currency": "institutional_explainer",
+    "collected_at": "2026-10-21T16:29:37.289916+00:00",
+    "processed_at": "2026-11-05T13:33:16.426073+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "2511861b19bb35d4f0a1f8739265f9033664d207701bc3ab6265b06bf6aa8f21",
+    "bytes": 58287,
+    "path": "raw/constitution-portail-fr/2511861b19bb35d4f0a1f8739265f9033664d207701bc3ab6265b06bf6aa8f21.html",
+    "final_url": "https://maroc.ma/fr/le-maroc/constitution",
+    "pages": 1,
+    "passages": 1,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": false,
+    "page_quality": []
+  },
+  {
+    "id": "loi-06-21-bo-7000",
+    "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+    "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2021-07-01",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "collected_at": "2026-10-21T16:29:37.861290+00:00",
+    "processed_at": "2026-11-05T13:33:16.482001+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "1129fa7068cc806614612832481c1d4f9ba6dda4861527840d5a98a7dc0896d4",
+    "bytes": 1776247,
+    "path": "raw/loi-06-21-bo-7000/1129fa7068cc806614612832481c1d4f9ba6dda4861527840d5a98a7dc0896d4.pdf",
+    "final_url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+    "pages": 85,
+    "passages": 325,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 18,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 19,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 20,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 21,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 22,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 23,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 24,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 25,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 26,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 27,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 28,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 29,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 30,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 31,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 32,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 33,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 34,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 35,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 36,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 37,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 38,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 39,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 40,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 41,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 42,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 43,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 44,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 45,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 46,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 47,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 48,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 49,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 50,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 51,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 52,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 53,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 54,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 55,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 56,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 57,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 58,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 59,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 60,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 61,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 62,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 63,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 64,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 65,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 66,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 67,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 68,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 69,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 70,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 71,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 72,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 73,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 74,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 75,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 76,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 77,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 78,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 79,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 80,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 81,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 82,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 83,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 84,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 85,
+        "method": "text",
+        "flags": []
+      }
+    ]
+  },
+  {
+    "id": "constitution-2011-sgg-ar",
+    "title": "دستور المملكة المغربية لسنة 2011 — الأمانة العامة للحكومة",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/constitution_2011_Ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "amendments_not_audited",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "constitution-2011",
+    "document_role": "original_text",
+    "collected_at": "2026-10-29T18:40:19.937274+00:00",
+    "processed_at": "2026-11-05T13:33:20.451889+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "51b0d054effc827665ee2d02d73696120fc494dfdea0d6829f92e0072b0624bc",
+    "bytes": 11304675,
+    "path": "raw/constitution-2011-sgg-ar/51b0d054effc827665ee2d02d73696120fc494dfdea0d6829f92e0072b0624bc.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/1/lois/constitution_2011_Ar.pdf",
+    "pages": 82,
+    "passages": 0,
+    "low_text_pages": 82,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 18,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 19,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 20,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 21,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 22,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 23,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 24,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 25,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 26,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 27,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 28,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 29,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 30,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 31,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 32,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 33,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 34,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 35,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 36,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 37,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 38,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 39,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 40,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 41,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 42,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 43,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 44,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 45,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 46,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 47,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 48,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 49,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 50,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 51,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 52,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 53,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 54,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 55,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 56,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 57,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 58,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 59,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 60,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 61,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 62,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 63,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 64,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 65,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 66,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 67,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 68,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 69,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 70,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 71,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 72,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 73,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 74,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 75,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 76,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 77,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 78,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 79,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 80,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 81,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 82,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-27-11-sgg-fr",
+    "title": "Loi organique n° 27-11 relative à la Chambre des représentants — texte de 2011",
+    "url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_27-11_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_original_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "original_text",
+    "collected_at": "2026-10-29T18:40:53.210316+00:00",
+    "processed_at": "2026-11-05T13:33:20.482611+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "a5869126e4950578a12307001f745f5ae9b9716ab4423ac620862b22cdee7018",
+    "bytes": 1024852,
+    "path": "raw/loi-27-11-sgg-fr/a5869126e4950578a12307001f745f5ae9b9716ab4423ac620862b22cdee7018.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_27-11_Fr.pdf",
+    "pages": 15,
+    "passages": 0,
+    "low_text_pages": 15,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-27-11-sgg-ar",
+    "title": "القانون التنظيمي رقم 27.11 المتعلق بمجلس النواب — نص 2011",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=a9nd8qqbg7A%3D&mid=1587&portalid=1&tabid=484",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_original_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "original_text",
+    "collected_at": "2026-10-29T18:41:14.473522+00:00",
+    "processed_at": "2026-11-05T13:33:20.491216+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "c028b516ec73a9517f2b03a5de1c2d503e0eba33019c67c02cee00178b0f7af5",
+    "bytes": 662914,
+    "path": "raw/loi-27-11-sgg-ar/c028b516ec73a9517f2b03a5de1c2d503e0eba33019c67c02cee00178b0f7af5.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_27.11_Ar.pdf?ver=SHq0ppCYjOxSmaxy2Zr-Hg%3d%3d",
+    "pages": 17,
+    "passages": 0,
+    "low_text_pages": 17,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-20-16-sgg-ar",
+    "title": "القانون التنظيمي رقم 20.16 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/LinkClick.aspx?fileticket=aBnrKMEGn4Q%3D&mid=1587&portalid=1&tabid=484",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment",
+    "collected_at": "2026-10-29T18:41:36.596965+00:00",
+    "processed_at": "2026-11-05T13:33:20.496032+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "56a73661bbe4d83949edcc15d9410681a80486a2721c9e7f4183bc2113c3dd77",
+    "bytes": 61338,
+    "path": "raw/loi-20-16-sgg-ar/56a73661bbe4d83949edcc15d9410681a80486a2721c9e7f4183bc2113c3dd77.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_20.16_Ar.pdf?ver=d8RNMczM-NL0U_aCvSNrzA%3d%3d",
+    "pages": 2,
+    "passages": 0,
+    "low_text_pages": 2,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "short_text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-04-21-sgg-ar",
+    "title": "القانون التنظيمي رقم 04.21 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_04.21_ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment",
+    "collected_at": "2026-10-29T18:41:38.232941+00:00",
+    "processed_at": "2026-11-05T13:33:20.497622+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "5c599db6ed92d750a49a67b663b8c8c596221963f2e8b98fc642183693fe8045",
+    "bytes": 213514,
+    "path": "raw/loi-04-21-sgg-ar/5c599db6ed92d750a49a67b663b8c8c596221963f2e8b98fc642183693fe8045.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_04.21_ar.pdf",
+    "pages": 5,
+    "passages": 16,
+    "low_text_pages": 0,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-53-25-sgg-ar",
+    "title": "القانون التنظيمي رقم 53.25 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+    "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_organique_53.25_ar.pdf",
+    "language": "ar",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "legal_currency": "amendment_not_consolidated",
+    "discovery_url": "https://www.sgg.gov.ma/arabe/textesimportants.aspx",
+    "catalog_checked_on": "2026-10-29",
+    "legal_family": "chambre-representants-27-11",
+    "document_role": "amendment",
+    "collected_at": "2026-10-29T18:41:42.929140+00:00",
+    "processed_at": "2026-11-05T13:33:20.624356+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "0fb4dfe444b7a41eefa56bf9faeef6aca08e34f353b4c559c7d2808d20ad30c6",
+    "bytes": 170576,
+    "path": "raw/loi-53-25-sgg-ar/0fb4dfe444b7a41eefa56bf9faeef6aca08e34f353b4c559c7d2808d20ad30c6.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_organique_53.25_ar.pdf",
+    "pages": 8,
+    "passages": 24,
+    "low_text_pages": 0,
+    "extraction_status": "needs_review",
+    "ocr_requested": false,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": [
+          "replacement_characters"
+        ]
+      }
+    ]
+  }
+]

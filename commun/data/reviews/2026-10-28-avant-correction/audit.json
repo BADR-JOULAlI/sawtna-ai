@@ -1,0 +1,139 @@
+{
+  "created_at": "2026-10-28T21:37:27.328350+00:00",
+  "input_sha256": "d5e54184cada4a0feac09c3b493bff88e596ac34614176361db6892d503320fc",
+  "manifest_sha256": "35526fff6dd973c0f6bb4f520634fa678c3c899262d916e13ea24ef92550bb80",
+  "summary": {
+    "documents": 4,
+    "passages": 475,
+    "languages": {
+      "fr": 475
+    },
+    "statuses": {
+      "pending_review": 475
+    },
+    "flagged_passages": 17,
+    "duplicate_groups": 6,
+    "errors": 0
+  },
+  "documents": [
+    {
+      "id": "constitution-2011-sgg-fr",
+      "title": "Constitution 2011 — édition SGG",
+      "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+      "passages": 66,
+      "pages": 65,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-2011-fr",
+      "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+      "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+      "passages": 82,
+      "pages": 28,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-portail-fr",
+      "title": "Constitution — portail national Maroc.ma",
+      "url": "https://maroc.ma/fr/le-maroc/constitution",
+      "passages": 1,
+      "pages": 1,
+      "legal_currency": "institutional_explainer",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-06-21-bo-7000",
+      "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+      "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+      "passages": 326,
+      "pages": 85,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    }
+  ],
+  "errors": [],
+  "warnings": {
+    "a2fd92506e30da30664528ead0b49826073ed0a4": [
+      "control_characters"
+    ],
+    "f88b35b8cc9faf2d178925386a24d44175e81a98": [
+      "low_letter_ratio"
+    ],
+    "877698d2f3cdb3280bc3cd14490c2a4f5a853999": [
+      "low_letter_ratio"
+    ],
+    "2dc15cadf0f0dcce7f565a056597cfbef6b213a5": [
+      "duplicate_text"
+    ],
+    "ccd9b234f3bcf613fc34dfe484af58c5efcaa84f": [
+      "duplicate_text"
+    ],
+    "28933e3b97e89bf19eda6895f377d9651a555419": [
+      "duplicate_text"
+    ],
+    "38bee020115e613b982c7c4c5331be6f6f71442b": [
+      "duplicate_text"
+    ],
+    "082d1d45652b8ab531dfc64a4ac94a4cdf20d289": [
+      "duplicate_text"
+    ],
+    "3cd57c45c1caf0484b7e29f3efa20ee5ab700d8a": [
+      "duplicate_text"
+    ],
+    "ac2c6161dbe220dbb2b55673a0bd3e9c19b80271": [
+      "duplicate_text"
+    ],
+    "1b0bd7b8bfaec9a50961e40287c954b22d90b8fb": [
+      "duplicate_text"
+    ],
+    "74703e41d4693e8eed170946504f9234308aa818": [
+      "duplicate_text"
+    ],
+    "775111ad855ba4d7c9b4cdef8fdd14f184a73280": [
+      "duplicate_text"
+    ],
+    "3d85b7150b3f441d7106440f3c92fbf03f53e1e3": [
+      "duplicate_text"
+    ],
+    "3c1ea2345e2829c2c682dcdfeba3b246dac839d9": [
+      "duplicate_text"
+    ],
+    "76a05a8bae142737004a5af7da621a0d26719d35": [
+      "duplicate_text"
+    ],
+    "e48a22ee09e7b2216a22de74131555ddf9c1a517": [
+      "duplicate_text"
+    ]
+  },
+  "duplicate_groups": [
+    [
+      "2dc15cadf0f0dcce7f565a056597cfbef6b213a5",
+      "ccd9b234f3bcf613fc34dfe484af58c5efcaa84f"
+    ],
+    [
+      "28933e3b97e89bf19eda6895f377d9651a555419",
+      "3d85b7150b3f441d7106440f3c92fbf03f53e1e3",
+      "76a05a8bae142737004a5af7da621a0d26719d35"
+    ],
+    [
+      "38bee020115e613b982c7c4c5331be6f6f71442b",
+      "3c1ea2345e2829c2c682dcdfeba3b246dac839d9",
+      "e48a22ee09e7b2216a22de74131555ddf9c1a517"
+    ],
+    [
+      "082d1d45652b8ab531dfc64a4ac94a4cdf20d289",
+      "775111ad855ba4d7c9b4cdef8fdd14f184a73280"
+    ],
+    [
+      "3cd57c45c1caf0484b7e29f3efa20ee5ab700d8a",
+      "1b0bd7b8bfaec9a50961e40287c954b22d90b8fb"
+    ],
+    [
+      "ac2c6161dbe220dbb2b55673a0bd3e9c19b80271",
+      "74703e41d4693e8eed170946504f9234308aa818"
+    ]
+  ],
+  "scope": "Technical checks only. Human review of text, relevance and legal currency remains required."
+}

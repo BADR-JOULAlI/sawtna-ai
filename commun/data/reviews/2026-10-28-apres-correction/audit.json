@@ -1,0 +1,140 @@
+{
+  "created_at": "2026-10-28T21:39:21.790799+00:00",
+  "input_sha256": "ea099d0af9b60946780502e99430d0207335438c2ac641f2b6a69f642cf215b4",
+  "manifest_sha256": "814a0d6bc8e584ad26b51a0fb12a966aac9d895e7c398edf20d02cca6146270b",
+  "summary": {
+    "documents": 4,
+    "passages": 474,
+    "languages": {
+      "fr": 474
+    },
+    "statuses": {
+      "pending_review": 474
+    },
+    "flagged_passages": 17,
+    "duplicate_groups": 6,
+    "errors": 0
+  },
+  "documents": [
+    {
+      "id": "constitution-2011-sgg-fr",
+      "title": "Constitution 2011 — édition SGG",
+      "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+      "passages": 66,
+      "pages": 65,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-2011-fr",
+      "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+      "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+      "passages": 82,
+      "pages": 28,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-portail-fr",
+      "title": "Constitution — portail national Maroc.ma",
+      "url": "https://maroc.ma/fr/le-maroc/constitution",
+      "passages": 1,
+      "pages": 1,
+      "legal_currency": "institutional_explainer",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-06-21-bo-7000",
+      "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+      "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+      "passages": 325,
+      "pages": 85,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    }
+  ],
+  "errors": [],
+  "warnings": {
+    "f88b35b8cc9faf2d178925386a24d44175e81a98": [
+      "low_letter_ratio"
+    ],
+    "0feb72d58a1cbf8cdcd130fecbce33d70309b54c": [
+      "low_letter_ratio"
+    ],
+    "cb42f42ba9567ab6f55e8e7c864089e096bee491": [
+      "duplicate_text"
+    ],
+    "0a16d260ef58ca40bc2ab45c7c26bacfe274617a": [
+      "duplicate_text"
+    ],
+    "091c86094d6fadc2ec7805f9c39c45f4c24facbf": [
+      "duplicate_text"
+    ],
+    "94930e9503c681870a91007085f8e7bbf2b3d0da": [
+      "duplicate_text"
+    ],
+    "56d9e43f2c6982a44437b292b19c8ac1f30a5176": [
+      "duplicate_text"
+    ],
+    "5c661c4ef117864f338b2be1f21286c8ac3431f3": [
+      "duplicate_text"
+    ],
+    "db6a925b2caaf89759fb666ca8851ec2f4b24aa0": [
+      "duplicate_text"
+    ],
+    "89bbf8743c90b53f5799f187ad6e92f7d22902f0": [
+      "duplicate_text"
+    ],
+    "9af8fceee4fff4a61f3e382b78911c4039a3ddcf": [
+      "duplicate_text"
+    ],
+    "aa34f88275019aa2875da0f2332c98d5a4d674c0": [
+      "duplicate_text"
+    ],
+    "649ddf71c41ebe3649d392f937242657e691ac2f": [
+      "duplicate_text"
+    ],
+    "d0845414dfd30b6ec7a2db48e33469bb9f850190": [
+      "duplicate_text"
+    ],
+    "edf13d1660de5b9b041d1488fe0690286ab682a6": [
+      "duplicate_text"
+    ],
+    "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2": [
+      "duplicate_text"
+    ],
+    "a3b286e65d7db5d72cc96de10504d13473ea547f": [
+      "duplicate_text"
+    ]
+  },
+  "duplicate_groups": [
+    [
+      "cb42f42ba9567ab6f55e8e7c864089e096bee491",
+      "0a16d260ef58ca40bc2ab45c7c26bacfe274617a"
+    ],
+    [
+      "091c86094d6fadc2ec7805f9c39c45f4c24facbf",
+      "d0845414dfd30b6ec7a2db48e33469bb9f850190",
+      "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2"
+    ],
+    [
+      "94930e9503c681870a91007085f8e7bbf2b3d0da",
+      "89bbf8743c90b53f5799f187ad6e92f7d22902f0",
+      "edf13d1660de5b9b041d1488fe0690286ab682a6",
+      "a3b286e65d7db5d72cc96de10504d13473ea547f"
+    ],
+    [
+      "56d9e43f2c6982a44437b292b19c8ac1f30a5176",
+      "649ddf71c41ebe3649d392f937242657e691ac2f"
+    ],
+    [
+      "5c661c4ef117864f338b2be1f21286c8ac3431f3",
+      "9af8fceee4fff4a61f3e382b78911c4039a3ddcf"
+    ],
+    [
+      "db6a925b2caaf89759fb666ca8851ec2f4b24aa0",
+      "aa34f88275019aa2875da0f2332c98d5a4d674c0"
+    ]
+  ],
+  "scope": "Technical checks only. Human review of text, relevance and legal currency remains required."
+}

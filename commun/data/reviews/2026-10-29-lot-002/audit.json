@@ -1,0 +1,236 @@
+{
+  "created_at": "2026-10-29T18:42:32.600825+00:00",
+  "input_sha256": "3e62c7f21348457f7615b977d79cb9ea5b6009c0efaf4f329d9ef9a227de036d",
+  "manifest_sha256": "6fd6d0eba956e700b724fbfe203e891403636167f77f67230d421e4a57656dd4",
+  "summary": {
+    "documents": 10,
+    "passages": 711,
+    "languages": {
+      "fr": 539,
+      "ar": 172
+    },
+    "statuses": {
+      "pending_review": 711
+    },
+    "flagged_passages": 17,
+    "duplicate_groups": 6,
+    "errors": 0
+  },
+  "documents": [
+    {
+      "id": "constitution-2011-sgg-fr",
+      "title": "Constitution 2011 — édition SGG",
+      "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+      "passages": 66,
+      "pages": 65,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-2011-fr",
+      "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+      "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+      "passages": 82,
+      "pages": 28,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-portail-fr",
+      "title": "Constitution — portail national Maroc.ma",
+      "url": "https://maroc.ma/fr/le-maroc/constitution",
+      "passages": 1,
+      "pages": 1,
+      "legal_currency": "institutional_explainer",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-06-21-bo-7000",
+      "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+      "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+      "passages": 325,
+      "pages": 85,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-2011-sgg-ar",
+      "title": "دستور المملكة المغربية لسنة 2011 — الأمانة العامة للحكومة",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/constitution_2011_Ar.pdf",
+      "passages": 82,
+      "pages": 82,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-27-11-sgg-fr",
+      "title": "Loi organique n° 27-11 relative à la Chambre des représentants — texte de 2011",
+      "url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_27-11_Fr.pdf",
+      "passages": 65,
+      "pages": 15,
+      "legal_currency": "historical_original_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-27-11-sgg-ar",
+      "title": "القانون التنظيمي رقم 27.11 المتعلق بمجلس النواب — نص 2011",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_27.11_Ar.pdf?ver=SHq0ppCYjOxSmaxy2Zr-Hg%3d%3d",
+      "passages": 49,
+      "pages": 17,
+      "legal_currency": "historical_original_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-20-16-sgg-ar",
+      "title": "القانون التنظيمي رقم 20.16 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_20.16_Ar.pdf?ver=d8RNMczM-NL0U_aCvSNrzA%3d%3d",
+      "passages": 3,
+      "pages": 2,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-04-21-sgg-ar",
+      "title": "القانون التنظيمي رقم 04.21 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_04.21_ar.pdf",
+      "passages": 15,
+      "pages": 5,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-53-25-sgg-ar",
+      "title": "القانون التنظيمي رقم 53.25 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_organique_53.25_ar.pdf",
+      "passages": 23,
+      "pages": 8,
+      "legal_currency": "amendment_not_consolidated",
+      "flagged_pages": 0
+    }
+  ],
+  "errors": [],
+  "warnings": {
+    "f88b35b8cc9faf2d178925386a24d44175e81a98": [
+      "low_letter_ratio"
+    ],
+    "0feb72d58a1cbf8cdcd130fecbce33d70309b54c": [
+      "low_letter_ratio"
+    ],
+    "cb42f42ba9567ab6f55e8e7c864089e096bee491": [
+      "duplicate_text"
+    ],
+    "0a16d260ef58ca40bc2ab45c7c26bacfe274617a": [
+      "duplicate_text"
+    ],
+    "091c86094d6fadc2ec7805f9c39c45f4c24facbf": [
+      "duplicate_text"
+    ],
+    "94930e9503c681870a91007085f8e7bbf2b3d0da": [
+      "duplicate_text"
+    ],
+    "56d9e43f2c6982a44437b292b19c8ac1f30a5176": [
+      "duplicate_text"
+    ],
+    "5c661c4ef117864f338b2be1f21286c8ac3431f3": [
+      "duplicate_text"
+    ],
+    "db6a925b2caaf89759fb666ca8851ec2f4b24aa0": [
+      "duplicate_text"
+    ],
+    "89bbf8743c90b53f5799f187ad6e92f7d22902f0": [
+      "duplicate_text"
+    ],
+    "9af8fceee4fff4a61f3e382b78911c4039a3ddcf": [
+      "duplicate_text"
+    ],
+    "aa34f88275019aa2875da0f2332c98d5a4d674c0": [
+      "duplicate_text"
+    ],
+    "649ddf71c41ebe3649d392f937242657e691ac2f": [
+      "duplicate_text"
+    ],
+    "d0845414dfd30b6ec7a2db48e33469bb9f850190": [
+      "duplicate_text"
+    ],
+    "edf13d1660de5b9b041d1488fe0690286ab682a6": [
+      "duplicate_text"
+    ],
+    "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2": [
+      "duplicate_text"
+    ],
+    "a3b286e65d7db5d72cc96de10504d13473ea547f": [
+      "duplicate_text"
+    ]
+  },
+  "duplicate_groups": [
+    [
+      "cb42f42ba9567ab6f55e8e7c864089e096bee491",
+      "0a16d260ef58ca40bc2ab45c7c26bacfe274617a"
+    ],
+    [
+      "091c86094d6fadc2ec7805f9c39c45f4c24facbf",
+      "d0845414dfd30b6ec7a2db48e33469bb9f850190",
+      "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2"
+    ],
+    [
+      "94930e9503c681870a91007085f8e7bbf2b3d0da",
+      "89bbf8743c90b53f5799f187ad6e92f7d22902f0",
+      "edf13d1660de5b9b041d1488fe0690286ab682a6",
+      "a3b286e65d7db5d72cc96de10504d13473ea547f"
+    ],
+    [
+      "56d9e43f2c6982a44437b292b19c8ac1f30a5176",
+      "649ddf71c41ebe3649d392f937242657e691ac2f"
+    ],
+    [
+      "5c661c4ef117864f338b2be1f21286c8ac3431f3",
+      "9af8fceee4fff4a61f3e382b78911c4039a3ddcf"
+    ],
+    [
+      "db6a925b2caaf89759fb666ca8851ec2f4b24aa0",
+      "aa34f88275019aa2875da0f2332c98d5a4d674c0"
+    ]
+  ],
+  "scope": "Technical checks only. Human review of text, relevance and legal currency remains required.",
+  "triage_summary": {
+    "unclassified": 364,
+    "electoral_terms": 256,
+    "institutional_context": 91
+  },
+  "legal_families": {
+    "constitution-2011": [
+      {
+        "id": "constitution-2011-sgg-ar",
+        "role": "original_text",
+        "language": "ar"
+      }
+    ],
+    "chambre-representants-27-11": [
+      {
+        "id": "loi-27-11-sgg-fr",
+        "role": "original_text",
+        "language": "fr"
+      },
+      {
+        "id": "loi-27-11-sgg-ar",
+        "role": "original_text",
+        "language": "ar"
+      },
+      {
+        "id": "loi-20-16-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      },
+      {
+        "id": "loi-04-21-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      },
+      {
+        "id": "loi-53-25-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      }
+    ]
+  }
+}

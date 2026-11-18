@@ -1,0 +1,1395 @@
+{
+  "created_at": "2026-10-29T18:52:35.644864+00:00",
+  "input_sha256": "213d26e70b9edb70a48de4a1111900ed45094815aff91fb4aa7df40796c81a61",
+  "manifest_sha256": "a34d96d9287f6316ce7b1a17cd4d8edd35cb293a9430dae88b642530cedcad98",
+  "summary": {
+    "documents": 10,
+    "passages": 704,
+    "languages": {
+      "fr": 539,
+      "ar": 165
+    },
+    "statuses": {
+      "pending_review": 704
+    },
+    "flagged_passages": 395,
+    "duplicate_groups": 6,
+    "errors": 0
+  },
+  "documents": [
+    {
+      "id": "constitution-2011-sgg-fr",
+      "title": "Constitution 2011 — édition SGG",
+      "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+      "passages": 66,
+      "pages": 65,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 65
+    },
+    {
+      "id": "constitution-2011-fr",
+      "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+      "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+      "passages": 82,
+      "pages": 28,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 28
+    },
+    {
+      "id": "constitution-portail-fr",
+      "title": "Constitution — portail national Maroc.ma",
+      "url": "https://maroc.ma/fr/le-maroc/constitution",
+      "passages": 1,
+      "pages": 1,
+      "legal_currency": "institutional_explainer",
+      "flagged_pages": 0
+    },
+    {
+      "id": "loi-06-21-bo-7000",
+      "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+      "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+      "passages": 325,
+      "pages": 85,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 0
+    },
+    {
+      "id": "constitution-2011-sgg-ar",
+      "title": "دستور المملكة المغربية لسنة 2011 — الأمانة العامة للحكومة",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/constitution_2011_Ar.pdf",
+      "passages": 83,
+      "pages": 82,
+      "legal_currency": "amendments_not_audited",
+      "flagged_pages": 82
+    },
+    {
+      "id": "loi-27-11-sgg-fr",
+      "title": "Loi organique n° 27-11 relative à la Chambre des représentants — texte de 2011",
+      "url": "https://www.sgg.gov.ma/Portals/0/lois/Loi_27-11_Fr.pdf",
+      "passages": 65,
+      "pages": 15,
+      "legal_currency": "historical_original_not_consolidated",
+      "flagged_pages": 15
+    },
+    {
+      "id": "loi-27-11-sgg-ar",
+      "title": "القانون التنظيمي رقم 27.11 المتعلق بمجلس النواب — نص 2011",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_27.11_Ar.pdf?ver=SHq0ppCYjOxSmaxy2Zr-Hg%3d%3d",
+      "passages": 45,
+      "pages": 17,
+      "legal_currency": "historical_original_not_consolidated",
+      "flagged_pages": 17
+    },
+    {
+      "id": "loi-20-16-sgg-ar",
+      "title": "القانون التنظيمي رقم 20.16 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_20.16_Ar.pdf?ver=d8RNMczM-NL0U_aCvSNrzA%3d%3d",
+      "passages": 3,
+      "pages": 2,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 2
+    },
+    {
+      "id": "loi-04-21-sgg-ar",
+      "title": "القانون التنظيمي رقم 04.21 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi-organique_04.21_ar.pdf",
+      "passages": 13,
+      "pages": 5,
+      "legal_currency": "historical_amendment_not_consolidated",
+      "flagged_pages": 5
+    },
+    {
+      "id": "loi-53-25-sgg-ar",
+      "title": "القانون التنظيمي رقم 53.25 — تغيير وتتميم القانون التنظيمي رقم 27.11",
+      "url": "https://www.sgg.gov.ma/Portals/1/lois/Loi_organique_53.25_ar.pdf",
+      "passages": 21,
+      "pages": 8,
+      "legal_currency": "amendment_not_consolidated",
+      "flagged_pages": 8
+    }
+  ],
+  "errors": [],
+  "warnings": {
+    "fd0d73456debc3806cc3384830a9e51cc698d596": [
+      "ocr_review_required"
+    ],
+    "eb8c2a8a808922caef27ba80a919cfbbd9c6ccee": [
+      "ocr_review_required"
+    ],
+    "2e15589d422b9e47ab68f0d6a83ab165a4a4cbe4": [
+      "ocr_review_required"
+    ],
+    "a4f80cc61b27f43e326637e07412554743ffc134": [
+      "ocr_review_required"
+    ],
+    "d48d4a009174020e83a785d59cd5f2d1c274637e": [
+      "ocr_review_required"
+    ],
+    "1d735963a61d798689962a91aa93c7a959d40a50": [
+      "ocr_review_required"
+    ],
+    "7b4377174996bfab0d1b17b6d0e55dfa36658458": [
+      "ocr_review_required"
+    ],
+    "03a009375e2e691241327332b68996368e371e90": [
+      "ocr_review_required"
+    ],
+    "06f4623321089f54ffbc72d9ecd0ebbc297535b3": [
+      "ocr_review_required"
+    ],
+    "c96d86c35c7c4774de49cf0db1e2b5b809019b6c": [
+      "ocr_review_required"
+    ],
+    "5f9b31a741bc81f488e5f08ae33a1720d57e8cb0": [
+      "ocr_review_required"
+    ],
+    "ef39c367a388f2b1b78d8598578a49807cdebdcd": [
+      "ocr_review_required"
+    ],
+    "c3b9d5ea823a276a049219aa322be1dcf7f8ff56": [
+      "ocr_review_required"
+    ],
+    "fb17f11c4424af41b406c0e118f5b8846ecb583d": [
+      "ocr_review_required"
+    ],
+    "87bb37e04188cf50b4b9241a308b0694306c161c": [
+      "ocr_review_required"
+    ],
+    "b09f195aa5f5aaa6edb473a8dc9adf93379532d7": [
+      "ocr_review_required"
+    ],
+    "9e3e48e82f54972770e2a57319fb00ce2aea2491": [
+      "ocr_review_required"
+    ],
+    "26b2342d6b30808f7d7406b2586ecb15fc0aa637": [
+      "ocr_review_required"
+    ],
+    "8c0804a6324db35626ec04675c34ae0ef900c6e0": [
+      "ocr_review_required"
+    ],
+    "636da52166aa252b4224119a6652f501ddd5625d": [
+      "ocr_review_required"
+    ],
+    "7d7c9240ef59a7878c7243d5502ab7693bf8b7fc": [
+      "ocr_review_required"
+    ],
+    "dd96b51e9a488f4cdd81fcad153e66f82e6ddd58": [
+      "ocr_review_required"
+    ],
+    "3c5b453f15c069bdee1132376747914347e06a20": [
+      "ocr_review_required"
+    ],
+    "ace977c9e123cfe9980156025ca613f52b525ac0": [
+      "ocr_review_required"
+    ],
+    "aed17297710fd23df4775382d5bd9da1e4226fad": [
+      "ocr_review_required"
+    ],
+    "5e617d6f870cb5fb6d54ec6c5673263dbd4ce0b7": [
+      "ocr_review_required"
+    ],
+    "a59bbbe17dfc005d7161ba945f7495903c1dfb27": [
+      "ocr_review_required"
+    ],
+    "24896ebdb651114a820c79a7cc1cb5b538679994": [
+      "ocr_review_required"
+    ],
+    "ffbd403341ba70eb50458b5bcde0cebabe443c8c": [
+      "ocr_review_required"
+    ],
+    "95ec0e2f26e5cdb3ed4108a991b0fe450550d1c1": [
+      "ocr_review_required"
+    ],
+    "86cc28737629c37ae21dd3ab0137fb07c46e407a": [
+      "ocr_review_required"
+    ],
+    "c3a4a98ac7d16e4b12e83ba41766e6af3e0d6656": [
+      "ocr_review_required"
+    ],
+    "f7135f0e9d3ac3f5e263b650679e10f4d905e5d8": [
+      "ocr_review_required"
+    ],
+    "c877e2813e691987b19a5d91723ba837b0958590": [
+      "ocr_review_required"
+    ],
+    "f0bb706885cac94dffe883a0301875aa81813193": [
+      "ocr_review_required"
+    ],
+    "c11d51aedfdeb80e872ca9cb878c952c5b7510bf": [
+      "ocr_review_required"
+    ],
+    "230b249a969771d4d86f471672e094f2579eb4a2": [
+      "ocr_review_required"
+    ],
+    "a08e62134668771f21220fc09f64857d28872a48": [
+      "ocr_review_required"
+    ],
+    "9cf1de975bc723b90685df65dedcaf801041800c": [
+      "ocr_review_required"
+    ],
+    "2db01362c2cfa22ae5809b620636fd447b19cd08": [
+      "ocr_review_required"
+    ],
+    "c5996b82010031b394392915e772d33d71468098": [
+      "ocr_review_required"
+    ],
+    "5b487123d0c108354337984559ccd6e67eb983f4": [
+      "ocr_review_required"
+    ],
+    "d6f6db725da84669f22d4853cfb314e574416849": [
+      "ocr_review_required"
+    ],
+    "18daed47939289ea57cd19f106baf6aaa7217e7f": [
+      "ocr_review_required"
+    ],
+    "50a48d9c65c8a58980db402143572eab90178c6a": [
+      "ocr_review_required"
+    ],
+    "1af27b82d37ce6ca1517900319bc5e9fe326b789": [
+      "ocr_review_required"
+    ],
+    "60c5f22fcaa5ebd8d47d406f382d6d0c9257d6f3": [
+      "ocr_review_required"
+    ],
+    "1fec29bffe01aeaf2de5703eafdf1ae741b50bed": [
+      "ocr_review_required"
+    ],
+    "9a5393fab58246c8a8cf3e11b35667d8f4d103cb": [
+      "ocr_review_required"
+    ],
+    "7d477bab103f55a21730cae6bcd4b1a9d250f8ee": [
+      "ocr_review_required"
+    ],
+    "5223ac47d685669e5d0bdc229ce74b0d273dd0ac": [
+      "ocr_review_required"
+    ],
+    "b69b8c589d87bef0b79bf61915f20c6a2f14bae2": [
+      "ocr_review_required"
+    ],
+    "6d2cabc091b789bde6ddf6bd183aa7634631a31a": [
+      "ocr_review_required"
+    ],
+    "01ef5186c1c8d3070e32ae8cfd3878d188c87f59": [
+      "ocr_review_required"
+    ],
+    "17ab782c236b7c0f26f7a1f964907e441a82aeb4": [
+      "ocr_review_required"
+    ],
+    "eb8b5912b774351c96f1204bdbdc38b2f669e68f": [
+      "ocr_review_required"
+    ],
+    "5e2e26b79995ca083fa4f54f83250dbffa89d78f": [
+      "ocr_review_required"
+    ],
+    "8c349ffc32e3c6b245fbd88e818755f635e13a89": [
+      "ocr_review_required"
+    ],
+    "f2a7ce8cf893703a00446db9e28dc7182e7f2995": [
+      "ocr_review_required"
+    ],
+    "c246b9c938f040b99e0b22999d9c28dfec99a4d3": [
+      "ocr_review_required"
+    ],
+    "4b5d0e92033ebcb29849369326b979decb89aecd": [
+      "ocr_review_required"
+    ],
+    "e8ef477440c1ab7f88a796e88f5012b19edcf8cf": [
+      "ocr_review_required"
+    ],
+    "0f96efac5643a9743d95826a4cb60014d8573399": [
+      "ocr_review_required"
+    ],
+    "f344a295b14c954931703a854930a6e8452c0ba4": [
+      "ocr_review_required"
+    ],
+    "8b1fbe972b90bc3f3db7dc61c5a820ea097051f9": [
+      "ocr_review_required"
+    ],
+    "938ff46b717c39840ee61c08ccb258c1870e1c50": [
+      "ocr_review_required"
+    ],
+    "726e9a6075900c459dce2fb59f122bc9ac8c3af5": [
+      "ocr_review_required"
+    ],
+    "3ff96febafbd186134c2ce7d5b5c6825839863a8": [
+      "ocr_review_required"
+    ],
+    "63a0b036aabffb2ee176b208f46435eace2d6fe9": [
+      "ocr_review_required"
+    ],
+    "b14553a1a95290c36fb2851c1a95f92b80d3a80d": [
+      "ocr_review_required"
+    ],
+    "b894683465d75c50877adedfc280101d383f333d": [
+      "ocr_review_required"
+    ],
+    "4fd8dfdfa6ca45be570f221d70965dc2c3f546c7": [
+      "ocr_review_required"
+    ],
+    "919bfd67222c87386f3fd40ed797c2337a8acd93": [
+      "ocr_review_required"
+    ],
+    "ccd56281b9928a3ba09fbddf2768060985251479": [
+      "ocr_review_required"
+    ],
+    "54dd6c434fcaefb8b324cc60d4f42c43259d6dce": [
+      "ocr_review_required"
+    ],
+    "51897e66658696161c481e5b7fa7e59bdd2b8c5c": [
+      "ocr_review_required"
+    ],
+    "0f2d2231a4fe4f3d94ef68e018d0082f64cfd82e": [
+      "ocr_review_required"
+    ],
+    "f45bedad806100151a324ad7b8494853a8ea8667": [
+      "ocr_review_required"
+    ],
+    "6c7a744c6628e1becad709ce5dac0508ddef255b": [
+      "ocr_review_required"
+    ],
+    "cf253b86b4dee9301b7ed06eaf763f454816c650": [
+      "ocr_review_required"
+    ],
+    "c88217d28b1a8605a9f40c418f5f7a727f312a3e": [
+      "ocr_review_required"
+    ],
+    "fd418ac20ddd32e805ad92f5f96df2f07a5a43af": [
+      "ocr_review_required"
+    ],
+    "bbb9f615478e10dbe55e84fe082ec6093ac8683d": [
+      "ocr_review_required"
+    ],
+    "9d16071582cbf48c481876553cfa1eff7802a2f1": [
+      "ocr_review_required"
+    ],
+    "25ca2739abdf09cff3fd6fa1f0897144d461134f": [
+      "ocr_review_required"
+    ],
+    "f7ba3daa266afded97d7f332b161ee9dcf8f8832": [
+      "ocr_review_required"
+    ],
+    "7c2e3efc103f1dc631ba889c49ce923106a30389": [
+      "ocr_review_required"
+    ],
+    "665013a402a55a95ad6a73c2e83db6b0bbd56f3d": [
+      "ocr_review_required"
+    ],
+    "669e7321e7f058bb252b923844956142432ba057": [
+      "ocr_review_required"
+    ],
+    "ce016677cd5b0e0433a061c63feda283196c0052": [
+      "ocr_review_required"
+    ],
+    "00c50b7dd58a5ed64dce3313285721c744ee41a5": [
+      "ocr_review_required"
+    ],
+    "d0d80dd88a29f48127b1ff9216616ce80faf3888": [
+      "ocr_review_required"
+    ],
+    "5a1afd68bfd1b34aeb418986b63da9c8b7fca3db": [
+      "ocr_review_required"
+    ],
+    "290fcda72bf22bd6d533d9f78bf2da7362bd4f96": [
+      "ocr_review_required"
+    ],
+    "0960b0e8e2ff283ca7009c794d8feca0a4e464bc": [
+      "ocr_review_required"
+    ],
+    "3e06ccdf02af9e154525c8261f982d582438c82d": [
+      "ocr_review_required"
+    ],
+    "649d95553c877a5f8f92d79bddd56eaa8d41cc74": [
+      "ocr_review_required"
+    ],
+    "723535d3cfe915b168d55b11389f9544649c79e2": [
+      "ocr_review_required"
+    ],
+    "2e427a081941bf5982dd1f5c95a124c601d25bb2": [
+      "ocr_review_required"
+    ],
+    "093bbeeab436e01c562fb5eb84a53a4655303608": [
+      "ocr_review_required"
+    ],
+    "6cab52bab2f9eea88a58f76dd7b58e22a3800926": [
+      "ocr_review_required"
+    ],
+    "b6ec06c19e2c0c22ba3eef3549364f60ecf11c3d": [
+      "ocr_review_required"
+    ],
+    "d647937cf51be544977e3bc8975a342f340a4d79": [
+      "ocr_review_required"
+    ],
+    "d5ed92601a23d05407377a1ff0ab0bcc59d87771": [
+      "ocr_review_required"
+    ],
+    "9fd92fbc67db693aa282a70fd45d06cfeb669a60": [
+      "ocr_review_required"
+    ],
+    "118ecef054be901e92bea0930026ad775e76126d": [
+      "ocr_review_required"
+    ],
+    "713e9e550e907a3cac50248191fd8ac9c5b5cf2c": [
+      "ocr_review_required"
+    ],
+    "e9e1645fa5a93b86088c8b6ce04c1a64c9775914": [
+      "ocr_review_required"
+    ],
+    "084a49e4ed46046896dfaefae03799ced3f121f5": [
+      "ocr_review_required"
+    ],
+    "603b3d545aa6fabd32ad46adc5a6b1c868b5ef42": [
+      "ocr_review_required"
+    ],
+    "ee62788dec7eff9cf6526b9350454ec80b517c68": [
+      "ocr_review_required"
+    ],
+    "02ec2dbaa80ee94b747fc57562bf6a26e6e502f1": [
+      "ocr_review_required"
+    ],
+    "109a3a31a7e5cba6b8fef9c1e8572a8b9a91b8cd": [
+      "ocr_review_required"
+    ],
+    "2c79f6d24c557600bdec109f2d2edb7b14c59553": [
+      "ocr_review_required"
+    ],
+    "3c746f335cd777054cff8d51628432b5331cca0f": [
+      "ocr_review_required"
+    ],
+    "de67b943bcb189d05bf308547ee950232de0d159": [
+      "ocr_review_required"
+    ],
+    "2a5d69181944c3f33ecdb8304ba35c1f151d7160": [
+      "ocr_review_required"
+    ],
+    "6d071ca8c5a11fb0efd78b12ff075358fde00d1a": [
+      "ocr_review_required"
+    ],
+    "d70af507968c2b7d38b27481dd2503de466d85d4": [
+      "ocr_review_required"
+    ],
+    "df10885db9d7d39189d0712c075994890e74bfdc": [
+      "ocr_review_required"
+    ],
+    "ba7508667647f05d343a409254013053c3ddbde8": [
+      "ocr_review_required"
+    ],
+    "9a0cc936e633cc0149f163b82cbe068da87dd0c0": [
+      "ocr_review_required"
+    ],
+    "765a7fd6ff543b1a741938909e829584c4316890": [
+      "ocr_review_required"
+    ],
+    "72198cfa0f3b280980e99e5ee0f5278e588bfd6c": [
+      "ocr_review_required"
+    ],
+    "9954870f89043305b902f04c982792a262b0beaa": [
+      "ocr_review_required"
+    ],
+    "c5faada33dbc7b31b82a11e9a0e16264ade25537": [
+      "ocr_review_required"
+    ],
+    "9a044b15b161a77a3dc5aff5e07ca41bf591c15b": [
+      "ocr_review_required"
+    ],
+    "de813c58fd3bf4277db40d65559ec9fbb64c1e03": [
+      "ocr_review_required"
+    ],
+    "34d75aaccfc78e288f0857d9dbd735319413b243": [
+      "ocr_review_required"
+    ],
+    "2957084d2a0677f5653ef00c9c03e0d7953f2ced": [
+      "ocr_review_required"
+    ],
+    "b1623f790d631a593aeefd726d70da17e28bbf81": [
+      "ocr_review_required"
+    ],
+    "5f6cad769cde91205b95d55b6a751169e1d78ffb": [
+      "ocr_review_required"
+    ],
+    "ba18122c92e1ce4e0e2c767413698d5f1104b8d0": [
+      "ocr_review_required"
+    ],
+    "94242d3c53b2e986062aefdaa5aaeb3ec5df6f49": [
+      "ocr_review_required"
+    ],
+    "b6664e0c97a71fd3291b44da910dd613263a1963": [
+      "ocr_review_required"
+    ],
+    "686f16453852791e87d92045ed74ca07cee115f9": [
+      "ocr_review_required"
+    ],
+    "f83afc4d054c086ac9a53ff356e9796c15b93425": [
+      "ocr_review_required"
+    ],
+    "16e9e4b01755d3e99145bf9355c9fc67be05b2da": [
+      "ocr_review_required"
+    ],
+    "b1ac3e7ca6ebb3146b45008f88deb0563cf0b18a": [
+      "ocr_review_required"
+    ],
+    "aa8291efbb2654da45e96e507fec61c8eaf4f37f": [
+      "ocr_review_required"
+    ],
+    "7a8f4c2933ad76b87b5053409de7a602be74c48d": [
+      "ocr_review_required"
+    ],
+    "d463df9e56eae9d2971c80a45299a003c8a9416e": [
+      "ocr_review_required"
+    ],
+    "ad927958eef587f970d8b733fb7b1bfc330532e7": [
+      "ocr_review_required"
+    ],
+    "d88650fd67163cceb7f966d3b495dffc1d0b2cd6": [
+      "ocr_review_required"
+    ],
+    "18e2008ad10abdbec2ec8d37320deba99446d30f": [
+      "ocr_review_required"
+    ],
+    "3555e85e99f0f6f58a15bea765b60c0be6d6bdd0": [
+      "ocr_review_required"
+    ],
+    "dcf40d63664cc72cb19aa40f7bd9b0197c807c5d": [
+      "ocr_review_required"
+    ],
+    "e8c5b1bb2d8a073aef1a2d68584aad1464de86e5": [
+      "ocr_review_required"
+    ],
+    "f88b35b8cc9faf2d178925386a24d44175e81a98": [
+      "low_letter_ratio"
+    ],
+    "0feb72d58a1cbf8cdcd130fecbce33d70309b54c": [
+      "low_letter_ratio"
+    ],
+    "cb42f42ba9567ab6f55e8e7c864089e096bee491": [
+      "duplicate_text"
+    ],
+    "0a16d260ef58ca40bc2ab45c7c26bacfe274617a": [
+      "duplicate_text"
+    ],
+    "091c86094d6fadc2ec7805f9c39c45f4c24facbf": [
+      "duplicate_text"
+    ],
+    "94930e9503c681870a91007085f8e7bbf2b3d0da": [
+      "duplicate_text"
+    ],
+    "56d9e43f2c6982a44437b292b19c8ac1f30a5176": [
+      "duplicate_text"
+    ],
+    "5c661c4ef117864f338b2be1f21286c8ac3431f3": [
+      "duplicate_text"
+    ],
+    "db6a925b2caaf89759fb666ca8851ec2f4b24aa0": [
+      "duplicate_text"
+    ],
+    "89bbf8743c90b53f5799f187ad6e92f7d22902f0": [
+      "duplicate_text"
+    ],
+    "9af8fceee4fff4a61f3e382b78911c4039a3ddcf": [
+      "duplicate_text"
+    ],
+    "aa34f88275019aa2875da0f2332c98d5a4d674c0": [
+      "duplicate_text"
+    ],
+    "649ddf71c41ebe3649d392f937242657e691ac2f": [
+      "duplicate_text"
+    ],
+    "d0845414dfd30b6ec7a2db48e33469bb9f850190": [
+      "duplicate_text"
+    ],
+    "edf13d1660de5b9b041d1488fe0690286ab682a6": [
+      "duplicate_text"
+    ],
+    "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2": [
+      "duplicate_text"
+    ],
+    "a3b286e65d7db5d72cc96de10504d13473ea547f": [
+      "duplicate_text"
+    ],
+    "73c479d0a49f7cc9cd414d00ec6626a66d4ceaee": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "4dfaba48219222711bda35ad57dbb3c7786f5d67": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "b2408da6754206e4b117c8242829309dbd00ad03": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "19d12604a0acb711843647e5012091ea5e2c5903": [
+      "ocr_review_required"
+    ],
+    "8c3bf4c6af58691d374cc0ed40c997a2517014d1": [
+      "ocr_review_required"
+    ],
+    "c626e548d4c43a1ec83b4d6450d62a3538b682a4": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "c0dfe6337baa9c632e1ef6be6804be6e3b868824": [
+      "ocr_review_required"
+    ],
+    "342390447b20138636839658332c106b883cb304": [
+      "ocr_review_required"
+    ],
+    "a6e25b8c884daa9039e909ddb57f127015bf63eb": [
+      "ocr_review_required"
+    ],
+    "a1d08063cd0cc2364203c8b234b440c5103c64c4": [
+      "ocr_review_required"
+    ],
+    "0c52b6deafc1dbd7454401508394955ad0b46dc2": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "b5513c28c68fc79027f575a62d4e092a1dafcdcf": [
+      "ocr_review_required"
+    ],
+    "b14adb898e2731862fedcf2d12b9503206e4c0c3": [
+      "ocr_review_required"
+    ],
+    "c26494c1f1818d945fdd92bc7f8f8664cccb59ea": [
+      "ocr_review_required"
+    ],
+    "90257a04232bc56b602e5b206e9d5dff0390c1a7": [
+      "ocr_review_required"
+    ],
+    "bda5c92ef3c4a5cc5d651df09fd08f2501139984": [
+      "ocr_review_required"
+    ],
+    "29e2bb16b89cf0bc9c13569089ec2b7233f9dc0f": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "afc9cb33fad5953ce3e2285819d3f2bf7d968027": [
+      "ocr_review_required"
+    ],
+    "2d221ebfe501602cfc288621108ef72830cc81fa": [
+      "ocr_review_required"
+    ],
+    "794287096661297c66ff959ee24ac75603ae4096": [
+      "ocr_review_required"
+    ],
+    "abd173f81079c9d71074d5cd90d0830966745ff5": [
+      "ocr_review_required"
+    ],
+    "64ed3940b31e00fc074849bcc349c98a5593e667": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "4474c4e47fbc198d208909c15e7b46fa9ced3e2d": [
+      "ocr_review_required"
+    ],
+    "53e0b9e52a0628926f6e83ec237ad2f0758180f8": [
+      "ocr_review_required"
+    ],
+    "5e4c20d00b0eb5470fa12661571f040d2c68a380": [
+      "ocr_review_required"
+    ],
+    "11e1ade1fc044668598def45cb0980974efacc5d": [
+      "ocr_review_required"
+    ],
+    "a7dd67ee551a629125da402f692c10c4b733b691": [
+      "ocr_review_required"
+    ],
+    "4d4d34d1ec5451de3541a17c7a97c30fd9c5ccf4": [
+      "ocr_review_required"
+    ],
+    "0d4fe8b3160a4eb97c1c4665195544bcae9a5d85": [
+      "ocr_review_required"
+    ],
+    "3a64635c5c7deaec616ea50f830487fe4104f103": [
+      "ocr_review_required"
+    ],
+    "10568bf3ddcd544b502910c3b6f09f81bb2eb089": [
+      "ocr_review_required"
+    ],
+    "b95be372660e380e53e184e50e00c02918cec4f0": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "077d5b3865f20776deac699120571c44610e0bc8": [
+      "ocr_review_required"
+    ],
+    "b8a72c71f38239c78fac72f24074b09f6bd8ef73": [
+      "ocr_review_required"
+    ],
+    "2e0ba2504707dfbdd179a080470d76d6b70f950f": [
+      "ocr_review_required"
+    ],
+    "7c072d0072c9d1345cc0f3390f578200718d9eab": [
+      "ocr_review_required"
+    ],
+    "4624adc30bef3a999861f002252a73bd79ca9471": [
+      "ocr_review_required"
+    ],
+    "dcf7466702ae45eccda81f1f303304525b3d63c8": [
+      "ocr_review_required"
+    ],
+    "a606020a9bffa28814d3bb315c7bb6f195d6e5d4": [
+      "ocr_review_required"
+    ],
+    "132cd9c313e371d74061ecb9ec7f151cb6e25f3d": [
+      "ocr_review_required"
+    ],
+    "3d4ab36107a171e88a4f27531e2597111ceb1a1d": [
+      "ocr_review_required"
+    ],
+    "1caf3b980d0cd026a069d61a2c849cbee5a85de9": [
+      "ocr_review_required"
+    ],
+    "2a22850040e0c72cedd5c5854cf7176dbcb7afdc": [
+      "ocr_review_required"
+    ],
+    "8c9724edf527bca842ba8adf736c7ed6617e0f80": [
+      "ocr_review_required"
+    ],
+    "c10f186fdacb5445a678707949765ae94c800c91": [
+      "ocr_review_required"
+    ],
+    "3dbed305a607d0a75150318239b99c67861b17c6": [
+      "ocr_review_required"
+    ],
+    "72c3f68436685f1ca57a2f52af5e30cdcd44ccd5": [
+      "ocr_review_required"
+    ],
+    "c02918650089b9f783d8ca4c5610733555803943": [
+      "ocr_review_required"
+    ],
+    "230818018916a724d89bf6f0a5f457a8763c7562": [
+      "ocr_review_required"
+    ],
+    "7c68ed8197d21dcd23a3dcda880b6d01793cbe62": [
+      "ocr_review_required"
+    ],
+    "d4c77e35840c9d2d1dae4c72976cb62530d46391": [
+      "ocr_review_required"
+    ],
+    "a5caa42b1be1b083449839d8ade117bc87189b9e": [
+      "ocr_review_required"
+    ],
+    "a8325b09858aac71a85a5a55128b6329893a9163": [
+      "ocr_review_required"
+    ],
+    "f6f6b923b66c4d025bc55d36954db764fcc111c2": [
+      "ocr_review_required"
+    ],
+    "d612258a403a66f258a8d02479db2fa3f2f850d3": [
+      "ocr_review_required"
+    ],
+    "54c9fe40ad3f83c2e6ccb11d2bc7caa1231165a6": [
+      "ocr_review_required"
+    ],
+    "9058f353df7dc01eae18d939b20be9145dc8d76d": [
+      "ocr_review_required"
+    ],
+    "e9db67b9df676fd79d96c0b90b3aff4955829dc6": [
+      "ocr_review_required"
+    ],
+    "f59dd8476b8ea6c34eba7732cc86809eae835387": [
+      "ocr_review_required"
+    ],
+    "9344c7790dc4cab5d05d342eb420517cd29e0e54": [
+      "ocr_review_required"
+    ],
+    "2c42a7f407e57c6e190e13e882a701ce1dec1b02": [
+      "ocr_review_required"
+    ],
+    "58ca99a3ff715b37e519dea14172285c13387108": [
+      "ocr_review_required"
+    ],
+    "54786956813a89c3876572ebd7a4f4ca0ea3f7c4": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "acb004356e78a51393903ba8d0c93339d5688f99": [
+      "ocr_review_required"
+    ],
+    "9a110204071db222b54d6842c28cb6ecf3efa0b7": [
+      "ocr_review_required"
+    ],
+    "987abc191fc37427881953581a78b4eaea549a05": [
+      "ocr_review_required"
+    ],
+    "40237466c4337a157a6d3c070c6e54770e873684": [
+      "ocr_review_required"
+    ],
+    "89c22522d2f1f2a32bdd788f167b2819e5406cc8": [
+      "ocr_review_required"
+    ],
+    "179e38d467061a963377319a15fcb526b5795345": [
+      "ocr_review_required"
+    ],
+    "c8aa97d64988714d5076b3c62186fb7ff4dc99b9": [
+      "ocr_review_required"
+    ],
+    "d4959f48f4d0ea9462bc0fa5557ac0220e13a939": [
+      "ocr_review_required"
+    ],
+    "0186e598d9ec65561eeb8dd5c94021dfc4e90325": [
+      "ocr_review_required"
+    ],
+    "45fcf60ed2273f435956bf2eb4f1b73ff8b56df3": [
+      "ocr_review_required"
+    ],
+    "a1a1c8f3e2dae67e587e7317bdc30eb9d42df296": [
+      "ocr_review_required"
+    ],
+    "97247284ef9487a7a397654078448dc9174e8192": [
+      "ocr_review_required"
+    ],
+    "04ab3d7c95a48f36a54b814b12cf79715c2ceca6": [
+      "ocr_review_required"
+    ],
+    "7a4e8f852fed04679dfc8aedf4a304fd5264f91d": [
+      "ocr_review_required"
+    ],
+    "2bdd8d642fac37e951278deaafc3dd93cac562bc": [
+      "low_letter_ratio",
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "2648dfd131097c5039681f9a721177330778563e": [
+      "low_letter_ratio",
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "9e9c33d8401d485d506633b0baa88564177d829b": [
+      "low_letter_ratio",
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "12369673dad8a5c019568aaf2aa392fafb64a503": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "2562f1881eeffa45b659d3a1e52e1022c6ded278": [
+      "low_letter_ratio",
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "b3363ed6d54a9bdfbb1ea5f9690cc8d0634b48a4": [
+      "low_letter_ratio",
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "bdfce49ef154d5909e9811dd67a001a28c2f9639": [
+      "ocr_review_required"
+    ],
+    "94b6ae7b434904b15b06606fd222ee1b0e2b60fb": [
+      "ocr_review_required"
+    ],
+    "5fde60b78cb556d9539d9d66b004d3333963e7b9": [
+      "ocr_review_required"
+    ],
+    "07ba6c4ca503dcb11b2f881dada5270041d97600": [
+      "ocr_review_required"
+    ],
+    "e206adbce83cd8302132e29c772ba2325e938493": [
+      "ocr_review_required"
+    ],
+    "19b0de8c6d55a88c3df3247578fcbb5db5444e44": [
+      "ocr_review_required"
+    ],
+    "7ab4a1ab8741d3eaf0473803993b102afd44c165": [
+      "ocr_review_required"
+    ],
+    "440bfdce3a0504493d01080a9aa6f8c41fc723f7": [
+      "ocr_review_required"
+    ],
+    "7dbd989a7469fa4c50b814a9cc28bc00a1cc8ff6": [
+      "ocr_review_required"
+    ],
+    "1c17861c6697622b7eadac30e99a512617f4e5ec": [
+      "ocr_review_required"
+    ],
+    "3da43a77048bccbf31ffb5f52be21046bf7b43d8": [
+      "ocr_review_required"
+    ],
+    "7877943e00601ca508b7c08b269143c899569b5b": [
+      "ocr_review_required"
+    ],
+    "dbb4694c14c92d0c649feceb600d041c14b1466a": [
+      "ocr_review_required"
+    ],
+    "672a684bd18cb4247536e0ec5a953c832188ad62": [
+      "ocr_review_required"
+    ],
+    "ab168c82a3dd84cdc207f58b0f9aef428c1112ec": [
+      "ocr_review_required"
+    ],
+    "5ea1dbb06d4893db0f3a33b6c1590d7cc5774a81": [
+      "ocr_review_required"
+    ],
+    "d4da212d6f27f3d2135385405f5d71aa34db41ff": [
+      "ocr_review_required"
+    ],
+    "417326f046ecbcf8ed704050e22514d60a7c5409": [
+      "ocr_review_required"
+    ],
+    "7b1cd9e62d8ddd127633ad3b1a75d2f01ee15db9": [
+      "ocr_review_required"
+    ],
+    "382afa274cef9f0eb6b17094a79b22bc558455ae": [
+      "ocr_review_required"
+    ],
+    "d15d869fbeb2bb3b3b3616e9f871662f350579ad": [
+      "ocr_review_required"
+    ],
+    "b249951166337e4c09b9ad984fb76364fc299304": [
+      "ocr_review_required"
+    ],
+    "385e5e4fc018c7a57d83f82e6a3b6adb71d89fb7": [
+      "ocr_review_required"
+    ],
+    "316164be1091da4feae7a75e94877bb18a6753bd": [
+      "ocr_review_required"
+    ],
+    "bdfcb717046466eab1643a7526d063e1ea8ea962": [
+      "ocr_review_required"
+    ],
+    "e1a5205427e6633a2a8f828b7a396fe718e8762e": [
+      "ocr_review_required"
+    ],
+    "ed5b9ee12c8697b54a4e1733ff1a5a3a3a144f54": [
+      "ocr_review_required"
+    ],
+    "e8faf8d5ec620afc6e97ffe8f721fe80351e7f43": [
+      "ocr_review_required"
+    ],
+    "917a2499c2855f0e3535760a93f860fe705a84bb": [
+      "ocr_review_required"
+    ],
+    "6ff913a16378b264dd6b7a65edf64d901045761a": [
+      "ocr_review_required"
+    ],
+    "3c9bf372a2d7b2ee58ce831b0f16b35871479666": [
+      "ocr_review_required"
+    ],
+    "3cbc5e6a78f7a30963572cc9f69c5b801176fba1": [
+      "ocr_review_required"
+    ],
+    "97134cf048a3407e22e46d71aa4c1303b51d94f3": [
+      "ocr_review_required"
+    ],
+    "2f65a0519c5664432a5fc1f9d227fa7ec00e23ff": [
+      "ocr_review_required"
+    ],
+    "1c39602fbb99862b73e3c5881c751f1d757c36c9": [
+      "ocr_review_required"
+    ],
+    "d41c49947df6192e8d00357065393216327642e2": [
+      "ocr_review_required"
+    ],
+    "f88308ead326e1daf34c51ed382777334247abc7": [
+      "ocr_review_required"
+    ],
+    "284395374249c3869258ccf878e0a79bcf62f347": [
+      "ocr_review_required"
+    ],
+    "0d5f3a921ff27be64b3182c78e209a192b28c00a": [
+      "ocr_review_required"
+    ],
+    "4ec5a1819ad24c21d68e73f991fa87151da6b2a6": [
+      "ocr_review_required"
+    ],
+    "2ceddf64f25799f97a9ec205ec697fe226368e81": [
+      "ocr_review_required"
+    ],
+    "8fd2c14e938c1993dbb30f83689bb3808dec6807": [
+      "ocr_review_required"
+    ],
+    "1e0cf0097ab43d937c79484e7f2f13535534b588": [
+      "ocr_review_required"
+    ],
+    "93331e49706c33c9ec9dc3ad794b79c7c54d16f9": [
+      "ocr_review_required"
+    ],
+    "a65dcc314469882006ae6d43f5cbab440bf41ee4": [
+      "ocr_review_required"
+    ],
+    "58a06c209adaa34bbef0945fa77c2eb0ed82db41": [
+      "ocr_review_required"
+    ],
+    "4bdff9438f651bf271ed2177512468c806c128ae": [
+      "ocr_review_required"
+    ],
+    "26021b54e1f1c8b2aae58e3ed8f3d5381677adef": [
+      "ocr_review_required"
+    ],
+    "03e31f356abeb52d41cb1b4c2b5bad1d420dd1c3": [
+      "ocr_review_required"
+    ],
+    "4bb79341b36885ceac80e55d7f898f052fe3a031": [
+      "ocr_review_required"
+    ],
+    "4e576af1bfffce3635af11303072bc782217b16e": [
+      "ocr_review_required"
+    ],
+    "9395ff852c4151cd0b14285cebc0a1da85c9c10a": [
+      "ocr_review_required"
+    ],
+    "6445b01f72ba0a89a9e9d25b93255be8b5ddf8d6": [
+      "ocr_review_required"
+    ],
+    "a07fc1a7376dd9a13880bde3629173ecac663145": [
+      "ocr_review_required"
+    ],
+    "1d6e353da63e012b1ad7a88876e9abb8b6a3b729": [
+      "ocr_review_required"
+    ],
+    "3af1d489060eeb34a4252baac615248df7304756": [
+      "ocr_review_required"
+    ],
+    "8f49918705d5d7dca1266711299bdf7f07e70a64": [
+      "ocr_review_required"
+    ],
+    "0db35d04a98072c240213949bade9d3d8debf090": [
+      "ocr_review_required"
+    ],
+    "4c8305f1ba51934f28c37293bee683fa49aac6e5": [
+      "ocr_review_required"
+    ],
+    "ea814f9b261f8b2a4fdbff830391b040741e623f": [
+      "ocr_review_required"
+    ],
+    "374a97cd5d67c5d150594624c038533046b6a523": [
+      "ocr_review_required"
+    ],
+    "91719418890c9f03af7c062a688141595179f8c6": [
+      "ocr_review_required"
+    ],
+    "1d37e8ed4ea2f8100aa2fe5862ddef8b560785cd": [
+      "ocr_review_required"
+    ],
+    "917288a263642b32f78b773f9beaeb89e546857f": [
+      "ocr_review_required"
+    ],
+    "008a6532653a1d2fe5c742bcf095a430cf418e3d": [
+      "ocr_review_required"
+    ],
+    "e49f59822a3e20137854221f9f954df2a4d68788": [
+      "ocr_review_required"
+    ],
+    "4f30c3c495d3d1b3e0b17be4bef54626c12e37d3": [
+      "ocr_review_required"
+    ],
+    "3aa121538214ad15e598969db54926addee152a6": [
+      "ocr_review_required"
+    ],
+    "4451b31da17d7deec1054b19f35ac9eba40d2868": [
+      "ocr_review_required"
+    ],
+    "36f6497609d5ce905b30c175693128d3c68036f6": [
+      "ocr_review_required"
+    ],
+    "73501a5107fb9a46c8c59eeef1cace86d13d8aa5": [
+      "ocr_review_required"
+    ],
+    "55cd5e2efc12279ba0325eadc8ac226a3e2881fc": [
+      "ocr_review_required"
+    ],
+    "2280f05ca9f1b87dbcde38f4f538618d6c6872bd": [
+      "ocr_review_required"
+    ],
+    "fdaf71ed92cdbb94a1f9f56db3b6ed3319a41e2e": [
+      "ocr_review_required"
+    ],
+    "e778ec7d8e5d8bb98beaec3c936dbd937d9fd466": [
+      "ocr_review_required"
+    ],
+    "855da2375e0c85d298dc5fa0c89deaefabb12855": [
+      "ocr_review_required"
+    ],
+    "c37ac5e9cc73c7097bae552e25f0d00c926894f8": [
+      "ocr_review_required"
+    ],
+    "70d052bafc33c385e1795c897f8ac165bbcf61dc": [
+      "ocr_review_required"
+    ],
+    "159f2e42a9d54193b381165fcfe3bb5914445ec6": [
+      "ocr_review_required"
+    ],
+    "5bdbee9df2ee575f56aec2369a079912cc0a58e7": [
+      "ocr_review_required"
+    ],
+    "6009a1b344c92117dfe20c96c5c99904828c4862": [
+      "ocr_review_required"
+    ],
+    "ad2a4cfb90218ede459dbe592c09833b9594925c": [
+      "ocr_review_required"
+    ],
+    "7d950cb5061fa0e09f9272b36106e4098a6d92e6": [
+      "ocr_review_required"
+    ],
+    "e82682ed908eb95b476e6b854651f1b07cd6b3e3": [
+      "ocr_review_required"
+    ],
+    "7e5590a41e2dd5ab71535ac33687472028c1734e": [
+      "ocr_review_required"
+    ],
+    "fdc60301e12aeafbde58b99209b1ca9dce58535c": [
+      "ocr_review_required"
+    ],
+    "803795ab1aba903632f6fc7e8f6cbcf474015115": [
+      "ocr_review_required"
+    ],
+    "2c135b8df6f4eaa1536f2914737c2c0fa6d643c5": [
+      "ocr_review_required"
+    ],
+    "7d97064a76da6a431a62ee2348a94b5189f2963a": [
+      "ocr_review_required"
+    ],
+    "c968dec5083d235024b222d520584e332fcf1a94": [
+      "ocr_review_required"
+    ],
+    "59b67d0ade5fff3efb0b141ff09427fe627975d3": [
+      "ocr_review_required"
+    ],
+    "7b63bf5004e23c0a2d33ba5fba6486a0a2444cca": [
+      "ocr_review_required"
+    ],
+    "2267363872d4be895d755614eb403136e6c278a0": [
+      "ocr_review_required"
+    ],
+    "2d1d90da8980db4604b494bd75e43c9c67dd7a60": [
+      "ocr_review_required"
+    ],
+    "f1cd5cab0073a668aefe59edbc094b5772aca665": [
+      "ocr_review_required"
+    ],
+    "27b9b95eecbec18cf87be759b407b80bde5d00cd": [
+      "ocr_review_required"
+    ],
+    "6e9e5bd7201d0757fd4afe4b0ec79d8cb4f69496": [
+      "ocr_review_required"
+    ],
+    "cffacec77f6c61d1eac8061ba09ca259fa831c86": [
+      "ocr_review_required"
+    ],
+    "b464ee431bf7326effc9de39adf6e0575749a7a1": [
+      "ocr_review_required"
+    ],
+    "bea5a3d9af85355d77334b0f732bfc518382984c": [
+      "ocr_review_required"
+    ],
+    "54ae2afcb943574f44079613a7327f376f946157": [
+      "ocr_review_required"
+    ],
+    "04838c08db20e940bf1464ab90abc59e4746eb23": [
+      "ocr_review_required"
+    ],
+    "3afceada4f478de56068948e144296afc0153239": [
+      "ocr_review_required"
+    ],
+    "645e27b4a554b20464209f87e4ce852e4ced828b": [
+      "ocr_review_required"
+    ],
+    "69ca1b329423abec7d34410e5fa1c48d8ff48fa1": [
+      "ocr_review_required"
+    ],
+    "4ddaf08c01c49de1a6ce998b50a8bf03b7d84ecf": [
+      "ocr_review_required"
+    ],
+    "ce64d52d67aef84549f5d3b4976dc3ad3f5b0d04": [
+      "ocr_review_required"
+    ],
+    "46e1b3fb12ad6b904d44f46787ac054b383ba7e6": [
+      "ocr_review_required"
+    ],
+    "270659d1480f5e3f06334ac20b0308427b9ccc1f": [
+      "ocr_review_required"
+    ],
+    "75b31488d3eb14ba9dd6daaa958192369b1e0167": [
+      "ocr_review_required"
+    ],
+    "23fe6025dacee196dbad0da1031f2ba5d17fe616": [
+      "ocr_review_required"
+    ],
+    "f77800b8aedb680d07cb3fc56ed4e5f30f88f3be": [
+      "ocr_review_required"
+    ],
+    "d202b82517464a8f71438ca687a62df8eb4b38c9": [
+      "ocr_review_required"
+    ],
+    "1249344535f70107d51628d2f7b9e6b61be4ba92": [
+      "ocr_review_required"
+    ],
+    "32835ba936b2b066a67f37cfa72c295c789fdb9c": [
+      "ocr_review_required"
+    ],
+    "cf770f7ea479272c59c6734f88c1699269f07253": [
+      "ocr_review_required"
+    ],
+    "e2602a7e59f95331eddd7a60eb5155ea41574de0": [
+      "ocr_review_required"
+    ],
+    "d93cd4815143d790b0d9f3ac10556220a02f9906": [
+      "ocr_review_required"
+    ],
+    "e69b24192f58e18f7783ddde668337764bd19b05": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "84250d00b6106d6a778d2a526fdf1a2983ba4dc3": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "6960c207e2bfb0aebb74c7667b38f339241b22b7": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "741787cdaa22d2185f94901fc797c3fc93a826f5": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "5ac64a2fa9556f4068be98b7be199ef0179ead9b": [
+      "ocr_review_required",
+      "low_ocr_confidence"
+    ],
+    "fde7fc0c8a202b5bf90a26240931b274c3bcada2": [
+      "ocr_review_required"
+    ],
+    "f64c66c6fbb0a3a6c072e612be4ed2d715ea665f": [
+      "ocr_review_required"
+    ],
+    "e49dc079a5d74555a92281c269c4faac6f9ca8ec": [
+      "ocr_review_required"
+    ],
+    "ab7fa46585c15c6f882814aa79164b8de3704cba": [
+      "ocr_review_required"
+    ],
+    "c21b8f2a89fa91882f866d716a943f65a5a0427d": [
+      "ocr_review_required"
+    ],
+    "ed267746c54933a10877b34b4e3fa129e6f719ba": [
+      "ocr_review_required"
+    ],
+    "e6e4d000f78ea4b8a7be701daebeae12f8f71243": [
+      "ocr_review_required"
+    ],
+    "c95cb61d3750548e2052a8ef4c59939f572ceef9": [
+      "ocr_review_required"
+    ],
+    "94799dbc0f14103d1036c9a2a6754f93274dc86f": [
+      "ocr_review_required"
+    ],
+    "37cf93c7dfa7d683a39fa1f99c6e94c0879df4fb": [
+      "ocr_review_required"
+    ],
+    "51c37d880d0490cd6b2a4aaf21cb966215800e76": [
+      "ocr_review_required"
+    ],
+    "50a674b7fbf96c4bad03c6b34becca2cd523adb1": [
+      "ocr_review_required"
+    ],
+    "b8e3c4b595500bd42140de2a16f76889f438c70a": [
+      "ocr_review_required"
+    ],
+    "89006f7b89fefe277d29a4ee6f20fe02c58538f6": [
+      "ocr_review_required"
+    ],
+    "c4bb6ea77e775e79e5390cf21212160389d0a8b3": [
+      "ocr_review_required"
+    ],
+    "8c74ef3b8b5677119db85e89ed34a3a26d2d70d7": [
+      "ocr_review_required"
+    ],
+    "4e6a35f15ec1a83c984c26fe96f6ebbb5a514aab": [
+      "ocr_review_required"
+    ],
+    "43d97c6724b16614fbc05c3fb1090914de2ed011": [
+      "ocr_review_required"
+    ],
+    "4edc2b41699902fbc91e1c6bf471383518945412": [
+      "ocr_review_required"
+    ],
+    "01acd73e16acdb763eadb64c278df6dd7b904461": [
+      "ocr_review_required"
+    ],
+    "bc25357de4d8cfa442844c11ecb5e54b5d68fc10": [
+      "ocr_review_required"
+    ],
+    "bcd47c15d7e78ea6a5ceb631c6561b100aae1487": [
+      "ocr_review_required"
+    ],
+    "17aadfe51de02da444fac6a1f653157974223ba7": [
+      "ocr_review_required"
+    ],
+    "e66c3ae8e91c783ce926631a3fb1778b6367543c": [
+      "ocr_review_required"
+    ]
+  },
+  "duplicate_groups": [
+    [
+      "cb42f42ba9567ab6f55e8e7c864089e096bee491",
+      "0a16d260ef58ca40bc2ab45c7c26bacfe274617a"
+    ],
+    [
+      "091c86094d6fadc2ec7805f9c39c45f4c24facbf",
+      "d0845414dfd30b6ec7a2db48e33469bb9f850190",
+      "f07eaf32de0f97c9b30f6a490595a6e2648cb3f2"
+    ],
+    [
+      "94930e9503c681870a91007085f8e7bbf2b3d0da",
+      "89bbf8743c90b53f5799f187ad6e92f7d22902f0",
+      "edf13d1660de5b9b041d1488fe0690286ab682a6",
+      "a3b286e65d7db5d72cc96de10504d13473ea547f"
+    ],
+    [
+      "56d9e43f2c6982a44437b292b19c8ac1f30a5176",
+      "649ddf71c41ebe3649d392f937242657e691ac2f"
+    ],
+    [
+      "5c661c4ef117864f338b2be1f21286c8ac3431f3",
+      "9af8fceee4fff4a61f3e382b78911c4039a3ddcf"
+    ],
+    [
+      "db6a925b2caaf89759fb666ca8851ec2f4b24aa0",
+      "aa34f88275019aa2875da0f2332c98d5a4d674c0"
+    ]
+  ],
+  "scope": "Technical checks only. Human review of text, relevance and legal currency remains required.",
+  "triage_summary": {
+    "unclassified": 351,
+    "institutional_context": 92,
+    "electoral_terms": 261
+  },
+  "legal_families": {
+    "constitution-2011": [
+      {
+        "id": "constitution-2011-sgg-ar",
+        "role": "original_text",
+        "language": "ar"
+      }
+    ],
+    "chambre-representants-27-11": [
+      {
+        "id": "loi-27-11-sgg-fr",
+        "role": "original_text",
+        "language": "fr"
+      },
+      {
+        "id": "loi-27-11-sgg-ar",
+        "role": "original_text",
+        "language": "ar"
+      },
+      {
+        "id": "loi-20-16-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      },
+      {
+        "id": "loi-04-21-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      },
+      {
+        "id": "loi-53-25-sgg-ar",
+        "role": "amendment",
+        "language": "ar"
+      }
+    ]
+  }
+}

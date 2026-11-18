@@ -1,0 +1,16 @@
+{
+  "status": "prepared",
+  "mode": "offline-reuse",
+  "catalog": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-1-data-engineering\\sources.json",
+  "manifest": "commun\\data\\manifests\\latest.json",
+  "pending": "commun\\data\\processed\\pending.jsonl",
+  "review_dir": "commun\\data\\reviews\\2026-11-05-runner-final",
+  "documents": 10,
+  "passages": 367,
+  "languages": {
+    "fr": 327,
+    "ar": 40
+  },
+  "flagged_passages": 45,
+  "next_action": "human_review_then_approve_then_ingest"
+}

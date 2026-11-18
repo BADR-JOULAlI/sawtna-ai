@@ -1,0 +1,13 @@
+{
+  "status": "ready_for_mvp_ingestion",
+  "input": "commun\\data\\processed\\pending.jsonl",
+  "output": "commun\\data\\processed\\reviewed.jsonl",
+  "documents": 10,
+  "passages": 704,
+  "languages": {
+    "fr": 539,
+    "ar": 165
+  },
+  "technical_flags": 395,
+  "note": "MVP automatic preparation; legal human review is deferred."
+}

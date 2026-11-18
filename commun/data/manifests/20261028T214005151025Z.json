@@ -1,0 +1,990 @@
+[
+  {
+    "id": "constitution-2011-sgg-fr",
+    "title": "Constitution 2011 — édition SGG",
+    "url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited",
+    "collected_at": "2026-10-21T16:28:41.951865+00:00",
+    "processed_at": "2026-10-28T21:40:05.370172+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "57440b83b034ec2995f3db09e7cbcb8d73a513e01fc84a841d93f6791c6b2215",
+    "bytes": 2498898,
+    "path": "raw/constitution-2011-sgg-fr/57440b83b034ec2995f3db09e7cbcb8d73a513e01fc84a841d93f6791c6b2215.pdf",
+    "final_url": "https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf",
+    "pages": 65,
+    "passages": 66,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": true,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 2,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 3,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 4,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 6,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 7,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 8,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 9,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 10,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 11,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 12,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 13,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 14,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 15,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 16,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 17,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 18,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 19,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 20,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 21,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 22,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 23,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 24,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 25,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 26,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 27,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 28,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 29,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 30,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 31,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 32,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 33,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 34,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 35,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 36,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 37,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 38,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 39,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 40,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 41,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 42,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 43,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 44,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 45,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 46,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 47,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 48,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 49,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 50,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 51,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 52,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 53,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 54,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 55,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 56,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 57,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 58,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 59,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 60,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 61,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 62,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 63,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 64,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 65,
+        "method": "ocr",
+        "flags": []
+      }
+    ]
+  },
+  {
+    "id": "constitution-2011-fr",
+    "title": "Constitution 2011 — Bulletin officiel n° 5964 bis",
+    "url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Bulletin officiel, copie publiée sur Maroc.ma",
+    "published_at": "2011-07-30",
+    "legal_currency": "amendments_not_audited",
+    "collected_at": "2026-10-21T16:29:10.298268+00:00",
+    "processed_at": "2026-10-28T21:40:52.400981+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "4101d45b4733a6b36eee77bd9ef4175b23160103089b003b13907e8b6d59333d",
+    "bytes": 1413883,
+    "path": "raw/constitution-2011-fr/4101d45b4733a6b36eee77bd9ef4175b23160103089b003b13907e8b6d59333d.pdf",
+    "final_url": "https://maroc.ma/sites/default/files/2024-10/constitution_du_1er_juillet_2011.pdf",
+    "pages": 28,
+    "passages": 82,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": true,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 2,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 3,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 4,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 6,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 7,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 8,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 9,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 10,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 11,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 12,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 13,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 14,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 15,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 16,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 17,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 18,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 19,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 20,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 21,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 22,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 23,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 24,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 25,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 26,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 27,
+        "method": "ocr",
+        "flags": []
+      },
+      {
+        "page": 28,
+        "method": "ocr",
+        "flags": []
+      }
+    ]
+  },
+  {
+    "id": "constitution-portail-fr",
+    "title": "Constitution — portail national Maroc.ma",
+    "url": "https://maroc.ma/fr/le-maroc/constitution",
+    "language": "fr",
+    "format": "html",
+    "authority": "Portail national Maroc.ma",
+    "legal_currency": "institutional_explainer",
+    "collected_at": "2026-10-21T16:29:37.289916+00:00",
+    "processed_at": "2026-10-28T21:41:29.480174+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "2511861b19bb35d4f0a1f8739265f9033664d207701bc3ab6265b06bf6aa8f21",
+    "bytes": 58287,
+    "path": "raw/constitution-portail-fr/2511861b19bb35d4f0a1f8739265f9033664d207701bc3ab6265b06bf6aa8f21.html",
+    "final_url": "https://maroc.ma/fr/le-maroc/constitution",
+    "pages": 1,
+    "passages": 1,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": true,
+    "page_quality": []
+  },
+  {
+    "id": "loi-06-21-bo-7000",
+    "title": "Bulletin officiel n° 7000 — dont loi organique n° 06-21",
+    "url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+    "language": "fr",
+    "format": "pdf",
+    "authority": "Secrétariat général du gouvernement",
+    "published_at": "2021-07-01",
+    "legal_currency": "historical_amendment_not_consolidated",
+    "collected_at": "2026-10-21T16:29:37.861290+00:00",
+    "processed_at": "2026-10-28T21:41:29.536537+00:00",
+    "status": "pending_review",
+    "download_status": "reused",
+    "sha256": "1129fa7068cc806614612832481c1d4f9ba6dda4861527840d5a98a7dc0896d4",
+    "bytes": 1776247,
+    "path": "raw/loi-06-21-bo-7000/1129fa7068cc806614612832481c1d4f9ba6dda4861527840d5a98a7dc0896d4.pdf",
+    "final_url": "https://www.sgg.gov.ma/BO/bo_fr/2021/BO_7000_Fr.pdf",
+    "pages": 85,
+    "passages": 325,
+    "low_text_pages": 0,
+    "extraction_status": "extracted",
+    "ocr_requested": true,
+    "page_quality": [
+      {
+        "page": 1,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 2,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 3,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 4,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 5,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 6,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 7,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 8,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 9,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 10,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 11,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 12,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 13,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 14,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 15,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 16,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 17,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 18,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 19,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 20,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 21,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 22,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 23,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 24,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 25,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 26,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 27,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 28,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 29,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 30,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 31,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 32,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 33,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 34,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 35,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 36,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 37,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 38,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 39,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 40,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 41,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 42,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 43,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 44,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 45,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 46,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 47,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 48,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 49,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 50,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 51,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 52,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 53,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 54,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 55,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 56,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 57,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 58,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 59,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 60,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 61,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 62,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 63,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 64,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 65,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 66,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 67,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 68,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 69,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 70,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 71,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 72,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 73,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 74,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 75,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 76,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 77,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 78,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 79,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 80,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 81,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 82,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 83,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 84,
+        "method": "text",
+        "flags": []
+      },
+      {
+        "page": 85,
+        "method": "text",
+        "flags": []
+      }
+    ]
+  }
+]
