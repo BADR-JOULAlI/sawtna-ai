@@ -2,11 +2,11 @@
   "config": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
-      "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\outputs\\sawtna-ai\\partie-4-frontend\\node_modules\\@playwright\\test\\cli.js",
+      "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\node_modules\\@playwright\\test\\cli.js",
       "test"
     ],
-    "configFile": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\outputs\\sawtna-ai\\partie-4-frontend\\playwright.config.js",
-    "rootDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/outputs/sawtna-ai/partie-4-frontend/tests",
+    "configFile": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\playwright.config.js",
+    "rootDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/partie-4-frontend/tests",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -22,7 +22,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/outputs/sawtna-ai/partie-4-frontend/test-results",
+        "outputDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/partie-4-frontend/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -30,7 +30,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/outputs/sawtna-ai/partie-4-frontend/tests",
+        "testDir": "C:/Users/sail_/Documents/Codex/2026-10-10/s/partie-4-frontend/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -42,15 +42,15 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\outputs\\sawtna-ai\\partie-4-frontend\\test-results",
+        "outputDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
           "actualWorkers": 1
         },
         "name": "",
-        "testDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\outputs\\sawtna-ai\\partie-4-frontend\\tests",
-        "snapshotDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\outputs\\sawtna-ai\\partie-4-frontend\\tests",
+        "testDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\tests",
+        "snapshotDir": "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\tests",
         "testIgnore": [],
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 30000,
@@ -115,12 +115,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 632,
+                  "duration": 1038,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:36.734Z",
+                  "startTime": "2026-11-20T21:51:22.093Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -149,12 +149,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 273,
+                  "duration": 367,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:41.722Z",
+                  "startTime": "2026-11-20T21:51:23.652Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -164,7 +164,7 @@
           ],
           "id": "a510cc93a867214a2ea0-f3b0cb869b67047f1790",
           "file": "app.spec.js",
-          "line": 15,
+          "line": 16,
           "column": 1
         },
         {
@@ -183,12 +183,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 568,
+                  "duration": 771,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:42.005Z",
+                  "startTime": "2026-11-20T21:51:24.030Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -198,7 +198,7 @@
           ],
           "id": "a510cc93a867214a2ea0-caaafb139bb65a3bbd83",
           "file": "app.spec.js",
-          "line": 23,
+          "line": 24,
           "column": 1
         },
         {
@@ -217,12 +217,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 372,
+                  "duration": 1242,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:42.582Z",
+                  "startTime": "2026-11-20T21:51:24.814Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -232,7 +232,7 @@
           ],
           "id": "a510cc93a867214a2ea0-1bef57cafb13dcfca2a5",
           "file": "app.spec.js",
-          "line": 32,
+          "line": 33,
           "column": 1
         },
         {
@@ -251,12 +251,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 518,
+                  "duration": 794,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:42.963Z",
+                  "startTime": "2026-11-20T21:51:26.072Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -266,7 +266,7 @@
           ],
           "id": "a510cc93a867214a2ea0-497e841d8f25725d3631",
           "file": "app.spec.js",
-          "line": 46,
+          "line": 47,
           "column": 1
         },
         {
@@ -285,12 +285,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 647,
+                  "duration": 973,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:43.490Z",
+                  "startTime": "2026-11-20T21:51:26.877Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -300,7 +300,7 @@
           ],
           "id": "a510cc93a867214a2ea0-bfa1401769750a09378c",
           "file": "app.spec.js",
-          "line": 57,
+          "line": 58,
           "column": 1
         },
         {
@@ -319,12 +319,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 355,
+                  "duration": 609,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:44.150Z",
+                  "startTime": "2026-11-20T21:51:27.864Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -334,7 +334,7 @@
           ],
           "id": "a510cc93a867214a2ea0-faab2b12f3fb6c737db2",
           "file": "app.spec.js",
-          "line": 67,
+          "line": 68,
           "column": 1
         },
         {
@@ -353,12 +353,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 444,
+                  "duration": 902,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T14:39:44.521Z",
+                  "startTime": "2026-11-20T21:51:28.484Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -368,7 +368,7 @@
           ],
           "id": "a510cc93a867214a2ea0-4f643d551cecc8b9ac9c",
           "file": "app.spec.js",
-          "line": 74,
+          "line": 75,
           "column": 1
         }
       ]
@@ -376,8 +376,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-25T14:39:36.385Z",
-    "duration": 8783.026,
+    "startTime": "2026-11-20T21:51:21.545Z",
+    "duration": 8136.206,
     "expected": 8,
     "skipped": 0,
     "unexpected": 0,

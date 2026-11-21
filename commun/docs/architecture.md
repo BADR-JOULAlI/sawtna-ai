@@ -46,7 +46,7 @@ Le mode autonome utilise une baseline de concepts multilingues ; E5 est un fourn
 Le backend envoie un identifiant aléatoire, type d’événement, langue, latence et score du quiz. Il n’envoie ni question, ni identité, ni IP, ni préférence politique.
 Les réessais conservent l’identifiant ; Analytics déduplique et agrège par jour UTC.
 Le dashboard utilise ces compteurs réels et exige une clé administrateur.
-Le build React est partagé ; Analytics sert son dashboard indépendamment.
+Le frontend citoyen React et le dashboard Analytics sont deux applications et deux déploiements distincts. Azure Static Web Apps sert le frontend citoyen; le service Analytics sur Google Compute Engine sert son propre frontend statique depuis `partie-5-analytics/dashboard/` et ses endpoints d’agrégats sur le même hôte.
 
 ## Exploitation
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowUpRight, ArrowRight, ArrowUp, BookOpen, MessageSquare, ChartNoAxesCombined, Check, ChevronRight, CircleHelp, ExternalLink, FileText, Globe2, Library, LoaderCircle, LockKeyhole, Menu, RefreshCw, RotateCcw, Search, ShieldCheck, X } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, ArrowUp, BookOpen, MessageSquare, Check, ChevronRight, CircleHelp, ExternalLink, FileText, Globe2, Library, LoaderCircle, LockKeyhole, Menu, RotateCcw, Search, ShieldCheck, X } from 'lucide-react'
 import './styles.css'
 
 const COPY = {
   fr: {
-    assistant:'Assistant', library:'Bibliothèque', quiz:'Quiz citoyen', dashboard:'Tableau de bord', language:'Langue',
+    assistant:'Assistant', library:'Bibliothèque', quiz:'Quiz citoyen', language:'Langue',
     title:<>Comprendre le vote.<br/><span>En toute clarté.</span></>,
     intro:'Un espace pour mieux comprendre les institutions et les élections au Maroc. Posez vos questions, explorez les textes, vérifiez les sources.',
     eyebrow:'L’information, avant l’opinion.', ask:'Quelle est votre question ?', placeholder:'Ex. Comment les membres de la Chambre des représentants sont-ils élus ?',
@@ -21,9 +21,13 @@ const COPY = {
     examplesTitles:['La Chambre des représentants', 'Les institutions', 'La démocratie locale'],
     local:'Éducation électorale · Maroc', footer:'Un projet étudiant indépendant. Sans affiliation politique.',
     scoreNote:'Les citations sont présentées dans leur langue d’origine.', clear:'Effacer',
+    scopeTitle:'Un repère fiable pour comprendre la vie civique.', scopeBody:'Posez une question sur les institutions, les élections ou les règles de participation. Les réponses s’appuient sur les passages disponibles dans le corpus.',
+    scopeLabel:'Périmètre documentaire', scopeTopics:'Institutions · élections · participation citoyenne', scopeLimit:'Les questions sont traitées séparément. L’assistant ne consulte pas le web et ne remplace pas les informations officielles à jour.',
+    answerStatus:'Résultat de la recherche documentaire', answerable:'Passages pertinents trouvés', unanswered:'Aucune source suffisante trouvée', noEvidence:'Le corpus disponible ne permet pas de répondre de façon fiable. Essaie une question plus précise sur les institutions ou les élections au Maroc.',
+    nextQuestion:'Nouvelle question', sourceCount:'sources retenues',
   },
   ar: {
-    assistant:'المساعد', library:'المكتبة', quiz:'اختبار المعرفة', dashboard:'لوحة المؤشرات', language:'اللغة',
+    assistant:'المساعد', library:'المكتبة', quiz:'اختبار المعرفة', language:'اللغة',
     title:<>نفهم التصويت.<br/><span>بكل وضوح.</span></>,
     intro:'فضاء لفهم المؤسسات والانتخابات بالمغرب. اطرح سؤالك، اكتشف النصوص وتحقق من المصادر.',
     eyebrow:'المعلومة قبل الرأي.', ask:'ما هو سؤالك؟', placeholder:'مثلا: كيف يتم انتخاب أعضاء مجلس النواب؟',
@@ -35,9 +39,13 @@ const COPY = {
     serviceError:'الخدمة غير متاحة حاليا. تحقق من تشغيل الخدمات وحاول مجددا.', retry:'إعادة المحاولة',
     promptExamples:['كيف يتم انتخاب أعضاء مجلس النواب؟', 'ما الفرق بين مجلس النواب ومجلس المستشارين؟', 'كيف يتم انتخاب مجالس الجماعات؟'],
     examplesTitles:['مجلس النواب', 'المؤسسات', 'الديمقراطية المحلية'], local:'التربية الانتخابية · المغرب', footer:'مشروع طلابي مستقل بدون انتماء سياسي.', scoreNote:'نحافظ على لغة المصدر الأصلي في الاقتباسات.', clear:'مسح',
+    scopeTitle:'مرجع موثوق لفهم الحياة المدنية.', scopeBody:'اسأل عن المؤسسات أو الانتخابات أو المشاركة. تعتمد الإجابات على المقاطع المتاحة في الوثائق.',
+    scopeLabel:'نطاق الوثائق', scopeTopics:'المؤسسات · الانتخابات · المشاركة المواطنة', scopeLimit:'يتم التعامل مع كل سؤال بشكل مستقل. لا يتصفح المساعد الإنترنت ولا يعوض المعلومات الرسمية المحينة.',
+    answerStatus:'نتيجة البحث في الوثائق', answerable:'تم العثور على مقاطع ذات صلة', unanswered:'لم يتم العثور على مصدر كافٍ', noEvidence:'الوثائق المتاحة لا تكفي لإجابة موثوقة. جرّب سؤالا أدق حول المؤسسات أو الانتخابات في المغرب.',
+    nextQuestion:'سؤال جديد', sourceCount:'مصادر',
   },
   darija: {
-    assistant:'L’mosa3id', library:'L’maktaba', quiz:'Quiz', dashboard:'Tableau de bord', language:'Logha',
+    assistant:'L’mosa3id', library:'L’maktaba', quiz:'Quiz', language:'Logha',
     title:<>Nfahmo tswit.<br/><span>B wodou7.</span></>,
     intro:'Blassa bach tfhem lmo2assassat w lintikhabat f lmaghrib. Swel, 9ra lwata2i9 w t2ekked men lmasdar.',
     eyebrow:'Lma3louma 9bel rra2y.', ask:'Chno sou2al dyalek?', placeholder:'Matalan: kifach kaytntakhbo a3da2 majlis nowab?',
@@ -49,6 +57,10 @@ const COPY = {
     serviceError:'Service ma khddamch daba. T2ekked men démarrage w 3awed.', retry:'3awed',
     promptExamples:['Kifach kaytntakhbo nowab?', 'Chno lfar9 bin nowab w lmoustacharin?', 'Kifach kaytntakhbo majalis ljama3iya?'],
     examplesTitles:['Majlis nowab', 'Lmo2assassat', 'Democratie ma7aliya'], local:'Tarbiya intikhabiya · Lmaghrib', footer:'Projet étudiant mosta9ill, bla intima2 siyasi.', scoreNote:'L’i9tibas kayb9a b loghat lmasdar l’asli.', clear:'Mse7',
+    scopeTitle:'Ma3louma wad7a 3la l7ayat lmadaniya.', scopeBody:'Sowel 3la lmo2assassat, lintikhabat w lmoucharka. L’ajwiba katrje3 lma9ati3 li kaynin f lwata2i9.',
+    scopeLabel:'Nita9 lwata2i9', scopeTopics:'Lmo2assassat · lintikhabat · lmoucharka', scopeLimit:'Kol sou2al kayt3alaj بوحدو. Lmosa3id ma kay9ellebch f web w ma kay3awedch lma3loumat rasmiya jdida.',
+    answerStatus:'Natija dyal l9elb f lwata2i9', answerable:'L9ina ma9ati3 mnasbin', unanswered:'Ma l9inach masdar kaykfi', noEvidence:'Lwata2i9 li 3endna ma kafiyach bach njawbo b thi9a. Jarrab sou2al awda7 3la lmo2assassat wella lintikhabat f Lmaghrib.',
+    nextQuestion:'Sou2al jdid', sourceCount:'masadir',
   },
 }
 
@@ -60,10 +72,9 @@ async function api(path, options={}) {
   }
   return response.json()
 }
-const CITIZEN_BASE = location.pathname.includes('dashboard') ? (import.meta.env.VITE_CITIZEN_URL || 'http://127.0.0.1:5175') : ''
 const IconButton = ({children, ...props}) => <button className="icon-button" {...props}>{children}</button>
 function Brand() {
-  return <a href={CITIZEN_BASE+'#assistant'} className="brand" aria-label="Sawtna AI, accueil"><span className="brand-symbol"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 11v8m7-14v20m7-17v14m7-10v6" stroke="currentColor" strokeWidth="3.5"/></svg></span><span>sawtna<span className="brand-dot">.</span><small>AI</small></span></a>
+  return <a href="/#assistant" className="brand" aria-label="Sawtna AI, accueil"><span className="brand-symbol"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 11v8m7-14v20m7-17v14m7-10v6" stroke="currentColor" strokeWidth="3.5"/></svg></span><span>sawtna<span className="brand-dot">.</span><small>AI</small></span></a>
 }
 function EmptyError({error, retry, t}) {
   return <div className="error-panel" role="alert"><CircleHelp size={21}/><div><strong>{t.serviceError}</strong><p>{error}</p>{retry && <button className="text-button" onClick={retry}>{t.retry} <RefreshCw size={14}/></button>}</div></div>
@@ -82,29 +93,36 @@ function Assistant({t, language}) {
     } catch(e) {setError(e.message)}
     finally {setLoading(false)}
   }
-  return <>
-    <div className="section-intro"><p className="overline"><span className="tiny-rule"/>{t.eyebrow}</p><h1>{t.title}</h1><p className="lede">{t.intro}</p></div>
-    <section className="composer-section" aria-label={t.ask}>
-      <form className={'composer '+(loading?'is-loading':'')} onSubmit={ask}>
-        <div className="composer-label"><MessageSquare size={17}/><label htmlFor="question">{t.ask}</label><span>FR / AR / DAR</span></div>
-        <textarea ref={input} id="question" maxLength={1500} value={question} onChange={e=>setQuestion(e.target.value)} placeholder={t.placeholder} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask()}}}/>
-        <div className="composer-bottom"><span><ShieldCheck size={14}/>{t.private}</span><button type="submit" className="send-button" aria-label={t.send} disabled={loading||question.trim().length<3}>{loading?<LoaderCircle className="spin" size={20}/>:<ArrowUp size={21}/>}</button></div>
-      </form>
-      {loading&&<div className="loading-line" role="status"><LoaderCircle className="spin" size={16}/>{t.searching}</div>}
-      {error&&<EmptyError error={error} retry={ask} t={t}/>}
-      <div className="suggestion-header"><span>{t.suggestions}</span><span>01 — 03</span></div>
-      <div className="suggestions">{t.promptExamples.map((text,i)=><button key={text} onClick={()=>{setQuestion(text);input.current?.focus()}}><span className="suggestion-number">0{i+1}</span><span><small>{t.examplesTitles[i]}</small><strong>{text}</strong></span><ArrowUpRight size={19}/></button>)}</div>
+  return <div className="assistant-layout">
+    <section className="assistant-intro" aria-labelledby="assistant-title">
+      <div className="assistant-title-block"><p className="overline"><span className="tiny-rule"/>{t.eyebrow}</p><h1 id="assistant-title">{t.scopeTitle}</h1><p className="lede">{t.scopeBody}</p></div>
+      <aside className="scope-card"><span className="scope-index">01</span><div><p className="label">{t.scopeLabel}</p><strong>{t.scopeTopics}</strong><p>{t.scopeLimit}</p></div></aside>
     </section>
-    {result&&<section className="response-section" ref={answer} aria-label={t.sources}>
-      <div className="response-heading"><span className="label">{t.question}</span><IconButton title={t.clear} onClick={()=>{setResult(null);setQuestion('')}}><X size={18}/></IconButton></div>
-      <h2 className="question-sent">{sent}</h2><p className="answer-lead" role="status">{result.answer}</p>
-      <div className="citation-list">{result.sources.map((source,i)=><article className="citation" key={source.id}>
-        <div className="citation-number">{String(i+1).padStart(2,'0')}</div><div><div className="citation-meta"><FileText size={14}/>{source.section || source.title}{source.page&&<span>p. {source.page}</span>}</div><blockquote dir="auto">{source.text}</blockquote><a href={source.source_url+(source.page?'#page='+source.page:'')} target="_blank" rel="noreferrer">{t.openSource}<ExternalLink size={13}/></a></div>
-      </article>)}</div>
-      <p className="response-footnote"><BookOpen size={14}/>{t.scoreNote}</p>
-    </section>}
+    <section className="assistant-workspace" aria-label={t.assistant}>
+      <div className="workspace-heading"><div><span className="workspace-mark"><MessageSquare size={17}/></span><div><h2>{t.assistant}</h2><p>{t.ask}</p></div></div><span className="workspace-languages">FR <i/> AR <i/> DAR</span></div>
+      <div className={'workspace-body '+(result?'has-result':'')}>
+        <div className="composer-section" aria-label={t.ask}>
+          <form className={'composer '+(loading?'is-loading':'')} onSubmit={ask} aria-busy={loading}>
+            <label className="sr-only" htmlFor="question">{t.ask}</label>
+            <textarea ref={input} id="question" maxLength={1500} value={question} onChange={e=>setQuestion(e.target.value)} placeholder={t.placeholder} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask()}}}/>
+            <div className="composer-bottom"><span><ShieldCheck size={14}/>{t.private}</span><span className="character-count">{question.length}/1500</span><button type="submit" className="send-button" aria-label={t.send} disabled={loading||question.trim().length<3}>{loading?<LoaderCircle className="spin" size={20}/>:<ArrowUp size={21}/>}</button></div>
+          </form>
+          {loading&&<div className="loading-line" role="status"><LoaderCircle className="spin" size={16}/>{t.searching}</div>}
+          {error&&<EmptyError error={error} retry={ask} t={t}/>}
+          {!result&&<><div className="suggestion-header"><span>{t.suggestions}</span><span>01 — 03</span></div><div className="suggestions">{t.promptExamples.map((text,i)=><button key={text} onClick={()=>{setQuestion(text);input.current?.focus()}}><span className="suggestion-number">0{i+1}</span><span><small>{t.examplesTitles[i]}</small><strong>{text}</strong></span><ArrowUpRight size={19}/></button>)}</div></>}
+        </div>
+        {result&&<section className={'response-section '+(!result.answerable?'is-unanswered':'')} ref={answer} aria-label={t.answerStatus} aria-live="polite">
+          <div className="response-heading"><span className="response-status"><i/>{result.answerable?t.answerable:t.unanswered}</span><span className="label">{result.sources.length} {t.sourceCount}</span></div>
+          <h2 className="question-sent">{sent}</h2><p className="answer-lead" role="status">{result.answerable?result.answer:t.noEvidence}</p>
+          {!!result.sources.length&&<><div className="citation-heading"><BookOpen size={16}/><strong>{t.sources}</strong></div><div className="citation-list">{result.sources.map((source,i)=><article className="citation" key={source.id}>
+            <div className="citation-number">{String(i+1).padStart(2,'0')}</div><div><div className="citation-meta"><FileText size={14}/>{source.section || source.title}{source.page&&<span>p. {source.page}</span>}</div><blockquote dir="auto">{source.text}</blockquote><a href={source.source_url+(source.page?'#page='+source.page:'')} target="_blank" rel="noreferrer">{t.openSource}<ExternalLink size={13}/></a></div>
+          </article>)}</div><p className="response-footnote"><BookOpen size={14}/>{t.scoreNote}</p></>}
+          <button className="next-question" onClick={()=>{setResult(null);setQuestion('');setSent('');setError('');input.current?.focus()}}><MessageSquare size={16}/>{t.nextQuestion}<ArrowRight size={15}/></button>
+        </section>}
+      </div>
+    </section>
     <div className="trust-grid">{[[ShieldCheck,t.neutral,t.neutralBody],[BookOpen,t.cited,t.citedBody],[LockKeyhole,t.private,t.privateBody]].map(([Icon,title,body])=><div key={title}><Icon size={20} strokeWidth={1.5}/><h3>{title}</h3><p>{body}</p></div>)}</div>
-  </>
+  </div>
 }
 function LibraryPage({t,documents,refresh,error}) {
   const [search,setSearch]=useState('')
@@ -125,30 +143,15 @@ function QuizPage({t,language}) {
     :quiz?<form onSubmit={submit} className="quiz-form"><div className="quiz-progress"><span>{Object.keys(answers).length} / {quiz.questions.length}</span><div><i style={{width:(Object.keys(answers).length/quiz.questions.length*100)+'%'}}/></div></div>{quiz.questions.map((q,i)=><fieldset key={q.id}><legend><span className="question-index">{String(i+1).padStart(2,'0')}</span>{q.question}</legend><div className="quiz-options">{q.options.map((option,index)=><label key={index} className={answers[q.id]===index?'selected':''}><input type="radio" name={q.id} value={index} checked={answers[q.id]===index} onChange={()=>setAnswers({...answers,[q.id]:index})}/><span>{option}</span></label>)}</div></fieldset>)}<button className="primary-button" type="submit" disabled={busy||Object.keys(answers).length!==quiz.questions.length}>{t.validate}{busy?<LoaderCircle className="spin" size={17}/>:<ArrowRight size={17}/>}</button></form>:<LoaderCircle className="spin" size={24}/>}
   </>
 }
-function Dashboard({t}) {
-  const [key,setKey]=useState(''), [summary,setSummary]=useState(null), [error,setError]=useState(''), [busy,setBusy]=useState(false)
-  async function load(event){event?.preventDefault();setBusy(true);setError('');try{setSummary(await api('/api/admin/summary',{headers:{'X-Admin-Key':key}}))}catch(e){setError(e.message)}finally{setBusy(false)}}
-  const max=Math.max(1,...(summary?.daily||[]).map(d=>d.count))
-  return <><div className="section-intro compact"><p className="overline">Analytics</p><h1>L’usage, en perspective.</h1><p className="lede">Suivez l’apprentissage et la qualité de la recherche à partir de statistiques agrégées.</p></div>
-    {!summary?<form className="admin-gate" onSubmit={load}><LockKeyhole size={26}/><h2>Accès au tableau de bord</h2><p>Les indicateurs sont réservés à l’équipe du projet.</p><label htmlFor="admin-key">Clé administrateur</label><input id="admin-key" type="password" value={key} onChange={e=>setKey(e.target.value)} autoComplete="off" required/><button className="primary-button" disabled={busy}>Ouvrir le tableau de bord{busy?<LoaderCircle className="spin" size={16}/>:<ArrowRight size={16}/>}</button>{error&&<p role="alert" className="inline-error">{error}</p>}</form>
-    :<><div className="dashboard-toolbar"><span><i className="status-dot"/>Données enregistrées · actualisation à la demande</span><button className="text-button" onClick={load} disabled={busy}><RefreshCw size={15} className={busy?'spin':''}/>Actualiser</button></div>{error&&<EmptyError error={error} retry={load} t={t}/>}
-      <div className="kpi-grid">{[['Questions posées',summary.questions,'Toutes langues confondues'],['Réponses sourcées',summary.answer_rate+'%',summary.answered+' questions avec un passage pertinent'],['Quiz terminés',summary.quizzes_completed,'Score moyen : '+summary.average_quiz_score+'/100'],['Temps de réponse',summary.average_latency_ms, 'millisecondes en moyenne']].map(([name,value,note])=><article className="kpi" key={name}><span className="label">{name}</span><strong>{value}</strong><p>{note}</p></article>)}</div>
-      <div className="chart-grid"><section className="chart-panel"><div className="panel-heading"><h2>Questions sur 7 jours</h2><span>UTC</span></div><div className="bar-chart" role="img" aria-label="Nombre de questions par jour">{summary.daily.map(day=><div key={day.day} className="bar-column"><span>{day.count}</span><div className="bar-track"><i style={{height:(day.count/max*100)+'%'}}/></div><small>{new Date(day.day+'T12:00:00Z').toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'})}</small></div>)}</div>{!summary.questions&&<p className="chart-empty">Les premières questions feront apparaître votre activité.</p>}</section>
-      <section className="chart-panel"><div className="panel-heading"><h2>Langues des questions</h2><Globe2 size={18}/></div><div className="language-bars">{summary.languages.map(lang=><div key={lang.language}><div><strong>{{fr:'Français',ar:'العربية',darija:'Darija'}[lang.language]}</strong><span>{lang.count}</span></div><div className="language-track"><i style={{width:(summary.questions?lang.count/summary.questions*100:0)+'%'}}/></div></div>)}</div><p className="chart-caption">Répartition des requêtes enregistrées, sans historique individuel.</p></section></div>
-      <div className="chart-grid"><section className="service-panel"><h2>État des services</h2>{Object.entries(summary.services.dependencies).map(([name,ok])=><div className="service-row" key={name}><span>{name==='nlp'?'Embeddings NLP':'Analytics'}</span><span className="service-value"><i className={'status-dot '+(!ok?'offline':'')}/>{ok?'Disponible':'Indisponible'}</span></div>)}<div className="service-row"><span>Base documentaire</span><strong>{summary.corpus.passages} passages</strong></div><div className="service-row"><span>Stockage</span><strong>{summary.services.database}</strong></div></section><section className="privacy-panel"><ShieldCheck size={26}/><h2>Mesurer sans profiler.</h2><p>{summary.privacy}</p><p>Les indicateurs décrivent l’usage du service, jamais les opinions des utilisateurs.</p></section></div>
-    </>}
-  </>
-}
 function App(){
-  const [page,setPage]=useState(location.hash.slice(1)||(location.pathname.includes('dashboard')?'dashboard':'assistant')), [language,setLanguage]=useState('fr'), [menu,setMenu]=useState(false), [documents,setDocuments]=useState(null), [corpusError,setCorpusError]=useState('')
+  const [page,setPage]=useState(['library','quiz'].includes(location.hash.slice(1))?location.hash.slice(1):'assistant'), [language,setLanguage]=useState('fr'), [menu,setMenu]=useState(false), [documents,setDocuments]=useState(null), [corpusError,setCorpusError]=useState('')
   const t=COPY[language]
   async function refresh(){setCorpusError('');try{setDocuments(await api('/api/documents'))}catch(e){setCorpusError(e.message)}}
   useEffect(()=>{
     refresh()
     const changed=()=>{
-      const next=location.hash.slice(1)||'assistant'
-      if(next==='main') return
-      if(CITIZEN_BASE && next!=='dashboard'){location.href=CITIZEN_BASE+'#'+next;return}
+      const requested=location.hash.slice(1)||'assistant'
+      const next=['assistant','library','quiz'].includes(requested)?requested:'assistant'
       setPage(next);setMenu(false);window.scrollTo(0,0)
     }
     window.addEventListener('hashchange',changed)
@@ -158,10 +161,10 @@ function App(){
   const nav=[['assistant',MessageSquare,t.assistant],['library',Library,t.library],['quiz',CircleHelp,t.quiz]]
   return <div className="app">
     <a className="skip-link" href="#main">Aller au contenu</a>
-    <aside className={'sidebar '+(menu?'is-open':'')}><Brand/><p className="sidebar-description">{t.local}</p><nav aria-label="Navigation principale">{nav.map(([id,Icon,label])=><a key={id} className={page===id?'active':''} href={'#'+id}><Icon size={19} strokeWidth={1.7}/>{label}{page===id&&<span className="nav-dot"/>}</a>)}</nav><div className="sidebar-bottom"><div className="corpus-card"><BookOpen size={19}/><span>{t.sourceLabel}<strong>{documents?.passages??'—'} {t.passages}</strong></span></div><a className={page==='dashboard'?'active dashboard-link':'dashboard-link'} href="#dashboard"><ChartNoAxesCombined size={18}/>{t.dashboard}<ArrowUpRight size={15}/></a><p>{t.footer}</p></div></aside>
+    <aside className={'sidebar '+(menu?'is-open':'')}><Brand/><p className="sidebar-description">{t.local}</p><nav aria-label="Navigation principale">{nav.map(([id,Icon,label])=><a key={id} className={page===id?'active':''} href={'#'+id}><Icon size={19} strokeWidth={1.7}/>{label}{page===id&&<span className="nav-dot"/>}</a>)}</nav><div className="sidebar-bottom"><div className="corpus-card"><BookOpen size={19}/><span>{t.sourceLabel}<strong>{documents?.passages??'—'} {t.passages}</strong></span></div><p>{t.footer}</p></div></aside>
     {menu&&<button className="mobile-scrim" aria-label="Fermer le menu" onClick={()=>setMenu(false)}/>}
     <div className="main-column"><header className="topbar"><div className="breadcrumb"><IconButton aria-label="Menu" onClick={()=>setMenu(!menu)}><Menu size={21}/></IconButton><span>Sawtna AI</span><ChevronRight size={13}/><strong>{t[page]||t.assistant}</strong></div><div className="topbar-end"><span className="edition">Apprendre. Comprendre. Participer.</span><div className="language-picker"><Globe2 size={15}/><select aria-label={t.language} value={language} onChange={e=>setLanguage(e.target.value)}><option value="fr">Français</option><option value="ar">العربية</option><option value="darija">Darija</option></select></div></div></header>
-    <main id="main" key={page} className={'content page-'+page}>{page==='library'?<LibraryPage t={t} documents={documents} refresh={refresh} error={corpusError}/>:page==='quiz'?<QuizPage t={t} language={language}/>:page==='dashboard'?<Dashboard t={t}/>:<Assistant t={t} language={language}/>}</main>
+    <main id="main" key={page} className={'content page-'+page}>{page==='library'?<LibraryPage t={t} documents={documents} refresh={refresh} error={corpusError}/>:page==='quiz'?<QuizPage t={t} language={language}/>:<Assistant t={t} language={language}/>}</main>
     <footer className="site-footer"><span>sawtna<span className="brand-dot">.</span> <small>AI</small></span><p>{t.notice}</p><span className="footer-country">Maroc</span></footer></div>
   </div>
 }

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Tableau de bord interne Sawtna AI Analytics." />
+    <title>Sawtna AI — Analytics</title>
+    <link rel="stylesheet" href="/dashboard-assets/dashboard.css" />
+    <script type="module" src="/dashboard-assets/dashboard.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="topbar">
+      <a class="brand" href="/dashboard" aria-label="Sawtna AI Analytics, accueil">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 12h4v8H3zm7-6h4v20h-4zm7 9h4v11h-4zm7-7h4v18h-4z" fill="currentColor"/></svg>
+        <span>sawtna<span class="brand-dot">.</span><small>AI</small></span>
+      </a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="topbar-label">Analytics</span>
+      <span class="topbar-region">Maroc <span class="region-dot" aria-hidden="true"></span></span>
+    </header>
+
+    <main id="main" class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="eyebrow-rule"></span>Suivi interne</p>
+        <h1 id="page-title">L’usage, en perspective.</h1>
+        <p class="intro-copy">Indicateurs agrégés d’utilisation, de recherche documentaire et de disponibilité des services.</p>
+      </section>
+
+      <section id="access-panel" class="access-panel" aria-labelledby="access-title">
+        <div class="access-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg></div>
+        <div class="access-copy">
+          <h2 id="access-title">Accès au tableau de bord</h2>
+          <p>Les indicateurs sont réservés à l’équipe du projet.</p>
+        </div>
+        <form id="access-form" class="access-form">
+          <label for="admin-key">Clé administrateur</label>
+          <div class="access-controls">
+            <input id="admin-key" name="admin-key" type="password" autocomplete="off" required aria-describedby="access-error" />
+            <button id="access-submit" class="button-primary" type="submit">Ouvrir le tableau de bord <span aria-hidden="true">→</span></button>
+          </div>
+          <p id="access-error" class="form-error" role="alert" hidden></p>
+        </form>
+      </section>
+
+      <section id="dashboard-content" class="dashboard-content" aria-label="Indicateurs Analytics" hidden>
+        <div class="data-toolbar">
+          <p><span class="live-dot" aria-hidden="true"></span><span id="updated-at">Données agrégées</span></p>
+          <button id="refresh-button" class="button-quiet" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 8A6.7 6.7 0 0 0 4.7 5.5L3 7.2M3.5 4.3v2.9h2.9M3.5 12A6.7 6.7 0 0 0 15.3 14.5l1.7-1.7M16.5 15.7v-2.9h-2.9"/></svg>Actualiser</button>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card"><p>Questions posées</p><strong id="metric-questions">—</strong><span>Toutes langues confondues</span></article>
+          <article class="metric-card"><p>Réponses sourcées</p><strong id="metric-answer-rate">—</strong><span id="metric-answered">Réponses avec un passage pertinent</span></article>
+          <article class="metric-card"><p>Quiz terminés</p><strong id="metric-quizzes">—</strong><span id="metric-quiz-score">Score moyen —</span></article>
+          <article class="metric-card"><p>Temps de réponse</p><strong id="metric-latency">—</strong><span>Millisecondes en moyenne</span></article>
+        </div>
+
+        <div class="panel-grid">
+          <section class="panel" aria-labelledby="daily-title">
+            <div class="panel-heading"><div><p class="panel-kicker">Activité</p><h2 id="daily-title">Questions sur 7 jours</h2></div><span class="period-label">UTC</span></div>
+            <div id="daily-chart" class="daily-chart" role="img" aria-label="Nombre de questions par jour"></div>
+            <p id="daily-empty" class="empty-note" hidden>Aucune question enregistrée sur cette période.</p>
+          </section>
+          <section class="panel" aria-labelledby="language-title">
+            <div class="panel-heading"><div><p class="panel-kicker">Répartition</p><h2 id="language-title">Langues des questions</h2></div><span class="language-total" id="language-total">—</span></div>
+            <div id="language-list" class="language-list"></div>
+            <p class="panel-caption">Comptages agrégés, sans historique individuel.</p>
+          </section>
+        </div>
+
+        <div class="panel-grid lower-grid">
+          <section class="panel service-panel" aria-labelledby="services-title">
+            <div class="panel-heading"><div><p class="panel-kicker">Disponibilité</p><h2 id="services-title">État des services</h2></div></div>
+            <div id="service-list" class="service-list"></div>
+            <div class="service-row"><span>Base documentaire</span><strong id="corpus-count">—</strong></div>
+            <div class="service-row"><span>Stockage Analytics</span><strong id="storage-name">—</strong></div>
+          </section>
+          <aside class="privacy-panel">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5.1-3.4 8.5-8 10-4.6-1.5-8-4.9-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            <h2>Mesurer sans profiler.</h2>
+            <p id="privacy-copy">Les statistiques sont agrégées. Aucune question ni identité individuelle n’est affichée.</p>
+          </aside>
+        </div>
+        <p id="dashboard-error" class="dashboard-error" role="alert" hidden></p>
+      </section>
+    </main>
+
+    <footer class="page-footer"><span>sawtna<span class="brand-dot">.</span> <small>AI</small></span><p>Indicateurs agrégés du service d’éducation électorale au Maroc.</p><span>Analytics</span></footer>
+  </body>
+</html>

@@ -53,8 +53,7 @@ npx playwright install chromium
 npm run test:e2e
 ~~~
 
-Routes : #assistant, #library, #quiz, #dashboard.
+Routes : #assistant, #library, #quiz. Analytics/dashboard est une application autonome servie par la partie 5 sur son propre hôte.
 Vite utilise 5175 et refuse un autre port. Son proxy /api vise 127.0.0.1:8010.
 Pour Azure, définir VITE_API_BASE_URL sur l’origine HTTPS du backend avant le build. Les variables Vite sont publiques : aucune clé de service ne doit y figurer.
-Le dashboard demande une clé saisie par l’admin et ne la conserve pas dans localStorage.
-Analytics sert le même build sur /dashboard. VITE_CITIZEN_URL règle les liens de retour citoyen.
+Le build citoyen ne contient aucune page ni navigation d’administration. Déployer cette application séparément de l’application Analytics.

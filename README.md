@@ -103,7 +103,7 @@ Le petit corpus initial contient six extraits de la Constitution 2011. Il ne cou
 
 commun/packages/sawtna/ contient contrats, configuration, persistance et points d’entrée.
 Les implémentations appartiennent aux dossiers des services.
-Le dashboard réutilise React et est aussi servi indépendamment par Analytics.
+Le frontend citoyen React et le dashboard Analytics sont des applications séparées : Azure Static Web Apps sert l’interface citoyenne et Analytics sert son frontend autonome sur `/dashboard`.
 
 ## Collecter et ingérer
 

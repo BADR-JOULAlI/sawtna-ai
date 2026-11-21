@@ -1,6 +1,6 @@
 {
-  "tested_at": "2026-10-25T15:14:27.414187+00:00",
-  "database": "postgresql+pgvector",
+  "tested_at": "2026-11-20T21:21:07.168595+00:00",
+  "database": "sqlite",
   "passed": [
     "backend and dependencies healthy",
     "retrieval with citations: fr",

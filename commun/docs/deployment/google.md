@@ -14,6 +14,6 @@ L’API /v1/embeddings exige une clé même si l’origine Cloud Run est accessi
 
 Construire commun/infra/Dockerfile et exécuter SAWTNA_SERVICE=analytics.
 Configurer SAWTNA_ANALYTICS_DATABASE_URL ou un volume SQLite persistant, SAWTNA_BACKEND_URL, les clés et un proxy HTTPS.
-Le dashboard est servi sur /dashboard ; les assets sont inclus dans l’image. VITE_CITIZEN_URL doit être réglé au build si l’origine citoyenne diffère de localhost.
+Le dashboard est une application statique autonome dans partie-5-analytics/dashboard/ et est servi sur /dashboard par le service Analytics. Le frontend citoyen est déployé séparément dans Azure Static Web Apps et n’est pas inclus dans cette image.
 Tester qu’un utilisateur sans clé ne lit pas les KPI, puis vérifier l’augmentation d’un compteur après une vraie question.
 Choisir une rétention des identifiants techniques et sauvegarder la base avant toute mise à jour.

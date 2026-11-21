@@ -51,19 +51,20 @@ def create_app(store=None):
     async def dashboard_summary():
         return {**store.summary(), "corpus": await backend_get("/api/documents"), "services": await backend_get("/health")}
 
-    dist = Path(os.getenv("SAWTNA_WEB_DIST", str(ROOT / "partie-4-frontend/dist")))
-    if (dist / "assets").exists():
-        app.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
+    dashboard_dir = Path(os.getenv("SAWTNA_DASHBOARD_DIR", str(ROOT / "partie-5-analytics/dashboard")))
+    assets_dir = dashboard_dir / "assets"
+    if assets_dir.exists():
+        app.mount("/dashboard-assets", StaticFiles(directory=assets_dir), name="dashboard-assets")
 
     @app.get("/", include_in_schema=False)
     async def root():
-        return RedirectResponse("/dashboard#dashboard")
+        return RedirectResponse("/dashboard", headers={"Cache-Control": "no-store"})
 
     @app.get("/dashboard", include_in_schema=False)
     async def dashboard():
-        if not (dist / "index.html").exists():
-            raise HTTPException(503, "Compilez le frontend avec npm run build.")
-        return FileResponse(dist / "index.html")
+        if not (dashboard_dir / "index.html").exists():
+            raise HTTPException(503, "Le frontend Analytics autonome est introuvable.")
+        return FileResponse(dashboard_dir / "index.html", headers={"Cache-Control": "no-store"})
 
     return app
 

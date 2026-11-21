@@ -1,9 +1,8 @@
 # Étudiant 5 — Analytics · Google Compute Engine
 
-Code : analytics_service/main.py. Le dashboard réutilise le build React et est servi sur /dashboard.
+Code API : `analytics_service/main.py`. Le dashboard autonome est dans `dashboard/` et est servi sur `/dashboard`; son interface est séparée du frontend citoyen.
 
 ~~~powershell
-npm --prefix partie-4-frontend run build
 python -m uvicorn sawtna.analytics:app --host 127.0.0.1 --port 8012 --no-access-log
 python -m pytest commun/tests/test_nlp_analytics.py
 ~~~

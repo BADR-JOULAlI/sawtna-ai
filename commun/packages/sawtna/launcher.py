@@ -40,8 +40,7 @@ def main():
     env.update(SAWTNA_NLP_URL=f"http://127.0.0.1:{ports['nlp']}",
         SAWTNA_ANALYTICS_URL=f"http://127.0.0.1:{ports['analytics']}",
         SAWTNA_API_URL=f"http://127.0.0.1:{ports['api']}",
-        SAWTNA_BACKEND_URL=f"http://127.0.0.1:{ports['api']}",
-        SAWTNA_WEB_DIST=str(ROOT / "partie-4-frontend/dist"))
+        SAWTNA_BACKEND_URL=f"http://127.0.0.1:{ports['api']}")
     processes, handles = [], []
     log_dir = data_root() / "runtime/logs"
     log_dir.mkdir(parents=True, exist_ok=True)
