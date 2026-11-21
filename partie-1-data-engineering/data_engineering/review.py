@@ -1,9 +1,11 @@
 """Audit provenance and prepare explicit, fingerprint-bound human review decisions."""
 import hashlib
 import json
+import re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from pydantic import HttpUrl
 
 from sawtna.contracts import Passage
 from .pipeline import allowed_url, verified_raw
@@ -47,7 +49,8 @@ def inspect_corpus(input_path: Path, manifest_path: Path, root: Path):
         if not record:
             errors.append(f"Passage {p.id}: document absent du manifeste.")
         else:
-            if p.sha256 != record.get("sha256") or str(p.source_url) != record.get("final_url"):
+            manifest_url = str(HttpUrl(record["final_url"])) if record.get("final_url") else ""
+            if p.sha256 != record.get("sha256") or str(p.source_url) != manifest_url:
                 errors.append(f"Passage {p.id}: source ou empreinte incohérente avec le manifeste.")
             if record.get("format") == "pdf" and (p.page is None or p.page > record.get("pages", 0)):
                 errors.append(f"Passage {p.id}: page PDF absente ou hors limites.")
@@ -172,7 +175,10 @@ def approve_decisions(input_path: Path, decisions_path: Path, output_path: Path,
             raise ValueError("La décision doit être pending, approve ou reject.")
         if not isinstance(row.get("comment", ""), str):
             raise ValueError("Le commentaire doit être un texte.")
-        decisions.append({**fingerprint(p), "decision": row["decision"], "comment": row.get("comment", "")})
+        comment = row.get("comment", "").strip()
+        if row["decision"] in {"approve", "reject"} and not comment:
+            raise ValueError("Toute décision approve/reject doit inclure un commentaire de revue.")
+        decisions.append({**fingerprint(p), "decision": row["decision"], "comment": comment})
         if row["decision"] == "approve":
             selected.append(p.model_copy(update={"status": "reviewed"}).model_dump_json())
     if not selected:
@@ -188,3 +194,57 @@ def approve_decisions(input_path: Path, decisions_path: Path, output_path: Path,
     with output_path.open("x", encoding="utf-8", newline="\n") as f:
         f.write(payload)
     return len(selected)
+
+
+def verify_review_export(input_path: Path):
+    """Require a matching explicit-review journal before data can be ingested."""
+    passages, errors = read_passages(input_path)
+    if errors or not passages:
+        raise ValueError("Export absent, vide ou non conforme au contrat.")
+    if any(p.status != "reviewed" for p in passages):
+        raise ValueError("Tous les passages doivent avoir le statut reviewed.")
+    journal_path = input_path.with_name(input_path.name + ".review.json")
+    if not journal_path.is_file():
+        raise ValueError("Journal de revue humaine absent; l'export ne peut pas être ingéré.")
+    journal = json.loads(journal_path.read_text(encoding="utf-8"))
+    digest = hashlib.sha256(input_path.read_bytes()).hexdigest()
+    if journal.get("output_sha256") != digest or not str(journal.get("reviewer", "")).strip():
+        raise ValueError("Journal de revue incohérent avec le fichier ou relecteur absent.")
+    for key in ("input_sha256", "manifest_sha256", "decisions_sha256"):
+        if not re.fullmatch(r"[a-f0-9]{64}", str(journal.get(key, ""))):
+            raise ValueError("Journal de revue sans empreintes d’entrée valides.")
+    try:
+        datetime.fromisoformat(str(journal.get("reviewed_at", "")).replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError("Date de revue absente ou invalide.") from exc
+    decisions = journal.get("decisions")
+    if not isinstance(decisions, list):
+        raise ValueError("Journal de revue incomplet.")
+    decision_by_id = {}
+    for row in decisions:
+        if not isinstance(row, dict) or not isinstance(row.get("id"), str) or row["id"] in decision_by_id:
+            raise ValueError("Décisions absentes, non conformes ou dupliquées dans le journal.")
+        if row.get("decision") not in {"pending", "approve", "reject"}:
+            raise ValueError("Décision invalide dans le journal.")
+        if not isinstance(row.get("comment"), str):
+            raise ValueError("Commentaire invalide dans le journal.")
+        if row["decision"] in {"approve", "reject"} and not row["comment"].strip():
+            raise ValueError("Décision approve/reject sans commentaire dans le journal.")
+        if not re.fullmatch(r"[a-f0-9]{64}", str(row.get("sha256", ""))) or not re.fullmatch(
+                r"[a-f0-9]{64}", str(row.get("text_sha256", ""))):
+            raise ValueError("Décision sans empreinte de source ou de texte valide.")
+        decision_by_id[row["id"]] = row
+    passage_ids = [p.id for p in passages]
+    if len(set(passage_ids)) != len(passage_ids):
+        raise ValueError("Identifiants de passages dupliqués dans l’export.")
+    for p in passages:
+        row = decision_by_id.get(p.id)
+        if not row or row.get("decision") != "approve" or any(
+                row.get(key) != value for key, value in fingerprint(p).items()):
+            raise ValueError("Les passages exportés ne correspondent pas aux décisions d’approbation.")
+    approved_count = sum(row["decision"] == "approve" for row in decision_by_id.values())
+    if approved_count != len(passages):
+        raise ValueError("Les passages exportés ne correspondent pas aux décisions d'approbation.")
+    if journal.get("approved_passages") != len(passages):
+        raise ValueError("Le nombre de passages ne correspond pas au journal de revue.")
+    return passages

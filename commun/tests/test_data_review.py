@@ -7,7 +7,7 @@ import pytest
 
 from data_engineering.pipeline import collect, fetch, verified_raw
 from data_engineering.quality import needs_ocr
-from data_engineering.review import audit_corpus, approve_decisions
+from data_engineering.review import audit_corpus, approve_decisions, verify_review_export
 
 
 @pytest.fixture
@@ -121,6 +121,7 @@ def test_export_only_selected_with_trace(corpus):
     assert approve_decisions(source, decisions, out, "Test reviewer", manifest, root) == 1
     assert json.loads(out.read_text())["id"] == "first"
     assert json.loads(out.read_text())["status"] == "reviewed"
+    assert [p.id for p in verify_review_export(out)] == ["first"]
     journal = json.loads(Path(str(out) + ".review.json").read_text())
     assert journal["reviewer"] == "Test reviewer"
     assert journal["output_sha256"] == hashlib.sha256(out.read_bytes()).hexdigest()
@@ -128,7 +129,7 @@ def test_export_only_selected_with_trace(corpus):
         approve_decisions(source, decisions, out, "Test reviewer", manifest, root)
 
 
-@pytest.mark.parametrize("change", ["stale", "unknown", "duplicate", "edited_text", "pending"])
+@pytest.mark.parametrize("change", ["stale", "unknown", "duplicate", "edited_text", "pending", "empty_comment"])
 def test_export_rejects_invalid_or_empty_decisions(corpus, change):
     root, source, manifest, _ = corpus
     decisions, rows = prepare(corpus)
@@ -137,6 +138,7 @@ def test_export_rejects_invalid_or_empty_decisions(corpus, change):
     elif change == "duplicate": rows.append(rows[0])
     elif change == "edited_text": rows[0]["text"] = "New content that was never audited."
     elif change == "pending": rows[0]["decision"] = "pending"
+    elif change == "empty_comment": rows[0]["comment"] = "  "
     decisions.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
     with pytest.raises(ValueError):
         approve_decisions(source, decisions, root / "reviewed.jsonl", "Reviewer", manifest, root)
@@ -169,10 +171,41 @@ def test_failed_document_never_leaves_partial_passages(corpus, monkeypatch):
     catalog = root / "sources.json"
     catalog.write_text(json.dumps([{"id": "official", "url": "https://maroc.ma/source",
                                     "title": "Document officiel", "language": "fr", "format": "html"}]))
-    def broken_chunks(*_):
+    def broken_chunks(*_, **__):
         yield "A sufficiently long and valid passage to append before failure."
         raise ValueError("Extraction failed")
     monkeypatch.setattr("data_engineering.pipeline.split_passages", broken_chunks)
     records = collect(catalog, root=root, reuse_manifest=manifest)
     assert records[0]["download_status"] == "failed"
     assert (root / "processed/pending.jsonl").read_text() == ""
+
+
+def test_ingestion_refuses_legacy_reviewed_file_without_human_journal(tmp_path):
+    path = tmp_path / "reviewed.jsonl"
+    row = {"id": "one", "document_id": "doc", "title": "Document officiel",
+           "source_url": "https://maroc.ma/doc", "language": "fr",
+           "text": "Extrait officiel suffisamment long pour respecter le schéma de passage.",
+           "sha256": "a" * 64, "status": "reviewed"}
+    path.write_text(json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Journal de revue humaine absent"):
+        verify_review_export(path)
+
+
+def test_ingestion_accepts_only_matching_reviewed_export(tmp_path):
+    path = tmp_path / "reviewed.jsonl"
+    row = {"id": "one", "document_id": "doc", "title": "Document officiel",
+           "source_url": "https://maroc.ma/doc", "language": "fr",
+           "text": "Extrait officiel suffisamment long pour respecter le schéma de passage.",
+           "sha256": "a" * 64, "status": "reviewed"}
+    payload = json.dumps(row, ensure_ascii=False) + "\n"
+    path.write_bytes(payload.encode("utf-8"))
+    journal = {"reviewer": "Relecteur de test", "reviewed_at": "2026-11-21T10:00:00+00:00",
+               "input_sha256": "b" * 64, "manifest_sha256": "c" * 64, "decisions_sha256": "d" * 64,
+               "approved_passages": 1,
+               "output_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+               "decisions": [{"id": "one", "document_id": "doc", "page": None,
+                              "sha256": "a" * 64,
+                              "text_sha256": hashlib.sha256(row["text"].encode("utf-8")).hexdigest(),
+                              "decision": "approve", "comment": "Source comparée et passage vérifié."}]}
+    path.with_name(path.name + ".review.json").write_text(json.dumps(journal), encoding="utf-8")
+    assert [p.id for p in verify_review_export(path)] == ["one"]

@@ -11,6 +11,17 @@ def test_collector_rejects_nonofficial_urls(url):
         allowed_url(url)
 
 
+@pytest.mark.parametrize("url", [
+    "https://pam.ma/programme-electoral/",
+    "https://www.usfp.ma/fr/pole-economique/",
+    "https://barnamaj2026.pjd.ma/",
+    "https://istiqlalparty.com/elections2026.pdf",
+    "https://pps.ma/fr/9715/",
+])
+def test_collector_accepts_verified_party_owned_primary_sources(url):
+    allowed_url(url)
+
+
 def test_collector_rejects_redirect_to_private_or_nonofficial_host():
     def handler(request):
         return httpx.Response(302, headers={"Location":"https://127.0.0.1/private"})
@@ -39,6 +50,12 @@ def test_chunking_preserves_start_and_end_without_infinite_loop():
     assert chunks[0].startswith("Début")
     assert chunks[-1].endswith("Fin du document.")
     assert all(len(chunk) <= 600 for chunk in chunks)
+
+
+def test_chunking_reports_short_rejected_content():
+    stats = {}
+    assert list(split_passages("Too short", stats=stats)) == []
+    assert stats["too_short_passages"] == 1
 
 
 def test_review_export_requires_selected_document(tmp_path):

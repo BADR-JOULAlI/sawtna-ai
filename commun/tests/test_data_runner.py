@@ -6,7 +6,7 @@ import pytest
 from data_engineering.runner import run
 
 
-def test_runner_prepares_mvp_ingestion_file_without_review_folder(tmp_path, monkeypatch):
+def test_runner_leaves_passages_pending_and_never_approves_them(tmp_path, monkeypatch):
     catalog = tmp_path / "sources.json"
     catalog.write_text(json.dumps([{"id": "one", "title": "Source test", "url": "https://maroc.ma/one",
                                     "language": "fr", "format": "html"}]), encoding="utf-8")
@@ -14,13 +14,15 @@ def test_runner_prepares_mvp_ingestion_file_without_review_folder(tmp_path, monk
         return "<html><main><p>Les électeurs peuvent consulter les informations officielles avant le scrutin.</p></main></html>".encode(), "html", source["url"]
     monkeypatch.setattr("data_engineering.pipeline.fetch", fake_fetch)
     result = run(catalog, tmp_path / "data", ocr=False)
-    assert result["status"] == "ready_for_mvp_ingestion"
+    assert result["status"] == "pending_human_review"
     assert result["mode"] == "initial"
-    assert result["next_action"] == "ingest_reviewed_jsonl"
+    assert result["next_action"] == "audit_and_review_explicitly_before_export"
     output = Path(result["output"])
     assert output.is_file()
     passage = json.loads(output.read_text(encoding="utf-8"))
-    assert passage["status"] == "reviewed"
+    assert passage["status"] == "pending_review"
+    assert result["reviewed_passages"] == 0
+    assert not (tmp_path / "data/processed/reviewed.jsonl").exists()
     assert not (tmp_path / "data/reviews").exists()
 
 
@@ -38,6 +40,7 @@ def test_runner_incremental_mode_downloads_only_missing_sources(tmp_path, monkey
     assert calls == ["one"]
     assert first["mode"] == "initial"
     assert second["mode"] == "incremental"
+    assert json.loads(Path(second["output"]).read_text(encoding="utf-8").splitlines()[0])["status"] == "pending_review"
 
 
 def test_runner_offline_requires_existing_manifest(tmp_path):

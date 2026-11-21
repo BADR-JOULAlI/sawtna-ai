@@ -16,6 +16,11 @@ commun/data/manifests/
 commun/data/runtime/
 commun/data/models/
 commun/data/reviews/
+commun/data/expansion-20261120*/
+commun/data/corpus-mvp-20261121/
+commun/data/corpus-partis-20261121/
+commun/data/combined-20261120*/
+sawtna-data-handoff/partie-1-lot-20261120/
 work/
 *.log
 *.db

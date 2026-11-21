@@ -15,7 +15,13 @@ from sawtna.config import ROOT, data_root
 from sawtna.contracts import Passage
 from .quality import needs_ocr, quality_flags
 
-ALLOWED_HOSTS = {"maroc.ma", "www.maroc.ma", "sgg.gov.ma", "www.sgg.gov.ma", "www.chambredesrepresentants.ma", "www.cour-constitutionnelle.ma"}
+ALLOWED_HOSTS = {
+    "maroc.ma", "www.maroc.ma", "sgg.gov.ma", "www.sgg.gov.ma",
+    "www.chambredesrepresentants.ma", "www.cour-constitutionnelle.ma",
+    # Exact party-owned domains hosting primary political documents.
+    "pam.ma", "www.pam.ma", "barnamaj2026.pjd.ma", "candidats.pjd.ma", "pjd.ma", "www.pjd.ma", "istiqlalparty.com",
+    "www.istiqlalparty.com", "pps.ma", "www.pps.ma", "usfp.ma", "www.usfp.ma",
+}
 MAX_BYTES = 25 * 1024 * 1024
 
 
@@ -68,7 +74,7 @@ def extract_pdf(path: Path, ocr=False, language="fr", details=None):
     return pages
 
 
-def split_passages(text: str, max_chars=1600, overlap=180):
+def split_passages(text: str, max_chars=1600, overlap=180, stats=None):
     if max_chars <= overlap or overlap < 0:
         raise ValueError("Taille de passage invalide.")
     text = clean(text)
@@ -82,6 +88,8 @@ def split_passages(text: str, max_chars=1600, overlap=180):
         chunk = text[start:end].strip()
         if len(chunk) >= 30:
             yield chunk
+        elif stats is not None:
+            stats["too_short_passages"] = stats.get("too_short_passages", 0) + 1
         if end >= len(text):
             break
         start = max(start + 1, end - overlap)
@@ -193,8 +201,11 @@ def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: 
                 pages = extract_pdf(target, ocr=ocr, language=source["language"], details=page_quality) if kind == "pdf" else extract_html(content)
                 source_passages = []
                 count = 0
+                rejected = {"too_short_passages": 0, "empty_extracted_pages": 0}
                 for page, text in pages:
-                    for index, chunk in enumerate(split_passages(text)):
+                    if not clean(text):
+                        rejected["empty_extracted_pages"] += 1
+                    for index, chunk in enumerate(split_passages(text, stats=rejected)):
                         # The hash includes the page and chunk to preserve exact citation provenance.
                         part_hash = hashlib.sha256(f"{digest}|{page}|{index}|{chunk}".encode()).hexdigest()
                         match = re.search(r"(?:Article|ARTICLE)\s+(\d+)", chunk)
@@ -206,6 +217,7 @@ def collect(catalog: Path, root: Path | None = None, ocr=False, reuse_manifest: 
                 record.update(download_status="reused" if reused else "downloaded", sha256=digest, bytes=len(content),
                     path=target.relative_to(root).as_posix(), final_url=final_url, pages=len(pages), passages=count,
                     low_text_pages=sum(len(t) < 60 for _, t in pages),
+                    rejected_passages=rejected,
                     extraction_status="needs_review" if any(p["flags"] for p in page_quality) or any(needs_ocr(t) for _, t in pages) else "extracted",
                     ocr_requested=ocr, page_quality=page_quality)
                 passages.extend(source_passages)

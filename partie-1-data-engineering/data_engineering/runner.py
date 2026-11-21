@@ -1,9 +1,8 @@
-"""One-shot MVP ETL runner for local execution and AWS EC2.
+"""One-shot local ETL runner for collection and passage preparation.
 
 The runner collects/reuses official originals, prepares passages, performs the
-technical checks, and exports a reviewed JSONL ready for the MVP ingestion.
-The human review workflow remains available as a separate advanced command,
-but is intentionally skipped by this MVP runner.
+technical checks, and leaves every passage pending human review. It never
+creates an approved/reviewed export.
 """
 import argparse
 import json
@@ -37,25 +36,19 @@ def run(catalog: Path, root: Path, ocr: bool = True, offline: bool = False,
     passages, report = inspect_corpus(input_path, manifest_path, root)
     if report["errors"]:
         raise RuntimeError(f"Audit bloquant : {len(report['errors'])} erreur(s)")
-    output_path = root / "processed/reviewed.jsonl"
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    payload = "".join(
-        p.model_copy(update={"status": "reviewed"}).model_dump_json() + "\n"
-        for p in passages
-    )
-    output_path.write_text(payload, encoding="utf-8")
     result = {
-        "status": "ready_for_mvp_ingestion",
+        "status": "pending_human_review",
         "mode": "offline-reuse" if offline else ("incremental" if has_manifest else "initial"),
         "catalog": str(catalog),
         "manifest": str(manifest_path),
         "input": str(input_path),
-        "output": str(output_path),
+        "output": str(input_path),
         "documents": report["summary"]["documents"],
         "passages": report["summary"]["passages"],
         "languages": report["summary"]["languages"],
         "flagged_passages": report["summary"]["flagged_passages"],
-        "next_action": "ingest_reviewed_jsonl",
+        "reviewed_passages": 0,
+        "next_action": "audit_and_review_explicitly_before_export",
     }
     (root / "processed/etl-summary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"

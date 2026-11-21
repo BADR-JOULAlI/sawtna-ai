@@ -4,7 +4,7 @@ Exécuter les commandes depuis la racine `s/`. Catalogue : `partie-1-data-engine
 
 ## 1. Collecter
 
-Pour le MVP, une seule commande collecte les sources, réutilise les originaux connus, nettoie les passages et produit directement le fichier prêt pour l’ingestion :
+La commande collecte les sources, réutilise les originaux connus et prépare les passages pour revue humaine :
 
 ~~~powershell
 python -m data_engineering.runner
@@ -16,13 +16,7 @@ Le premier lancement télécharge le catalogue. Les lancements suivants réutili
 python -m data_engineering.runner --offline
 ~~~
 
-Dans Docker/EC2, la même commande est l’entrée du conteneur :
-
-~~~powershell
-docker compose --profile etl run --rm --no-deps etl
-~~~
-
-Le volume `commun/data/` doit être persistant. L’OCR est activé par défaut; `--no-ocr` est réservé aux tests rapides. Le script retourne une erreur si la collecte ou les contrôles techniques échouent, puis écrit `commun/data/processed/reviewed.jsonl` et `etl-summary.json`. Pour le MVP, les passages sont automatiquement marqués `reviewed`; une revue humaine pourra être ajoutée plus tard.
+L’OCR est activé par défaut; `--no-ocr` est réservé aux tests rapides. Le script retourne une erreur si la collecte ou les contrôles techniques échouent, puis écrit `commun/data/processed/pending.jsonl` et `etl-summary.json`. Tous les passages restent `pending_review`. Le runner ne crée ni ne remplace aucun fichier `reviewed.jsonl`.
 
 Pour le développement, les commandes détaillées ci-dessous restent disponibles.
 
@@ -35,17 +29,17 @@ python -m sawtna.data_engineering collect --ocr
 
 Le téléchargement contrôle HTTPS, domaines, redirections, taille maximale de 25 Mo et signature PDF. Les erreurs de transport et les réponses 429/500/502/503/504 sont réessayées au maximum trois fois avec des pauses de 1 puis 2 secondes. Les autres erreurs HTTP ou de contenu ne sont pas réessayées.
 
-Chaque original est conservé sous son SHA-256. Chaque collecte produit un manifeste daté et un fichier JSONL daté, plus `manifests/latest.json`, `processed/pending.jsonl` et, via le runner MVP, `processed/reviewed.jsonl`. Si un document échoue, ses passages partiels sont écartés et le programme retourne un code d’échec; les autres documents sont traités.
+Chaque original est conservé sous son SHA-256. Chaque collecte produit un manifeste daté et un fichier JSONL daté, plus `manifests/latest.json` et `processed/pending.jsonl`. Si un document échoue, ses passages partiels sont écartés et le programme retourne un code d’échec; les autres documents sont traités.
 
-## 3. Livrer le corpus MVP
+## 3. Auditer et relire avant toute livraison
 
 Le fichier à transmettre au backend est directement :
 
 ~~~powershell
-python commun/scripts/ingest.py --input commun/data/processed/reviewed.jsonl
+python -m sawtna.data_engineering audit
 ~~~
 
-Le runner vérifie la provenance, les empreintes, les pages PDF, les doublons et le contrat avant de produire ce fichier. Cette validation automatique est suffisante pour le MVP; elle ne remplace pas une validation juridique humaine en production.
+Une validation technique ne vaut pas une validation humaine ou juridique. Ne jamais intégrer un passage encore `pending_review`.
 
 ## 2. Réextraire les originaux conservés
 
@@ -120,7 +114,7 @@ L’ancien mode `approve --document` demeure compatible, mais concerne un docume
 python commun/scripts/ingest.py --input commun/data/processed/reviewed-lot-001.jsonl
 ~~~
 
-Le backend doit être lancé. L’URL et la clé interservice sont configurées avec `SAWTNA_API_URL` et `SAWTNA_SERVICE_KEY`. Les passages en attente ne sont pas envoyés.
+Le backend doit être lancé. L’URL et la clé interservice sont configurées avec `SAWTNA_API_URL` et `SAWTNA_SERVICE_KEY`. Les passages en attente ne sont pas envoyés. Le script vérifie désormais le journal `.review.json` associé, son empreinte et les identifiants approuvés; un ancien JSONL marqué `reviewed` sans journal est refusé.
 
 ## Vérification et travail suivant
 
