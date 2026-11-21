@@ -3,3 +3,48 @@
   VITE v7.3.7  ready in 948 ms
 
   ➜  Local:   http://127.0.0.1:5175/
+X [ERROR] Cannot read directory "../../../../..": Access is denied.
+
+X [ERROR] Could not resolve "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\vite.config.js"
+
+failed to load config from C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\vite.config.js
+error when starting dev server:
+Error: Build failed with 2 errors:
+error: Cannot read directory "../../../../..": Access is denied.
+error: Could not resolve "C:\\Users\\sail_\\Documents\\Codex\\2026-10-10\\s\\partie-4-frontend\\vite.config.js"
+    at failureErrorWithLog (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:1752:15)
+    at C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:1211:25
+    at runOnEndCallbacks (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:1592:45)
+    at buildResponseToResult (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:1209:7)
+    at C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:1236:16
+    at responseCallbacks.<computed> (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:886:9)
+    at handleIncomingPacket (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:941:12)
+    at Socket.readFromStdout (C:\Users\sail_\Documents\Codex\2026-10-10\s\partie-4-frontend\node_modules\esbuild\lib\main.js:864:7)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12)
+
+  VITE v7.3.7  ready in 613 ms
+
+  ➜  Local:   http://127.0.0.1:5175/
+7:39:53 PM [vite] (client) hmr update /src/main.jsx
+7:39:53 PM [vite] (client) hmr invalidate /src/main.jsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+7:39:53 PM [vite] (client) page reload src/main.jsx
+7:44:31 PM [vite] (client) hmr update /src/main.jsx
+7:44:31 PM [vite] (client) hmr invalidate /src/main.jsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+7:44:31 PM [vite] (client) page reload src/main.jsx
+
+  VITE v7.3.7  ready in 489 ms
+
+  ➜  Local:   http://127.0.0.1:5175/
+
+  VITE v7.3.7  ready in 529 ms
+
+  ➜  Local:   http://127.0.0.1:5175/
+
+  VITE v7.3.7  ready in 512 ms
+
+  ➜  Local:   http://127.0.0.1:5175/
+8:14:34 PM [vite] (client) hmr update /src/main.jsx
+8:14:34 PM [vite] (client) hmr invalidate /src/main.jsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+8:14:34 PM [vite] (client) page reload src/main.jsx
+8:15:00 PM [vite] (client) hmr update /src/main.jsx
