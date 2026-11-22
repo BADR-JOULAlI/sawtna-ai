@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowUpRight, ArrowRight, ArrowUp, BookOpen, MessageSquare, Check, ChevronRight, CircleHelp, ExternalLink, FileText, Globe2, Library, LoaderCircle, LockKeyhole, Menu, RotateCcw, Search, ShieldCheck, X } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, ArrowUp, BookOpen, MessageSquare, Check, ChevronRight, CircleHelp, ExternalLink, FileText, Globe2, Library, LoaderCircle, LockKeyhole, Menu, RotateCcw, Search, ShieldAlert, ShieldCheck, X } from 'lucide-react'
 import './styles.css'
 
 const COPY = {
@@ -12,7 +12,7 @@ const COPY = {
     send:'Envoyer la question', searching:'Recherche dans les documents…', suggestions:'Pour commencer', sourceLabel:'Sources documentaires', noSources:'Aucune source pertinente', sources:'Passages de référence',
     question:'Votre question', newQuestion:'Nouvelle question', openSource:'Consulter le document', neutral:'Une information neutre', neutralBody:'Aucune recommandation de candidat ou de parti.', cited:'Des sources à consulter', citedBody:'Chaque passage renvoie au texte utilisé.', private:'Votre question reste privée', privateBody:'Seuls des compteurs d’usage sont conservés.',
     libraryTitle:'Les textes, à la source.', libraryIntro:'Consultez les documents présents dans le corpus et retrouvez leurs références officielles.',
-    librarySearch:'Rechercher un document', reviewed:'Extraits vérifiés', passages:'passages', docs:'document', reference:'Texte de référence · 2011',
+    librarySearch:'Rechercher un document', reviewed:'Extraits vérifiés', pending:'En attente de revue', sourcePending:'À relire', pendingNotice:'Ce corpus contient des passages en attente de revue humaine. Consultez les documents originaux avant de vous appuyer sur une réponse.', passages:'passages', docs:'document', reference:'Source documentaire',
     quizTitle:'Testez vos connaissances.', quizIntro:'Quatre questions pour mieux comprendre les principes du vote et les institutions. Les corrections citent la Constitution de 2011.',
     validate:'Voir mes résultats', restart:'Recommencer', results:'Votre résultat', completed:'Quiz terminé', questionN:'Question', correct:'Bonne réponse', wrong:'À revoir',
     notice:'Réponses fondées sur le corpus disponible. Les dates de scrutin et les évolutions législatives doivent être vérifiées auprès des autorités compétentes.',
@@ -33,7 +33,7 @@ const COPY = {
     eyebrow:'المعلومة قبل الرأي.', ask:'ما هو سؤالك؟', placeholder:'مثلا: كيف يتم انتخاب أعضاء مجلس النواب؟',
     send:'إرسال السؤال', searching:'جاري البحث في الوثائق…', suggestions:'ابدأ من هنا', sourceLabel:'مصادر موثقة', noSources:'لا يوجد مصدر مناسب', sources:'المقاطع المرجعية',
     question:'سؤالك', newQuestion:'سؤال جديد', openSource:'قراءة الوثيقة', neutral:'معلومات محايدة', neutralBody:'بدون توصية بمرشح أو حزب.', cited:'مصادر قابلة للتحقق', citedBody:'كل مقطع مرتبط بالنص الأصلي.', private:'سؤالك يبقى خاصا', privateBody:'نحتفظ فقط بإحصائيات الاستعمال.',
-    libraryTitle:'المعلومة من مصدرها.', libraryIntro:'اكتشف الوثائق الموجودة في قاعدة المعرفة ومراجعها الرسمية.', librarySearch:'البحث عن وثيقة', reviewed:'مقاطع متحقق منها', passages:'مقاطع', docs:'وثيقة', reference:'نص مرجعي · 2011',
+    libraryTitle:'المعلومة من مصدرها.', libraryIntro:'اكتشف الوثائق الموجودة في قاعدة المعرفة ومراجعها الرسمية.', librarySearch:'البحث عن وثيقة', reviewed:'مقاطع متحقق منها', pending:'في انتظار المراجعة', sourcePending:'يحتاج إلى المراجعة', pendingNotice:'تتضمن هذه القاعدة مقاطع لم يراجعها شخص بعد. يُرجى الرجوع إلى الوثائق الأصلية قبل الاعتماد على أي جواب.', passages:'مقاطع', docs:'وثيقة', reference:'مصدر وثائقي',
     quizTitle:'اختبر معلوماتك.', quizIntro:'أربعة أسئلة حول التصويت والمؤسسات. التصحيح يستند إلى دستور 2011.', validate:'عرض النتيجة', restart:'إعادة الاختبار', results:'نتيجتك', completed:'اكتمل الاختبار', questionN:'السؤال', correct:'إجابة صحيحة', wrong:'راجع الإجابة',
     notice:'الأجوبة مرتبطة بالوثائق المتاحة. يجب التحقق من تواريخ الاقتراع والتعديلات القانونية لدى الجهات المختصة.',
     serviceError:'الخدمة غير متاحة حاليا. تحقق من تشغيل الخدمات وحاول مجددا.', retry:'إعادة المحاولة',
@@ -51,7 +51,7 @@ const COPY = {
     eyebrow:'Lma3louma 9bel rra2y.', ask:'Chno sou2al dyalek?', placeholder:'Matalan: kifach kaytntakhbo a3da2 majlis nowab?',
     send:'Sift sou2al', searching:'Kan9ellbo f lwata2i9…', suggestions:'Bda men hna', sourceLabel:'Lmasadir', noSources:'Ma l9inach masdar kaykfi', sources:'Lma9ati3 men lmasadir',
     question:'Sou2al dyalek', newQuestion:'Sou2al jdid', openSource:'7ell lwatika', neutral:'Ma3louma mo7ayida', neutralBody:'Bla tawsiya b chi moracha7 wella 7izb.', cited:'Lmasadir wad7in', citedBody:'Kol ma9ta3 mربوط b nass l2asli.', private:'Sou2alek kayb9a khass', privateBody:'Kan7efdo ghir i7sa2iyat listi3mal.',
-    libraryTitle:'Rje3 l lmasdar.', libraryIntro:'Chouf lwata2i9 li kaynin f lcorpus w lmaraji3 dyalhom.', librarySearch:'9elleb 3la watika', reviewed:'Ma9ati3 mverifyin', passages:'ma9ati3', docs:'watika', reference:'Nass marji3i · 2011',
+    libraryTitle:'Rje3 l lmasdar.', libraryIntro:'Chouf lwata2i9 li kaynin f lcorpus w lmaraji3 dyalhom.', librarySearch:'9elleb 3la watika', reviewed:'Ma9ati3 mverifyin', pending:'Kaytsennaw lmoraaja3a', sourcePending:'Khassha lmoraaja3a', pendingNotice:'Had lcorpus fih ma9ati3 mazal ma raaja3hom ta wahed. Chouf lwatika l asliya 9bel ma t3tamed 3la chi jawab.', passages:'ma9ati3', docs:'watika', reference:'Masdar wathai9i',
     quizTitle:'Jrreb ma3loumatek.', quizIntro:'4 as2ila 3la tswit w lmo2assassat. Tashih kayrje3 l dostour 2011.', validate:'Chouf natija', restart:'3awed', results:'Natijtek', completed:'Saliti lquiz', questionN:'Sou2al', correct:'Jawab s7i7', wrong:'3awed chouf',
     notice:'Lajwiba 7sab lwata2i9 li kaynin. Les dates w taghyirat l9awanin khas tverifyihom m3a ljiha lmas2oula.',
     serviceError:'Service ma khddamch daba. T2ekked men démarrage w 3awed.', retry:'3awed',
@@ -79,8 +79,9 @@ function Brand() {
 function EmptyError({error, retry, t}) {
   return <div className="error-panel" role="alert"><CircleHelp size={21}/><div><strong>{t.serviceError}</strong><p>{error}</p>{retry && <button className="text-button" onClick={retry}>{t.retry} <RefreshCw size={14}/></button>}</div></div>
 }
-function Assistant({t, language}) {
+function Assistant({t, language, documents}) {
   const [question,setQuestion]=useState(''), [result,setResult]=useState(null), [sent,setSent]=useState(''), [loading,setLoading]=useState(false), [error,setError]=useState('')
+  const hasPendingCorpus=(documents?.documents||[]).some(doc=>doc.status!=='reviewed')
   const input=useRef(null), answer=useRef(null)
   async function ask(event) {
     event?.preventDefault()
@@ -94,6 +95,7 @@ function Assistant({t, language}) {
     finally {setLoading(false)}
   }
   return <div className="assistant-layout">
+    {hasPendingCorpus&&<div className="corpus-pending-note" role="note"><ShieldAlert size={19}/><p>{t.pendingNotice}</p></div>}
     <section className="assistant-intro" aria-labelledby="assistant-title">
       <div className="assistant-title-block"><p className="overline"><span className="tiny-rule"/>{t.eyebrow}</p><h1 id="assistant-title">{t.scopeTitle}</h1><p className="lede">{t.scopeBody}</p></div>
       <aside className="scope-card"><span className="scope-index">01</span><div><p className="label">{t.scopeLabel}</p><strong>{t.scopeTopics}</strong><p>{t.scopeLimit}</p></div></aside>
@@ -115,7 +117,7 @@ function Assistant({t, language}) {
           <div className="response-heading"><span className="response-status"><i/>{result.answerable?t.answerable:t.unanswered}</span><span className="label">{result.sources.length} {t.sourceCount}</span></div>
           <h2 className="question-sent">{sent}</h2><p className="answer-lead" role="status">{result.answerable?result.answer:t.noEvidence}</p>
           {!!result.sources.length&&<><div className="citation-heading"><BookOpen size={16}/><strong>{t.sources}</strong></div><div className="citation-list">{result.sources.map((source,i)=><article className="citation" key={source.id}>
-            <div className="citation-number">{String(i+1).padStart(2,'0')}</div><div><div className="citation-meta"><FileText size={14}/>{source.section || source.title}{source.page&&<span>p. {source.page}</span>}</div><blockquote dir="auto">{source.text}</blockquote><a href={source.source_url+(source.page?'#page='+source.page:'')} target="_blank" rel="noreferrer">{t.openSource}<ExternalLink size={13}/></a></div>
+            <div className="citation-number">{String(i+1).padStart(2,'0')}</div><div><div className="citation-meta"><FileText size={14}/>{source.section || source.title}{source.page&&<span>p. {source.page}</span>}{source.status!=='reviewed'&&<span className="citation-pending">{t.sourcePending}</span>}</div><blockquote dir="auto">{source.text}</blockquote><a href={source.source_url+(source.page?'#page='+source.page:'')} target="_blank" rel="noreferrer">{t.openSource}<ExternalLink size={13}/></a></div>
           </article>)}</div><p className="response-footnote"><BookOpen size={14}/>{t.scoreNote}</p></>}
           <button className="next-question" onClick={()=>{setResult(null);setQuestion('');setSent('');setError('');input.current?.focus()}}><MessageSquare size={16}/>{t.nextQuestion}<ArrowRight size={15}/></button>
         </section>}
@@ -129,7 +131,7 @@ function LibraryPage({t,documents,refresh,error}) {
   const filtered=(documents?.documents||[]).filter(d=>(d.title+' '+d.language).toLowerCase().includes(search.toLowerCase()))
   return <><div className="section-intro compact"><p className="overline">{t.sourceLabel}</p><h1>{t.libraryTitle}</h1><p className="lede">{t.libraryIntro}</p></div>
     <div className="library-toolbar"><div className="search-input"><Search size={18}/><input aria-label={t.librarySearch} placeholder={t.librarySearch} value={search} onChange={e=>setSearch(e.target.value)}/></div><span>{documents?.total||0} {t.docs} · {documents?.passages||0} {t.passages}</span></div>
-    {error?<EmptyError error={error} retry={refresh} t={t}/>:<div className="document-list">{filtered.map(doc=><article className="document" key={doc.document_id}><div className="doc-icon"><FileText size={28} strokeWidth={1.4}/></div><div className="doc-content"><p className="label">{t.reference}</p><h2>{doc.title}</h2><p>{doc.passages} {t.passages} <span>·</span> {doc.language.toUpperCase()} <span>·</span> {t.reviewed}</p></div><a className="document-link" href={doc.source_url} target="_blank" rel="noreferrer" aria-label={t.openSource}><ArrowUpRight size={23}/></a></article>)}{!filtered.length&&<p className="empty-state">{t.noSources}</p>}</div>}
+    {error?<EmptyError error={error} retry={refresh} t={t}/>:<div className="document-list">{filtered.map(doc=><article className="document" key={doc.document_id}><div className="doc-icon"><FileText size={28} strokeWidth={1.4}/></div><div className="doc-content"><p className="label">{t.reference}</p><h2>{doc.title}</h2><p>{doc.passages} {t.passages} <span>·</span> {doc.language.toUpperCase()} <span>·</span> {doc.status==='reviewed'?t.reviewed:t.pending}</p></div><a className="document-link" href={doc.source_url} target="_blank" rel="noreferrer" aria-label={t.openSource}><ArrowUpRight size={23}/></a></article>)}{!filtered.length&&<p className="empty-state">{t.noSources}</p>}</div>}
     <div className="info-note"><ShieldCheck size={20}/><p>{t.notice}</p></div>
   </>
 }
@@ -164,7 +166,7 @@ function App(){
     <aside className={'sidebar '+(menu?'is-open':'')}><Brand/><p className="sidebar-description">{t.local}</p><nav aria-label="Navigation principale">{nav.map(([id,Icon,label])=><a key={id} className={page===id?'active':''} href={'#'+id}><Icon size={19} strokeWidth={1.7}/>{label}{page===id&&<span className="nav-dot"/>}</a>)}</nav><div className="sidebar-bottom"><div className="corpus-card"><BookOpen size={19}/><span>{t.sourceLabel}<strong>{documents?.passages??'—'} {t.passages}</strong></span></div><p>{t.footer}</p></div></aside>
     {menu&&<button className="mobile-scrim" aria-label="Fermer le menu" onClick={()=>setMenu(false)}/>}
     <div className="main-column"><header className="topbar"><div className="breadcrumb"><IconButton aria-label="Menu" onClick={()=>setMenu(!menu)}><Menu size={21}/></IconButton><span>Sawtna AI</span><ChevronRight size={13}/><strong>{t[page]||t.assistant}</strong></div><div className="topbar-end"><span className="edition">Apprendre. Comprendre. Participer.</span><div className="language-picker"><Globe2 size={15}/><select aria-label={t.language} value={language} onChange={e=>setLanguage(e.target.value)}><option value="fr">Français</option><option value="ar">العربية</option><option value="darija">Darija</option></select></div></div></header>
-    <main id="main" key={page} className={'content page-'+page}>{page==='library'?<LibraryPage t={t} documents={documents} refresh={refresh} error={corpusError}/>:page==='quiz'?<QuizPage t={t} language={language}/>:<Assistant t={t} language={language}/>}</main>
+    <main id="main" key={page} className={'content page-'+page}>{page==='library'?<LibraryPage t={t} documents={documents} refresh={refresh} error={corpusError}/>:page==='quiz'?<QuizPage t={t} language={language}/>:<Assistant t={t} language={language} documents={documents}/>}</main>
     <footer className="site-footer"><span>sawtna<span className="brand-dot">.</span> <small>AI</small></span><p>{t.notice}</p><span className="footer-country">Maroc</span></footer></div>
   </div>
 }
