@@ -2,14 +2,34 @@
 import json
 import math
 import os
+import re
 import sqlite3
+import unicodedata
 from contextlib import contextmanager
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import numpy as np
 from .config import data_root
 from .contracts import Passage
-from .nlp import tokens
+LEXICAL_STOP = set("le la les de des du un une et en est sont que qui quel quelle quels quelles pour dans au aux a à ce cette se son sa ses sur il elle comment quoi the is are what how why ما هو هي من في عن الى على و أو إن هل يا this that with from into your our their".split())
+
+
+def lexical_tokens(text):
+    """Tokenize exact lexical evidence without the baseline's broad concept aliases."""
+    normalized = unicodedata.normalize("NFKD", text.lower())
+    normalized = "".join(char for char in normalized if not unicodedata.combining(char))
+    words = set()
+    for word in re.findall(r"[^\W_]+", normalized, flags=re.UNICODE):
+        if word in LEXICAL_STOP:
+            continue
+        # Fold common Arabic spelling variants and remove the definite article
+        # so السؤال عن التسجيل في اللوائح matches التسجيل واللوائح in source text.
+        word = word.translate(str.maketrans({"أ": "ا", "إ": "ا", "آ": "ا", "ٱ": "ا", "ى": "ي", "ئ": "ي", "ة": "ه"}))
+        if re.search(r"[\u0600-\u06ff]", word) and word.startswith("ال") and len(word) > 4:
+            word = word[2:]
+        if word and not re.fullmatch(r"concept\d+", word):
+            words.add(word)
+    return words
 
 
 class Store:
@@ -116,17 +136,22 @@ class Store:
                 rows = self.execute(conn, "SELECT payload, embedding FROM passages WHERE model=? ORDER BY feature <=> ?::vector LIMIT 200", (model, json.dumps(vector))).fetchall()
             else:
                 rows = self.execute(conn, "SELECT payload,embedding FROM passages WHERE model=?", (model,)).fetchall()
-        query_tokens = set(tokens(question))
+        query_tokens = lexical_tokens(question)
         if not rows or not query_tokens:
             return []
         corpus = [json.loads(row["payload"]) for row in rows]
-        all_tokens = [tokens(p["text"] + " " + p["section"]) for p in corpus]
+        all_tokens = [lexical_tokens(" ".join((p["text"], p["section"], p["title"], p["document_id"]))) for p in corpus]
         n = len(corpus)
         frequency = {t: sum(t in words for words in all_tokens) for t in query_tokens}
         ranked = []
         for row, passage, words in zip(rows, corpus, all_tokens):
             common = query_tokens & set(words)
-            if not common:
+            # A shared generic word (e.g. "France" in an unrelated party
+            # programme) is not enough evidence that a passage answers the
+            # question. Require at least two distinct query terms whenever
+            # the query contains at least two terms.
+            minimum_terms = 3 if len(query_tokens) >= 4 else min(2, len(query_tokens))
+            if len(common) < minimum_terms:
                 continue
             idf = sum(math.log(1 + (n + .5) / (frequency[t] + .5)) for t in common)
             lexical = idf / max(sum(math.log(1 + (n + .5) / (frequency[t] + .5)) for t in query_tokens), 1e-8)
@@ -134,7 +159,7 @@ class Store:
             semantic = max(0., float(np.dot(embedding, vector) / max(np.linalg.norm(embedding) * np.linalg.norm(vector), 1e-9)))
             score = .6 * lexical + .4 * semantic
             # A single generic electoral term cannot support an unrelated question.
-            if lexical < .13 or (len(common) == 1 and common <= {"concept0", "concept6"}):
+            if lexical < .20:
                 continue
             if score >= .16:
                 ranked.append({"passage": passage, "relevance": round(score, 4)})

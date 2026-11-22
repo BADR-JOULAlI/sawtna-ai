@@ -1,5 +1,6 @@
 """Launch the three API processes plus Vite with one foreground command."""
 import argparse
+import hashlib
 import os
 import socket
 import subprocess
@@ -41,8 +42,14 @@ def main():
         SAWTNA_ANALYTICS_URL=f"http://127.0.0.1:{ports['analytics']}",
         SAWTNA_API_URL=f"http://127.0.0.1:{ports['api']}",
         SAWTNA_BACKEND_URL=f"http://127.0.0.1:{ports['api']}")
+    demo_corpus = data_root() / "runtime/demo/local-corpus-pending.jsonl"
+    if demo_corpus.is_file() and not env.get("SAWTNA_BACKEND_DATABASE_URL"):
+        digest = hashlib.sha256(demo_corpus.read_bytes()).hexdigest()[:12]
+        env.update(SAWTNA_LOCAL_DEMO_MODE="1", SAWTNA_LOCAL_DEMO_CORPUS=str(demo_corpus),
+                   SAWTNA_BACKEND_DATABASE_URL=str(data_root() / f"runtime/backend-demo-{digest}.sqlite"),
+                   SAWTNA_ANALYTICS_DATABASE_URL=str(data_root() / "runtime/demo/analytics-demo.sqlite"))
     processes, handles = [], []
-    log_dir = data_root() / "runtime/logs"
+    log_dir = data_root() / ("runtime/demo/logs" if env.get("SAWTNA_LOCAL_DEMO_MODE") == "1" else "runtime/logs")
     log_dir.mkdir(parents=True, exist_ok=True)
     try:
         for module, port in [("nlp", ports["nlp"]), ("analytics", ports["analytics"]), ("backend", ports["api"])]:

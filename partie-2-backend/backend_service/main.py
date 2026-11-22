@@ -2,10 +2,12 @@ import asyncio
 import hashlib
 import json
 import os
+import re
 import time
 import uuid
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
+from pathlib import Path as FilePath
 from typing import Literal
 import httpx
 from fastapi import Depends, FastAPI, HTTPException, Path, Request
@@ -14,6 +16,7 @@ from fastapi.responses import RedirectResponse
 from pydantic import Field
 from sawtna.config import ROOT, service_key
 from sawtna.contracts import AskRequest, EmbedResponse, Passage, StrictModel
+from sawtna.nlp import tokens
 from .quiz import grade, public_quiz, QUESTIONS
 from sawtna.security import require_admin, require_service
 from sawtna.store import Store
@@ -32,12 +35,33 @@ class RetireRequest(StrictModel):
     reason: str = Field(min_length=5, max_length=500)
 
 
+def extractive_answer(question: str, sources: list[dict], max_sentences: int = 2) -> str:
+    """Return the best matching original sentences; do not synthesize new claims."""
+    if not sources:
+        return ""
+    query = set(tokens(question))
+    passage = sources[0]["text"]
+    sentences = [part.strip() for part in re.split(r"(?<=[.!?؟؛۔])\s+|\n+", passage) if len(part.strip()) >= 30]
+    if not sentences:
+        return passage[:1200]
+    ranked = []
+    for index, sentence in enumerate(sentences):
+        overlap = query & set(tokens(sentence))
+        if overlap:
+            ranked.append((len(overlap) / max(len(query), 1), -index, index, sentence))
+    chosen = sorted(ranked, reverse=True)[:max_sentences] if ranked else [(0, -i, i, s) for i, s in enumerate(sentences[:max_sentences])]
+    answer = " ".join(item[3] for item in sorted(chosen, key=lambda item: item[2]))
+    return answer[:1200]
+
+
 def create_app(store=None, nlp_transport=None, analytics_transport=None):
     store = store or Store("backend")
     nlp_url = os.getenv("SAWTNA_NLP_URL", "http://127.0.0.1:8011")
     analytics_url = os.getenv("SAWTNA_ANALYTICS_URL", "http://127.0.0.1:8012")
     headers = {"X-Service-Key": service_key()}
     clients = {}
+    local_demo_mode = os.getenv("SAWTNA_LOCAL_DEMO_MODE") == "1"
+    local_demo_corpus = FilePath(os.getenv("SAWTNA_LOCAL_DEMO_CORPUS", "")) if local_demo_mode else None
 
     async def encode(texts, kind):
         try:
@@ -72,10 +96,19 @@ def create_app(store=None, nlp_transport=None, analytics_transport=None):
         # Seed only if no document is indexed. Importing collected documents is a separate authenticated operation.
         seed = ROOT / "commun/data/seed/foundation.json"
         if not store.documents() and seed.exists():
-            records = json.loads(seed.read_text(encoding="utf-8"))
-            passages = [Passage(**item, sha256=hashlib.sha256(item["text"].encode()).hexdigest()) for item in records]
-            embedded = await encode([p.text for p in passages], "passage")
-            store.upsert(passages, embedded.vectors, embedded.model)
+            if local_demo_mode and local_demo_corpus and local_demo_corpus.is_file():
+                passages = [Passage.model_validate_json(line) for line in local_demo_corpus.read_text(encoding="utf-8").splitlines() if line.strip()]
+                if not passages or any(p.status != "pending_review" for p in passages):
+                    raise RuntimeError("Le corpus démo local doit contenir uniquement des passages pending_review.")
+                for start in range(0, len(passages), 64):
+                    batch = passages[start:start + 64]
+                    embedded = await encode([p.text for p in batch], "passage")
+                    store.upsert(batch, embedded.vectors, embedded.model)
+            else:
+                records = json.loads(seed.read_text(encoding="utf-8"))
+                passages = [Passage(**item, sha256=hashlib.sha256(item["text"].encode()).hexdigest()) for item in records]
+                embedded = await encode([p.text for p in passages], "passage")
+                store.upsert(passages, embedded.vectors, embedded.model)
         if not store.documents():
             raise RuntimeError("Corpus vide : vérifier SAWTNA_PROJECT_ROOT et ingérer des passages relus.")
         task = asyncio.create_task(retry_events())
@@ -139,23 +172,20 @@ def create_app(store=None, nlp_transport=None, analytics_transport=None):
         embedding = await encode([body.question], "query")
         matches = store.search(body.question, embedding.vectors[0], embedding.model)
         sources = [{**m["passage"], "relevance": m["relevance"]} for m in matches]
-        prefixes = {
-            "fr": "Voici les passages du corpus qui répondent à votre question. Les citations conservent la langue du document d'origine.",
-            "ar": "هذه المقاطع مرتبطة بسؤالك. نحافظ على لغة المصدر الأصلي في الاقتباسات.",
-            "darija": "Hado homa lma9ati3 li l9ina 3la sou2alek. L'i9tibas kayb9a b loghat lmasdar l'asli.",
-        }
         empty = {
             "fr": "Je n'ai pas trouvé de source suffisante dans le corpus pour répondre à cette question.",
             "ar": "لم أجد مصدرا كافيا في الوثائق للإجابة عن هذا السؤال.",
             "darija": "Ma l9itch masdar kaykfi f lwata2i9 bach njawb 3la had sou2al.",
         }
+        answer = extractive_answer(body.question, sources)
         latency = round((time.monotonic() - started) * 1000)
         event = {"event_id": str(uuid.uuid4()), "event": "question_answered" if sources else "question_unanswered", "language": body.language, "latency_ms": latency, "score": 0}
         store.queue_event(event)
         await flush_events()
-        return {"request_id": event["event_id"], "answer": prefixes[body.language] if sources else empty[body.language],
+        return {"request_id": event["event_id"], "answer": answer if sources else empty[body.language],
             "language": body.language, "sources": sources, "answerable": bool(sources), "latency_ms": latency,
-            "mode": "extractive", "embedding_model": embedding.model, "notice": "Corpus de référence : Constitution 2011. Les échéances et les modifications législatives nécessitent des sources à jour."}
+            "mode": "extractive", "embedding_model": embedding.model,
+            "notice": "Démo locale : passages en attente de revue humaine." if local_demo_mode else "Les échéances et les modifications législatives nécessitent des sources à jour."}
 
     @app.get("/api/quiz")
     def quiz(language: Literal["fr", "ar", "darija"] = "fr"):

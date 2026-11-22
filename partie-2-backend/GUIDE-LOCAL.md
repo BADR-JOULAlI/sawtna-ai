@@ -13,3 +13,5 @@ Sans URL PostgreSQL, SQLite est utilisé. Avec PostgreSQL, l’extension vector 
 Changer de modèle exige une réindexation.
 Endpoints : /api/ask, /api/documents, /api/quiz, /api/quiz/submit, /api/admin/summary, /v1/ingest et /health.
 Les événements Analytics sont conservés dans une file de réessai. Hors développement, exposer derrière HTTPS et changer les clés.
+
+Le lanceur local peut activer un index de démonstration depuis `commun/data/runtime/demo/local-corpus-pending.jsonl`. Il utilise une base distincte, conserve `pending_review` et l’affiche comme provisoire. Cette option locale ne contourne pas `/v1/ingest`, qui continue d’exiger un export relu avec son journal valide.
