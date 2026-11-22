@@ -36,6 +36,39 @@ incompatibles.
 | Identité de pull ACR | `sawtna-nlp-acrpull`, rôle `AcrPull` sur le registre |
 | Destination de logs de l’environnement | `none` |
 
+### Vue d’ensemble de Sawtna
+
+```mermaid
+flowchart LR
+    Citizen[Citoyen] -->|HTTPS| Front[Frontend citoyen\nAzure Static Web Apps]
+    Front -->|API publique /api/*| Backend[Backend\nAzure VM · Poland Central]
+    Backend -->|X-Service-Key\nPOST /v1/embeddings| NLP[NLP\nAzure Container Apps · Austria East]
+    Backend -->|événements agrégés\nX-Service-Key| Analytics[Analytics + dashboard admin\nGoogle Compute Engine]
+    ETL[Data Engineering\nAWS EC2] -->|documents approuvés\nPOST /v1/ingest| Backend
+    Backend -->|recherche vectorielle| DB[(PostgreSQL + pgvector\nsur la VM backend)]
+    Admin[Équipe projet] -->|HTTPS + X-Admin-Key| Analytics
+```
+
+Le frontend citoyen appelle le backend; il n’appelle jamais directement le NLP.
+Le NLP ne reçoit que les textes à vectoriser et ne lit pas la base de données.
+Le backend conserve la responsabilité de la recherche RAG, des citations et de
+la réponse au frontend. Le dashboard Analytics est une application distincte.
+
+### Chemin de construction et de déploiement du NLP
+
+```mermaid
+flowchart LR
+    Source[Code NLP + Dockerfile.nlp] -->|docker build| Local[Image locale\nsawtna-nlp:v1]
+    Local -->|docker tag / docker push| ACR[Azure Container Registry Basic\nsawtnaacr21nov26]
+    ACR -->|pull avec identité managée\nAcrPull| ACA[Container App\nsawtna-nlp]
+    Backend[Backend Azure VM] -->|HTTPS externe\nX-Service-Key| ACA
+```
+
+Le digest publié est `sha256:e4fcbc1e825db872da723af0487c90651a1ee76f1b946611eb309f1ab2b18df7`.
+L’identité `sawtna-nlp-acrpull` est autorisée uniquement à tirer l’image depuis
+le registre. L’authentification métier des requêtes embeddings reste assurée par
+`X-Service-Key`.
+
 L’application utilise une identité managée pour tirer l’image privée. La clé
 d’accès NLP est stockée comme secret Container Apps `service-key` et référencée
 par `SAWTNA_SERVICE_KEY`. Sa valeur n’est pas incluse dans ce rapport. Une copie
@@ -61,6 +94,81 @@ Les routes conservent le contrat commun :
   (`query` ou `passage`), et renvoie `vectors`, `model` et `dimensions` ;
 - la taille maximale du lot est de 64 textes.
 
+### Schéma de déploiement et variables
+
+| Variable | Valeur / source | Rôle |
+|---|---|---|
+| `SAWTNA_SERVICE` | `nlp` | Sélectionne l’application NLP au démarrage |
+| `SAWTNA_EMBEDDER` | `multilingual-e5-small` | Identifiant de l’encodeur actif |
+| `SAWTNA_MODEL_DEVICE` | `cpu` | Exécution CPU dans Container Apps |
+| `PORT` | `8000` | Port fourni au serveur du conteneur |
+| `SAWTNA_SERVICE_KEY` | Référence Azure `service-key` | Authentifie les appels interservices |
+| `HF_HUB_OFFLINE` / `TRANSFORMERS_OFFLINE` | `1` | Empêche le téléchargement du modèle au démarrage |
+
+Le modèle `intfloat/multilingual-e5-small` est téléchargé et contrôlé pendant la
+construction de l’image. Le code préfixe chaque texte par `query:` ou `passage:`
+selon `kind`, puis normalise les embeddings. Le modèle chargé est mis en cache
+dans le processus.
+
+### Contrat API détaillé
+
+La source de vérité est
+`commun/packages/contracts/nlp.openapi.json`.
+
+#### `GET /health`
+
+Route publique de santé, sans secret :
+
+```json
+{
+  "status": "ok",
+  "service": "nlp",
+  "model": "multilingual-e5-small",
+  "dimensions": 384
+}
+```
+
+#### `POST /v1/embeddings`
+
+Header obligatoire : `X-Service-Key: <clé partagée>`.
+
+Exemple de requête :
+
+```json
+{
+  "texts": [
+    "Comment sont élus les conseils des communes ?",
+    "كيف يتم انتخاب مجالس الجماعات؟"
+  ],
+  "kind": "query"
+}
+```
+
+`texts` contient de 1 à 64 chaînes. `kind` vaut `query` ou `passage` et prend
+`query` par défaut. Les propriétés additionnelles sont refusées par le schéma.
+
+Structure de réponse (vecteurs abrégés pour la lisibilité) :
+
+```json
+{
+  "vectors": [
+    ["valeur flottante 1", "…", "valeur flottante 384"],
+    ["valeur flottante 1", "…", "valeur flottante 384"]
+  ],
+  "model": "intfloat/multilingual-e5-small",
+  "dimensions": 384
+}
+```
+
+Chaque vecteur réel contient exactement 384 valeurs numériques. Le nombre de
+vecteurs retournés est égal au nombre de textes reçus.
+
+| Réponse HTTP | Signification |
+|---|---|
+| `200` | Embeddings retournés selon le schéma |
+| `401` | Clé absente ou invalide |
+| `422` | Corps invalide ou paramètres hors contrat |
+
 ## 4. Vérifications exécutées
 
 | Vérification | Résultat observé |
@@ -75,6 +183,31 @@ Les routes conservent le contrat commun :
 
 Ces vérifications valident l’image et le service NLP isolé. Elles ne constituent
 pas un test d’intégration depuis la VM du backend.
+
+### Séquence d’une requête RAG
+
+```mermaid
+sequenceDiagram
+    actor Citoyen
+    participant Web as Frontend citoyen
+    participant API as Backend Sawtna
+    participant NLP as Container App NLP
+    participant DB as PostgreSQL + pgvector
+    Citoyen->>Web: Saisit une question
+    Web->>API: HTTPS POST /api/ask
+    API->>NLP: POST /v1/embeddings + X-Service-Key
+    NLP->>NLP: Valide la clé, le corps et kind
+    NLP->>NLP: Encode les textes avec le modèle actif
+    NLP-->>API: vectors, model, dimensions=384
+    API->>API: Vérifie la compatibilité modèle/dimension
+    API->>DB: Recherche des passages proches
+    DB-->>API: Passages candidats et métadonnées
+    API-->>Web: Réponse, citations ou abstention
+```
+
+Le service NLP ne génère pas la réponse conversationnelle et ne choisit pas les
+citations. Il transforme les textes en vecteurs; le backend orchestre la
+recherche documentaire et retourne la réponse au frontend.
 
 ## 5. Intégration avec le backend
 
@@ -133,7 +266,21 @@ az containerapp show --name sawtna-nlp --resource-group sawtna-rg --query "{stat
 Invoke-RestMethod 'https://sawtna-nlp.purplebush-3bda44a9.austriaeast.azurecontainerapps.io/health'
 ```
 
-## 8. Fichiers concernés
+## 8. Captures d’écran à ajouter
+
+Les captures ne sont pas encore incluses. Elles pourront être ajoutées ici dès
+qu’elles seront fournies; aucune capture illustrative n’a été fabriquée.
+
+| Capture attendue | Élément à documenter | Précaution |
+|---|---|---|
+| ACR, dépôt `sawtna-nlp` | Présence du tag `v1` et, si affiché, son digest | Masquer toute donnée de compte non nécessaire |
+| Container App `sawtna-nlp` | État, FQDN et région | Ne pas afficher la valeur d’un secret |
+| Configuration Container Apps | Ingress, port, CPU/RAM et mise à l’échelle | Masquer les valeurs secrètes; laisser visibles les noms de références |
+| Test `/health` | Réponse HTTP et nom du modèle | Aucun secret attendu |
+| Test embeddings | Statut, nom du modèle et dimension retournée | Masquer le header `X-Service-Key` |
+| Backend staging (facultatif) | URL active et contrôle de santé pendant sa plage de fonctionnement | Masquer les clés et identifiants |
+
+## 9. Fichiers concernés
 
 - `commun/infra/Dockerfile.nlp` — construction du conteneur NLP ;
 - `.dockerignore` — exclusion des fichiers inutiles et secrets du contexte Docker ;
