@@ -2,6 +2,7 @@
 **/dist
 **/__pycache__
 .git
+.azure
 .venv
 commun/data/runtime
 commun/data/raw
@@ -14,5 +15,15 @@ commun/data/reviews
 **/*.egg-info
 .env
 .env.*
+**/.env
+**/.env.*
+**/secrets/**
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/id_rsa*
+**/id_ed25519*
+**/.cache/huggingface
 **/test-results
 **/playwright-report

@@ -1,15 +1,33 @@
 FROM python:3.12-slim
+
 WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/opt/huggingface \
+    HF_HUB_DISABLE_TELEMETRY=1 \
+    SAWTNA_PROJECT_ROOT=/app \
+    SAWTNA_SERVICE=nlp \
+    SAWTNA_EMBEDDER=multilingual-e5-small \
+    SAWTNA_MODEL_DEVICE=cpu \
+    PORT=8000
+
+# Install only the shared Sawtna package and the NLP service source.
 COPY pyproject.toml ./
 COPY commun/packages/ ./commun/packages/
-COPY partie-1-data-engineering/ ./partie-1-data-engineering/
-COPY partie-2-backend/ ./partie-2-backend/
 COPY partie-3-nlp/ ./partie-3-nlp/
-COPY partie-4-frontend/ ./partie-4-frontend/
-COPY partie-5-analytics/ ./partie-5-analytics/
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
-RUN pip install --no-cache-dir ".[ml]"
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-small')"
-ENV SAWTNA_PROJECT_ROOT=/app SAWTNA_SERVICE=nlp SAWTNA_EMBEDDER=multilingual-e5-small SAWTNA_MODEL_DEVICE=cpu PORT=8000
+
+# Cache and dimension-check the model during the image build so a running
+# container does not need network access or a model download at startup.
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --no-cache-dir ".[ml]" \
+    && python -c "from sentence_transformers import SentenceTransformer; m = SentenceTransformer('intfloat/multilingual-e5-small', device='cpu'); d = m.get_sentence_embedding_dimension(); print(f'multilingual-e5-small dimensions: {d}'); assert d == 384, f'Expected 384 dimensions, got {d}'"
+
+# The model was cached above; offline mode prevents runtime downloads.
+ENV HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1
+
 EXPOSE 8000
-CMD ["python", "-m", "sawtna.serve"]
+
+# Do not fall back to the development key configured by the shared code.
+CMD ["sh", "-c", "test -n \"$SAWTNA_SERVICE_KEY\" || { echo 'SAWTNA_SERVICE_KEY is required'; exit 1; }; exec python -m sawtna.serve"]
