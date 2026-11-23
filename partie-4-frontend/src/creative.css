@@ -1,0 +1,87 @@
+/* SAWTNA: an illustrated civic journal. */
+:root { --paper:#faf8f2; --paper-2:#eee9dd; --ink:#173f37; --ink-2:#344c43; --muted:#626d60; --rule:#d9dfd2; --red:#a64230; --red-soft:#f8e9e0; --green:#2f5d45; --wrap:1240px; }
+.masthead { background:#173f37; color:#faf8f2; border-bottom:0; }
+.masthead-top { height:78px; }
+.brand-word { font-size:2rem; }
+.brand-mark { stroke:#edbe62; width:27px; height:27px; }
+.tagline { color:#d1ded3; border-color:#49665c; }
+.lang select { color:#faf8f2; border-color:#6e877a; background-image:none; appearance:auto; padding:6px 10px; }
+.lang option { color:#173f37; background:#faf8f2; }
+.tabs { gap:36px; }
+.tabs a { color:#d1ded3; padding-bottom:16px; }
+.tab-num { color:#a7bcad; }
+.tabs a:hover,.tabs a[aria-current="page"] { color:#fff9e8; }
+.tabs a[aria-current="page"] { border-bottom-color:#edbe62; }
+.tabs a[aria-current="page"] .tab-num { color:#edbe62; }
+.menu-button { border-color:#6e877a; }
+.content { padding-top:44px; padding-bottom:64px; }
+.assistant { display:block; }
+.assistant-intro { display:grid; grid-template-columns:1.15fr 1fr; gap:56px; align-items:center; margin-bottom:42px; }
+.assistant-intro .page-head { margin:0; padding:16px 0; }
+h1 { font-size:clamp(2.25rem,4.3vw,3.5rem); line-height:1.09; max-width:18ch; }
+.lede { font-size:1rem; line-height:1.8; max-width:55ch; }
+.kicker { font-weight:500; margin-bottom:20px; }
+.civic-visual { margin:0; background:#eadfc9; }
+.civic-visual img { display:block; width:100%; height:auto; }
+.civic-visual figcaption { display:flex; justify-content:space-between; align-items:center; background:#e6dbc4; padding:10px 18px; font-family:var(--mono); font-size:.68rem; letter-spacing:.09em; }
+.civic-visual figcaption b { font-family:var(--sans); font-weight:500; font-size:.9rem; }
+.composer { background:#fffefa; border:1px solid #c8d4c6; border-top:4px solid #28594c; padding:24px 28px 20px; }
+.composer-label { font-size:1.5rem; }
+.composer textarea { background:none; min-height:90px; font-size:1.05rem; }
+.composer-foot { padding-top:16px; border-top:1px solid var(--rule); }
+.send,.button { background:#a64230; padding:11px 20px; }
+.send:not(:disabled):hover,.button:not(:disabled):hover { background:#813222; }
+.send:disabled { background:#68766a; opacity:.65; }
+.suggestions { margin-top:28px; }
+.suggestions ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.suggestions li + li { border-top:0; border-inline-start:1px solid var(--rule); }
+.suggestions button { padding:20px 16px; height:100%; font-size:.92rem; gap:10px; }
+.suggestions button:hover { background:#edf1e8; }
+.margin { margin-top:44px; display:grid; grid-template-columns:1.2fr 1fr .55fr; gap:28px; padding:28px; background:#eaf0e7; }
+.margin section { border-top:0; padding:0; }
+.margin-warning { grid-column:1/-1; margin:0; background:transparent; border-inline-start:2px solid var(--amber); padding:0 12px; }
+.margin .small-heading { color:#3c6451; }
+.corpus-figure { border-inline-start:1px solid #c4d1bf; padding-inline-start:28px!important; }
+.figure { font-size:3.5rem; }
+.section-intro { display:grid; grid-template-columns:1.5fr 1fr; align-items:center; background:#e7eee4; margin-bottom:36px; }
+.section-intro .page-head { padding:30px 36px; margin:0; }
+.section-intro img { display:block; width:100%; height:100%; object-fit:cover; min-height:260px; }
+.quiz-intro { background:#f4e8cd; }
+.page-quiz > .narrow { max-width:none; }
+.quiz-form,.page-quiz .corrections,.page-quiz .quiz-result { max-width:820px; margin-inline:auto; }
+.quiz-form { padding:24px 32px; background:#fffefa; border:1px solid var(--rule); }
+.quiz-form fieldset { padding:24px 0; }
+.options label.selected { background:#e5eddf; border-color:#39614c; }
+.options label.selected .letter { background:#28594c; border-color:#28594c; }
+.toolbar { background:#fffefa; padding:18px 22px; margin-bottom:0; border:1px solid var(--rule); border-bottom:0; }
+.ledger { background:#fffefa; padding:0 22px; border:1px solid var(--rule); border-top:3px solid #28594c; }
+.ledger-head { color:#345f4e; }
+.ledger-row { padding-block:20px; }
+.document:hover { background:#edf2e8; }
+.doc-title { font-size:1.22rem; }
+.document-link { background:#eaf0e5; color:#28594c; }
+.answer { background:#fffefa; padding:32px; border-top:4px solid #28594c; }
+.citation blockquote { border-color:#d8a852; }
+.colophon { max-width:none; background:#173f37; color:#ebeee0; margin:0; padding:32px max(var(--gutter),calc((100vw - 1144px)/2)); border:0; grid-template-columns:150px 1fr; }
+.colophon .muted { color:#c1d0bf; }
+.colophon .brand-word { color:#edbe62; font-size:1.6rem; }
+@media(max-width:900px) { .assistant-intro { gap:26px; } .margin { grid-template-columns:1fr 1fr; } .corpus-figure { grid-column:1/-1; border-inline-start:0; border-top:1px solid #c4d1bf; padding:20px 0 0!important; } .section-intro .page-head { padding:24px; } }
+@media(max-width:680px) {
+ .masthead-top { height:68px; } .brand-word { font-size:1.7rem; }
+ .tabs a[aria-current="page"] { background:#28574b; border-inline-start-color:#edbe62; }
+ .content { padding-top:26px; padding-bottom:40px; }
+ .assistant-intro { grid-template-columns:1fr; gap:22px; margin-bottom:26px; }
+ .assistant-intro .page-head { padding:0; } h1 { max-width:19ch; }
+ .civic-visual img { max-height:210px; object-fit:cover; object-position:center 55%; }
+ .civic-visual figcaption { padding:7px 12px; }
+ .lede { margin-top:14px; } .kicker { margin-bottom:14px; }
+ .composer { padding:18px; } .composer-label { font-size:1.3rem; }
+ .suggestions ol { grid-template-columns:1fr; } .suggestions li + li { border-inline-start:0; border-top:1px solid var(--rule); }
+ .suggestions button { padding:15px 8px; }
+ .margin { padding:22px; grid-template-columns:1fr; gap:22px; margin-top:28px; }
+ .section-intro { grid-template-columns:1fr; } .section-intro .page-head { padding:24px; }
+ .section-intro img { min-height:0; height:150px; object-position:center 52%; }
+ .toolbar { padding:16px; } .ledger { padding:0 12px; }
+ .quiz-form { padding:18px; } .answer { padding:20px; }
+ .colophon { grid-template-columns:1fr; gap:14px; } .colophon .muted { grid-column:1; }
+}
