@@ -1,21 +1,54 @@
-const accessForm = document.querySelector('#access-form')
-const accessKey = document.querySelector('#admin-key')
-const accessError = document.querySelector('#access-error')
-const accessSubmit = document.querySelector('#access-submit')
-const accessPanel = document.querySelector('#access-panel')
-const dashboard = document.querySelector('#dashboard-content')
-const dashboardError = document.querySelector('#dashboard-error')
-const refreshButton = document.querySelector('#refresh-button')
-let adminKey = ''
 
-const languageNames = { fr: 'Français', ar: 'العربية', darija: 'Darija' }
-const serviceNames = { nlp: 'Service NLP', analytics: 'Service Analytics', backend: 'Backend' }
-const number = value => new Intl.NumberFormat('fr-FR').format(value ?? 0)
+const $ = selector => document.querySelector(selector);
+
+const accessForm = $('#access-form');
+const accessKey = $('#admin-key');
+const accessError = $('#access-error');
+const accessSubmit = $('#access-submit');
+const accessPanel = $('#access-panel');
+const dashboard = $('#dashboard-content');
+const dashboardError = $('#dashboard-error');
+const refreshButton = $('#refresh-button');
+
+let adminKey = '';
+
+const languageNames = {
+  fr: 'Français',
+  ar: 'العربية',
+  darija: 'Darija',
+  en: 'English'
+};
+
+const serviceNames = {
+  nlp: 'Service NLP',
+  analytics: 'Service Analytics',
+  backend: 'Backend'
+};
+
+const number = value =>
+  new Intl.NumberFormat('fr-FR', {
+    maximumFractionDigits: 1
+  }).format(value ?? 0);
+
+$('#current-date').textContent =
+  new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date());
+
+$('#toggle-password').addEventListener('click', () => {
+  const visible = accessKey.type === 'text';
+  accessKey.type = visible ? 'password' : 'text';
+  $('#toggle-password').textContent =
+    visible ? 'Afficher' : 'Masquer';
+});
 
 function showError(node, message) {
-  node.textContent = message
-  node.hidden = false
+  node.textContent = message;
+  node.hidden = false;
 }
+
 
 function setBusy(busy) {
   accessSubmit.disabled = busy
