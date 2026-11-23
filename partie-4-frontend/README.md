@@ -1,59 +1,75 @@
-# Étudiant 4 — Interface citoyen React sur Azure Static Web Apps
+﻿# SAWTNA — Interface citoyenne
 
-**Responsable indiqué dans le cahier des charges : Aya Sdour**  
-**Modèle cloud :** Azure Static Web Apps (PaaS)  
-**Objectif :** donner aux citoyens une interface accessible pour poser des questions, consulter les sources et répondre à un quiz.
+Responsable : Aya Sdour · Partie 4 · React / Azure Static Web Apps.
 
-## Périmètre
+SAWTNA aide à comprendre les institutions et le vote au Maroc à partir du corpus disponible. Projet étudiant indépendant, sans affiliation politique. L’interface ne recommande aucun candidat et ne remplace pas les informations officielles à jour.
 
-L’application React communique avec le backend par HTTPS. Elle ne contient aucun secret serveur, ne se connecte pas directement à PostgreSQL et distingue clairement les réponses, les citations et les erreurs.
+## Trois espaces
 
-### Tâches
+- **Assistant** : questions indépendantes, réponses extractives du backend, passages cités dans leur langue originale, liens documentaires contrôlés, abstention explicite lorsque le corpus est insuffisant. Aucune génération externe ni historique de conversation.
+- **Bibliothèque** : catalogue des documents indexés, recherche locale par titre, identifiant et langue, filtres par langues effectivement présentes. Le compteur de passages suit les résultats filtrés. Les titres, passages, langues et statuts viennent du backend ; un identifiant reste affichable lorsque les métadonnées sont absentes.
+- **Quiz** : questions et options reçues du serveur, choix radio natifs, progression, soumission de toutes les réponses, résultat et corrections calculés exclusivement côté backend. Un échec de soumission conserve les choix.
 
-1. Concevoir les parcours assistant, bibliothèque de sources et quiz, avec navigation cohérente sur mobile et ordinateur.
-2. Appeler les endpoints backend documentés; gérer chargement, absence de résultats, délais, erreurs et nouvelle tentative.
-3. Afficher les références fournies par l’API (titre, organisme, lien, article/page, langue) sans les fabriquer.
-4. Gérer français et arabe avec mise en page RTL; rendre les contenus et libellés compréhensibles et cohérents.
-5. Respecter l’accessibilité clavier, les libellés, le contraste, les états de focus et la sémantique HTML.
-6. Configurer URL d’API par environnement, CORS requis, routes statiques et variables publiques non sensibles.
-7. Ajouter build et vérifications navigateur dans GitHub Actions; configurer un déploiement Azure Static Web Apps après décision de l’équipe.
+## Architecture conservée
 
-## Livrables
+React 19, React DOM, Vite 7, plugin React et Lucide ; Playwright pour le navigateur. Versions exactes verrouillées dans `package-lock.json`. Aucune nouvelle dépendance.
 
-- Application React compilable et configuration de build.
-- Pages assistant, sources et quiz intégrées à l’API.
-- Interface responsive et RTL vérifiée.
-- Tests des parcours principaux et des erreurs d’API.
-- Guide de configuration locale et de publication Azure, sans secrets.
+- `src/main.jsx` : point d’entrée, navigation par ancres `#assistant`, `#library`, `#quiz`, composants existants et dictionnaire initial.
+- `src/interface-copy.js` : libellés complémentaires et messages d’erreur localisés.
+- `src/api.js` : fetch public, URL de base, timeout de 65 secondes, annulation, validation des réponses et liens HTTP(S).
+- `src/styles.css` : CSS natif consolidé, identité blanc/gris/rouge, tailles lisibles et propriétés logiques RTL.
+- `public/staticwebapp.config.json` : fallback SPA et en-têtes statiques existants.
 
-## Critères de validation
+Aucun routeur supplémentaire. Retour/précédent utilise l’historique des ancres. La langue est conservée pendant la navigation et dans le stockage local lorsque disponible. La navigation vers un autre espace réinitialise son état temporaire, comme auparavant. Un changement de langue réinitialise le quiz et l’assistant et annule leurs requêtes en cours pour éviter un résultat dans la mauvaise langue.
 
-- Les questions sont envoyées au backend sans inclure de clé privée.
-- Les citations affichées correspondent à la réponse de l’API et ouvrent la source attendue.
-- Le quiz révèle la correction uniquement après soumission.
-- Navigation clavier, RTL et affichage mobile sont vérifiés dans un navigateur.
-- L’application présente un état utile si le backend est lent ou indisponible.
+## API publique
 
-## Dépendances
+Le contrat `../commun/packages/contracts/backend.openapi.json` reste inchangé. Il définit les requêtes mais laisse les réponses HTTP 200 non typées (`schema: {}`). Les validations frontend et fixtures reposent également sur les sérialiseurs backend inspectés, sans modification de ceux-ci.
 
-Le contrat du backend est la source de vérité pour les payloads. Les URLs et origines autorisées sont configurées par environnement; aucun endpoint interne ou secret n’est codé en dur.
+| Endpoint | Envoi | Réponse utilisée |
+| --- | --- | --- |
+| `POST /api/ask` | `question` : 3–1500 caractères ; `language` : `fr`, `ar`, `darija` | `answer`, `answerable`, `sources` ; références : titre, section, page, langue, statut, texte, URL lorsqu’ils sont fournis |
+| `GET /api/documents` | Aucun | `documents`, `total`, `passages` ; identifiant et nombre de passages, métadonnées disponibles |
+| `GET /api/quiz?language=…` | Langue | `id`, `title`, `questions[{id, question, options}]` |
+| `POST /api/quiz/submit` | `language`, `answers` : identifiants → indices entiers | `correct`, `total`, `score`, `corrections` avec explications et références disponibles |
 
+Les données illisibles, réponses HTTP en erreur, pannes réseau et délais dépassés produisent un message localisé et un réessai manuel. Aucun retry automatique, aucune substitution par des réponses factices. Aucun appel direct à NLP, PostgreSQL, ingestion, administration ou Analytics.
 
-## Exécution du service existant
+## Langues, présentation et accessibilité
 
-# Étudiant 4 — Frontend · Azure Static Web Apps
+Français LTR, arabe RTL, darija de l’interface en écriture latine (`ary-Latn`). Le backend reçoit toujours `darija`. Les contenus mixtes utilisent `dir="auto"` et les citations gardent leur langue. Les libellés arabes/darija ajoutés demandent une relecture linguistique native ; aucune traduction des documents ou réponses n’est fabriquée.
 
-React, Vite, Lucide. Design Swiss : Helvetica, blanc/gris neutre, accent rouge #E4002B, grille, responsive et RTL.
+Identité SAWTNA et accent rouge préservés. L’en-tête horizontal regroupe la marque et le choix de langue ; les trois espaces sont directement visibles sur ordinateur comme sur téléphone, sans menu à ouvrir. L’assistant privilégie une lecture verticale et un bouton d’envoi explicite, le catalogue des lignes séparées, le quiz des groupes de choix. Navigation active, lien d’évitement, focus visibles, déplacement du focus vers résultats, formulaire natif, annonces de chargement, erreurs actionnables et réduction des mouvements.
 
-~~~powershell
+Vérifications navigateur ciblées à 360, 390, 768 et 1280 px. Elles ne constituent pas une certification WCAG ni une validation exhaustive avec lecteur d’écran.
+
+## Installation et validation
+
+Node 22.12+ recommandé (Vite 7), npm et navigateur Playwright.
+
+```powershell
 npm ci
 npm run dev
 npm run build
+npm test
 npx playwright install chromium
-npm run test:e2e
-~~~
+npm run test:ui
+```
 
-Routes : #assistant, #library, #quiz. Analytics/dashboard est une application autonome servie par la partie 5 sur son propre hôte.
-Vite utilise 5175 et refuse un autre port. Son proxy /api vise 127.0.0.1:8010.
-Pour Azure, définir VITE_API_BASE_URL sur l’origine HTTPS du backend avant le build. Les variables Vite sont publiques : aucune clé de service ne doit y figurer.
-Le build citoyen ne contient aucune page ni navigation d’administration. Déployer cette application séparément de l’application Analytics.
+`test:ui` démarre son propre Vite sur 5185 et intercepte les quatre API avec des fixtures uniquement dans les tests. Chrome installé peut être utilisé avec `$env:SAWTNA_BROWSER_CHANNEL='chrome'`. Captures : `work/screenshots/` ; rapport : `test-results/citizen-results.json` (ignorés par Git).
+
+`npm run test:e2e` conserve la suite d’intégration existante, exigeant le backend réel sur 8010 et le service Analytics séparé sur 8012 pour son test historique. Cette suite écrit encore dans `commun/docs/verification/`, conformément au workflow existant ; elle ne fait pas partie des tests isolés.
+
+Voir [GUIDE-LOCAL.md](GUIDE-LOCAL.md) pour les scénarios et [FRONTEND-REVIEW.md](FRONTEND-REVIEW.md) pour les résultats effectivement exécutés.
+
+## Build et Azure
+
+En développement, une base vide conserve les chemins `/api/*` et le proxy Vite vers `http://127.0.0.1:8010` (ou `SAWTNA_API_URL`). En production, fournir `VITE_API_BASE_URL` **avant** `npm run build`. L’origine HTTPS est recommandée ; une terminaison `/api` ou `/` est normalisée pour éviter `/api/api`.
+
+La sortie à publier est `partie-4-frontend/dist`. Le dépôt inspecté ne contient pas de workflow de déploiement Azure Static Web Apps : `.github/workflows/local-stack.yml` valide la pile locale. Dans le pipeline de publication de l’équipe, la variable doit être présente dans l’environnement de l’étape qui exécute Vite ; un paramètre modifié après compilation ne réécrit pas les fichiers JavaScript. Aucun déploiement ni paramètre cloud n’a été modifié.
+
+## Limites
+
+Disponibilité staging annoncée : 14:00–19:00, heure du Maroc. Les appels de vérification hors plage ont expiré ; l’intégration staging et CORS restent à vérifier durant cette plage. La recherche bibliothèque est locale, sans recherche plein texte ni dates inventées. Pas de pagination serveur ajoutée. Les échéances et l’actualité législative dépendent du corpus. Le problème de compatibilité des modèles NLP reste hors périmètre.
+
+Seules des variables publiques peuvent porter le préfixe `VITE_`. Ne jamais y placer de clé privée, d’accès serveur, de base de données ou de déploiement.

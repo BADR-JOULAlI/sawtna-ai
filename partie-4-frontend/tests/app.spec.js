@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 test('assistant returns actual source passages and no browser errors',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message))
   await page.goto('/')
-  await expect(page.getByRole('heading',{level:1})).toContainText('Un repère fiable')
+  await expect(page.getByRole('heading',{level:1})).toContainText('Comprendre les institutions')
   await page.screenshot({path:'../commun/docs/verification/accueil-desktop.png',fullPage:true})
   await page.getByRole('textbox',{name:'Quelle est votre question ?'}).fill('Comment sont élus les membres de la Chambre des représentants ?')
   await page.getByRole('button',{name:'Envoyer la question',exact:true}).click()
@@ -48,7 +48,7 @@ test('mobile navigation fits the screen',async({page})=>{
   await page.setViewportSize({width:390,height:844})
   await page.goto('/')
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true)
-  await page.getByRole('button',{name:'Menu',exact:true}).click()
+  await expect(page.getByRole('navigation')).toBeVisible()
   await page.getByRole('link',{name:'Bibliothèque',exact:true}).click()
   await expect(page.getByRole('heading',{name:'Les textes, à la source.'})).toBeVisible()
   await page.goto('/')
@@ -59,7 +59,7 @@ test('failed API request produces an actionable error',async({page})=>{
   await page.goto('/')
   await page.getByRole('textbox').fill('Comment sont élus les représentants ?')
   await page.getByRole('button',{name:'Envoyer la question',exact:true}).click()
-  await expect(page.getByRole('alert')).toContainText('Service NLP indisponible')
+  await expect(page.getByRole('alert').last()).toContainText('503')
 })
 test('standalone Analytics dashboard authenticates on its own service',async({page})=>{
   await page.goto('http://127.0.0.1:8012/dashboard')
