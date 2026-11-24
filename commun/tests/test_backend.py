@@ -177,3 +177,23 @@ def test_retired_passage_cannot_be_reingested(stack):
     # Without the retired passage the same lot goes through.
     assert client.post("/v1/ingest", headers={"X-Service-Key": "test-service-key"}, json={"passages": [fresh]}).status_code == 200
     assert client.get("/api/documents").json()["passages"] == before + 1
+
+
+def test_analytics_uses_its_own_key_when_configured(tmp_path, monkeypatch):
+    import httpx
+    from fastapi.testclient import TestClient
+    from sawtna.backend import create_app
+    from sawtna.nlp import app as nlp
+    from sawtna.store import Store
+    monkeypatch.setenv("SAWTNA_EMBEDDER", "concept-hash-v1")
+    monkeypatch.setenv("SAWTNA_SERVICE_KEY", "nlp-key")
+    monkeypatch.setenv("SAWTNA_ANALYTICS_KEY", "analytics-key")
+    seen = []
+    def analytics(request):
+        seen.append(request.headers.get("X-Service-Key"))
+        return httpx.Response(202 if request.url.path == "/v1/events" else 200, json={"status": "ok"})
+    app = create_app(Store("backend", str(tmp_path / "b.sqlite")),
+        nlp_transport=httpx.ASGITransport(app=nlp), analytics_transport=httpx.MockTransport(analytics))
+    with TestClient(app) as client:
+        assert client.post("/api/ask", json={"question": "Quel est le rôle du Parlement ?", "language": "fr"}).status_code == 200
+    assert seen and set(seen) == {"analytics-key"}

@@ -59,6 +59,8 @@ def create_app(store=None, nlp_transport=None, analytics_transport=None):
     nlp_url = os.getenv("SAWTNA_NLP_URL", "http://127.0.0.1:8011")
     analytics_url = os.getenv("SAWTNA_ANALYTICS_URL", "http://127.0.0.1:8012")
     headers = {"X-Service-Key": service_key()}
+    # Analytics (Ijlal) peut avoir sa propre clé ; par défaut, la clé de service commune.
+    analytics_headers = {"X-Service-Key": os.getenv("SAWTNA_ANALYTICS_KEY") or service_key()}
     clients = {}
     local_demo_mode = os.getenv("SAWTNA_LOCAL_DEMO_MODE") == "1"
     local_demo_corpus = FilePath(os.getenv("SAWTNA_LOCAL_DEMO_CORPUS", "")) if local_demo_mode else None
@@ -92,7 +94,7 @@ def create_app(store=None, nlp_transport=None, analytics_transport=None):
     async def lifespan(app):
         store.init()
         clients["nlp"] = httpx.AsyncClient(base_url=nlp_url, headers=headers, transport=nlp_transport, timeout=60)
-        clients["analytics"] = httpx.AsyncClient(base_url=analytics_url, headers=headers, transport=analytics_transport, timeout=5)
+        clients["analytics"] = httpx.AsyncClient(base_url=analytics_url, headers=analytics_headers, transport=analytics_transport, timeout=5)
         # Seed only if no document is indexed. Importing collected documents is a separate authenticated operation.
         seed = ROOT / "commun/data/seed/foundation.json"
         if not store.documents() and seed.exists():
