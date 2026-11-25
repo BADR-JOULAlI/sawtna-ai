@@ -18,12 +18,12 @@ s/
 ├── partie-3-nlp/                # Badr — Azure Container Apps
 │   ├── nlp_service/            # Embeddings
 │   └── README.md
-├── partie-4-frontend/           # Aya — Azure Static Web Apps
+├── partie-4-frontend/           # Aya — oci
 │   ├── src/                   # Application React
 │   ├── public/
 │   ├── tests/
 │   └── README.md
-├── partie-5-analytics/          # Ijlal — Google Compute Engine
+├── partie-5-analytics/          # Ijlal — oci
 │   ├── analytics_service/      # KPI et hébergement du dashboard
 │   └── README.md
 ├── commun/                     # Ressources communes aux cinq parties
