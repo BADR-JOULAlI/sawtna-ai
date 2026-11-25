@@ -20,7 +20,6 @@ React 19, React DOM, Vite 7, plugin React et Lucide ; Playwright pour le navigat
 - `src/interface-copy.js` : libellés complémentaires et messages d’erreur localisés.
 - `src/api.js` : fetch public, URL de base, timeout de 65 secondes, annulation, validation des réponses et liens HTTP(S).
 - `src/styles.css` : CSS natif consolidé, identité blanc/gris/rouge, tailles lisibles et propriétés logiques RTL.
-- `public/staticwebapp.config.json` : fichier de configuration hérité de la cible Azure Static Web Apps. Il peut rester dans le dépôt, mais **Nginx sur Oracle ne l’utilise pas** ; la configuration effective du routage SPA est définie côté Nginx.
 
 Aucun routeur supplémentaire. Retour/précédent utilise l’historique des ancres. La langue est conservée pendant la navigation et dans le stockage local lorsque disponible. La navigation vers un autre espace réinitialise son état temporaire, comme auparavant. Un changement de langue réinitialise le quiz et l’assistant et annule leurs requêtes en cours pour éviter un résultat dans la mauvaise langue.
 
