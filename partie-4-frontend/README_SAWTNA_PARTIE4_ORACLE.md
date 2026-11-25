@@ -45,7 +45,7 @@ Le navigateur récupère le frontend statique depuis Oracle, puis appelle **dire
 | Système | Ubuntu 20.04.6 LTS, architecture ARM64 (`aarch64`) |
 | Serveur web | Nginx |
 | Accès d’administration | SSH avec clé privée conservée localement |
-| Réseau | VCN `sawtna-vcn`, sous-réseau public ; règles Ingress pour SSH, HTTP et HTTPS selon configuration |
+| Réseau | VCN (virtual cloud network) `sawtna-vcn`, sous-réseau public ; règles Ingress pour SSH, HTTP et HTTPS selon configuration |
 | Répertoire publié | `/var/www/sawtna` |
 | Adresse publique de démonstration | <http://130.162.52.219> |
 | Transport actuel | HTTP, **sans certificat TLS sur le frontend** |
