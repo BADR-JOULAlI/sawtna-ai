@@ -1,4 +1,4 @@
-# Étudiant 5 — Analytics · Google Compute Engine
+# Étudiant 5 — Analytics · OCI
 
 Code API : `analytics_service/main.py`. Le dashboard autonome est dans `dashboard/` et est servi sur `/dashboard`; son interface est séparée du frontend citoyen.
 
